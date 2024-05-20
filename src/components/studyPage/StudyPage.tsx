@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import test from "../../assets/82620866_p0_master1200.jpg";
-import { StudyImage } from "./studyImage/StudyImage";
 
 import styles from "./studyPage.module.css";
 
@@ -8,33 +7,43 @@ interface canvasContext {}
 export function StudyPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [colorData, setColorData] = useState({ r: 0, g: 0, b: 0 });
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const colorReferenceRef = useRef<HTMLDivElement>(null);
 
   function getColor(context) {
-    context.getImageData();
+    const imageData = context.getImageData(position.x, position.y, 1, 1).data;
+
+    setColorData({
+      r: imageData[0],
+      g: imageData[1],
+      b: imageData[2],
+    });
   }
 
   function addImageToCanvas(imagePath, context, canvas) {
     const studyImage = new Image();
     studyImage.src = imagePath;
-    console.log("check studyImage dimensions");
-    console.log(studyImage.naturalWidth);
-    canvas.width = studyImage.naturalWidth;
-    canvas.height = studyImage.naturalHeight;
     studyImage.onload = () => {
+      canvas.width = studyImage.naturalWidth;
+      canvas.height = studyImage.naturalHeight;
       context.drawImage(studyImage, 0, 0);
     };
   }
 
   // console.log(position);
   useEffect(() => {
+    console.log("checking useEffect");
     if (canvasRef.current) {
+      console.log("checking canvas");
+      console.log("checking imagePath");
+      console.log(test);
+
       const canvasContext = canvasRef.current.getContext("2d");
 
       addImageToCanvas(test, canvasContext, canvasRef.current);
 
-      // canvasContext?.drawImage();
       // canvasContext?.getImageData();
     }
     setIsLoaded(true);
@@ -42,19 +51,31 @@ export function StudyPage() {
   return (
     <>
       <main className={styles.page}>
-        <p>Studying</p>
+        <header>
+          <p>Studying</p>
+          <p>
+            x: {position.x}, y: {position.y}
+          </p>
+          <p>
+            r: {colorData.r} g: {colorData.g} b: {colorData.b}{" "}
+          </p>
 
-        {/* <img className={styles.image} src={test} alt="" /> */}
-        {isLoaded ? (
-          <>
+          <div ref={colorReferenceRef} className={styles.colorReference}></div>
+        </header>
+
+        <>
+          <section className={styles.canvasContainer}>
             <p>canvas</p>
             <canvas
               className={styles.canvas}
-              // onPointerMove={(e) => setPosition({ x: e.clientX, y: e.clientY })}
+              onPointerMove={(e) => {
+                setPosition({ x: e.clientX, y: e.clientY });
+                getColor(canvasRef.current?.getContext("2d"));
+              }}
               ref={canvasRef}
             ></canvas>
-          </>
-        ) : null}
+          </section>
+        </>
       </main>
     </>
   );
