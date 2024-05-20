@@ -48,7 +48,7 @@ export function StudyPage() {
           <p>canvas</p>
           <canvas
             className={styles.image}
-            onPointerMove={(e) => setPosition({ x: e.clientX, y: e.clientY })}
+            // onPointerMove={(e) => setPosition({ x: e.clientX, y: e.clientY })}
             ref={canvasRef}
           ></canvas>
         </>
