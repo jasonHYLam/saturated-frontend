@@ -1,4 +1,8 @@
-.image {
-  height: 1000px;
-  width: auto;
+.page {
+  width: var(--page-width);
+}
+
+.canvas {
+  height: auto;
+  width: 100%;
 }
