@@ -20,6 +20,8 @@ export function StudyPage() {
       g: imageData[1],
       b: imageData[2],
     });
+
+    colorReferenceRef.current.style.backgroundColor = `rgb(${colorData.r}, ${colorData.g}, ${colorData.b})`;
   }
 
   function addImageToCanvas(imagePath, context, canvas) {
@@ -32,13 +34,12 @@ export function StudyPage() {
     };
   }
 
-  // console.log(position);
   useEffect(() => {
-    console.log("checking useEffect");
+    // console.log("checking useEffect");
     if (canvasRef.current) {
-      console.log("checking canvas");
-      console.log("checking imagePath");
-      console.log(test);
+      // console.log("checking canvas");
+      // console.log("checking imagePath");
+      // console.log(test);
 
       const canvasContext = canvasRef.current.getContext("2d");
 
