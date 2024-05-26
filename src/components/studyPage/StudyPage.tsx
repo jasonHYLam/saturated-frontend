@@ -9,6 +9,7 @@ export function StudyPage() {
     width: 0,
     height: 0,
   });
+
   // this differs from the canvas dimensions set at the start, which pertain to the imageDimensions
   const [canvasElementDimensions, setCanvasElementDimensions] = useState({
     width: 0,
@@ -24,15 +25,16 @@ export function StudyPage() {
     const studyImage = new Image();
     studyImage.src = imagePath;
     studyImage.onload = () => {
-      // console.log("checking image nat width and height");
-      // console.log(studyImage.naturalWidth);
-      // console.log(studyImage.naturalHeight);
-      // setImageDimensions({
-      //   width: studyImage.naturalWidth,
-      //   height: studyImage.naturalHeight,
-      // });
+      setImageDimensions({
+        width: studyImage.naturalWidth,
+        height: studyImage.naturalHeight,
+      });
       canvas.width = studyImage.naturalWidth;
       canvas.height = studyImage.naturalHeight;
+      setCanvasElementDimensions({
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      });
       context.drawImage(studyImage, 0, 0);
     };
   }
@@ -46,11 +48,10 @@ export function StudyPage() {
 
   useEffect(() => {
     function handleScreenResize(canvas) {
-      console.log(canvas.clientHeight);
-      console.log(canvas.clientWidth);
-
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      setCanvasElementDimensions({
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      });
     }
 
     window.addEventListener("resize", () =>
@@ -89,13 +90,12 @@ export function StudyPage() {
       const normalisedY =
         (position.y * imageDimensions.height) / canvasElementDimensions.height;
 
-      console.log(`mouse y:${position.y}`);
-      console.log(`img h:${imageDimensions.height}`);
-      console.log(`canvas h:${canvasElementDimensions.height}`);
-      console.log(`normalised y: ${normalisedY}`);
-      console.log(" ");
+      // console.log(`mouse y:${position.y}`);
+      // console.log(`img h:${imageDimensions.height}`);
+      // console.log(`canvas h:${canvasElementDimensions.height}`);
+      // console.log(`normalised y: ${normalisedY}`);
+      // console.log(" ");
 
-      // console.log(`x: ${normalisedX} y: ${normalisedY}`);
       const pixelData = context.getImageData(
         normalisedX,
         normalisedY,
@@ -105,7 +105,8 @@ export function StudyPage() {
       colorReferenceRef.current.style.backgroundColor = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
     }
 
-    getColor(canvasRef.current?.getContext("2d"));
+    if (canvasElementDimensions.width !== 0)
+      getColor(canvasRef.current?.getContext("2d"));
   }, [
     position,
     canvasElementDimensions.width,
@@ -113,6 +114,7 @@ export function StudyPage() {
     imageDimensions.width,
     imageDimensions.height,
   ]);
+
   return (
     <>
       <main className={styles.page}>
@@ -127,18 +129,23 @@ export function StudyPage() {
         </header>
 
         <>
-          <section className={styles.canvasContainer}>
-            <p>canvas</p>
-            <canvas
-              className={styles.canvas}
-              onPointerMove={(e) => {
-                // setPosition({ x: e.clientX, y: e.clientY });
-                // getColor(canvasRef.current?.getContext("2d"));
-                handleMouseMove(e);
-              }}
-              onClick={() => {}}
-              ref={canvasRef}
-            ></canvas>
+          <section className={styles.pageContents}>
+            <section className={styles.canvasContainer}>
+              <p>canvas</p>
+              <canvas
+                className={styles.canvas}
+                onPointerMove={(e) => {
+                  handleMouseMove(e);
+                }}
+                onClick={() => {}}
+                ref={canvasRef}
+              ></canvas>
+            </section>
+            <section>
+              <div></div>
+              <h1>Notes</h1>
+              {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
+            </section>
           </section>
         </>
       </main>
