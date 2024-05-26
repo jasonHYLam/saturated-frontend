@@ -1,0 +1,13 @@
+.canvasContainer {
+  height: 80%;
+}
+
+.canvas {
+  height: auto;
+  width: 100%;
+}
+
+.colorReference {
+  height: 20px;
+  width: 20px;
+}

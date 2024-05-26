@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
-export function StudyImage() {
+export function StudyImage({ colorReference, setColorData }) {
+  // console.log(colorReference);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [imageDimensions, setImageDimensions] = useState({
     width: 0,
@@ -64,7 +66,7 @@ export function StudyImage() {
     const canvas = canvasRef.current;
     if (canvas) {
       const canvasContext = canvas.getContext("2d");
-      addImageToCanvas(test, canvasContext, canvas);
+      addImageToCanvas(testImage, canvasContext, canvas);
 
       setCanvasElementDimensions({
         width: canvas.clientWidth,
@@ -97,7 +99,10 @@ export function StudyImage() {
         1,
         1
       ).data;
-      colorReferenceRef.current.style.backgroundColor = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
+
+      setColorData(`rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`);
+
+      // colorReference.style.backgroundColor = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
     }
 
     if (canvasElementDimensions.width !== 0)
@@ -108,6 +113,7 @@ export function StudyImage() {
     canvasElementDimensions.height,
     imageDimensions.width,
     imageDimensions.height,
+    setColorData,
   ]);
 
   return (
