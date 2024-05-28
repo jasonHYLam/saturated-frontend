@@ -7,6 +7,8 @@ export function StudyImage({
   setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
+  setClickedPosition,
+  clickedPosition,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();

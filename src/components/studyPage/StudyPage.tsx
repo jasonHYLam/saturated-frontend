@@ -4,10 +4,10 @@ import test from "../../assets/82620866_p0_master1200.jpg";
 import styles from "./studyPage.module.css";
 
 import { StudyImage } from "./studyImage/StudyImage";
-import { AddNote } from "./studyImage/AddNote";
+import { AddNote } from "./studyImage/notes/AddNote";
 
 export function StudyPage() {
-  // const [colorData, setColorData] = useState("");
+  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -73,6 +73,9 @@ export function StudyPage() {
               setImageDimensions={setImageDimensions}
               setCanvasElementDimensions={setCanvasElementDimensions}
               canvasRef={canvasRef}
+              normalisedPosition={normalisedPosition}
+              setClickedPosition={setClickedPosition}
+              clickedPosition={clickedPosition}
             />
             <section>
               <h1>Notes</h1>

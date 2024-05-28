@@ -1,0 +1,6 @@
+.marker {
+  height: var(--marker-size);
+  width: var(--marker-size);
+  background-color: var(--marker-color);
+  opacity: 0.5;
+}
