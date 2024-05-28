@@ -4,9 +4,11 @@ import test from "../../assets/82620866_p0_master1200.jpg";
 import styles from "./studyPage.module.css";
 
 import { StudyImage } from "./studyImage/StudyImage";
+import { AddNote } from "./studyImage/AddNote";
 
 export function StudyPage() {
   // const [colorData, setColorData] = useState("");
+  const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [imageDimensions, setImageDimensions] = useState({
@@ -76,6 +78,7 @@ export function StudyPage() {
               <h1>Notes</h1>
               <section></section>
               <div></div>
+              <AddNote />
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
             </section>
           </section>
