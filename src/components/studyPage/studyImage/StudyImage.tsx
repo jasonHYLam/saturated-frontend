@@ -1,23 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
-export function StudyImage({ colorReference, setColorData }) {
-  // console.log(colorReference);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  // this differs from the canvas dimensions set at the start, which pertain to the imageDimensions
-  const [canvasElementDimensions, setCanvasElementDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
+export function StudyImage({
+  setPosition,
+  setImageDimensions,
+  setCanvasElementDimensions,
+  canvasRef,
+}) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
@@ -63,58 +53,24 @@ export function StudyImage({ colorReference, setColorData }) {
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const canvasContext = canvas.getContext("2d");
-      addImageToCanvas(testImage, canvasContext, canvas);
+    if (canvasRef) {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const canvasContext = canvas.getContext("2d");
+        addImageToCanvas(testImage, canvasContext, canvas);
 
-      setCanvasElementDimensions({
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      });
+        setCanvasElementDimensions({
+          width: canvas.clientWidth,
+          height: canvas.clientHeight,
+        });
 
-      setImageDimensions({
-        width: canvas.width,
-        height: canvas.height,
-      });
+        setImageDimensions({
+          width: canvas.width,
+          height: canvas.height,
+        });
+      }
     }
   }, []);
-
-  useEffect(() => {
-    function getColor(context) {
-      const normalisedX =
-        (position.x * imageDimensions.width) / canvasElementDimensions.width;
-      const normalisedY =
-        (position.y * imageDimensions.height) / canvasElementDimensions.height;
-
-      // console.log(`mouse y:${position.y}`);
-      // console.log(`img h:${imageDimensions.height}`);
-      // console.log(`canvas h:${canvasElementDimensions.height}`);
-      // console.log(`normalised y: ${normalisedY}`);
-      // console.log(" ");
-
-      const pixelData = context.getImageData(
-        normalisedX,
-        normalisedY,
-        1,
-        1
-      ).data;
-
-      setColorData(`rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`);
-
-      // colorReference.style.backgroundColor = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
-    }
-
-    if (canvasElementDimensions.width !== 0)
-      getColor(canvasRef.current?.getContext("2d"));
-  }, [
-    position,
-    canvasElementDimensions.width,
-    canvasElementDimensions.height,
-    imageDimensions.width,
-    imageDimensions.height,
-    setColorData,
-  ]);
 
   return (
     <>
