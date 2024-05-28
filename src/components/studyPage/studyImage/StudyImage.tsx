@@ -14,6 +14,8 @@ export function StudyImage({
   clickedPosition,
   showAddNote,
   setShowAddNote,
+  setClickedPixelColorData,
+  pixelColorData,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -25,6 +27,7 @@ export function StudyImage({
   function handleClick() {
     setClickedPosition(normalisedPosition);
     setShowAddNote(true);
+    setClickedPixelColorData(pixelColorData);
   }
 
   function addImageToCanvas(imagePath, context, canvas) {

@@ -1,7 +1,7 @@
-export function AddNote() {
+export function AddNote({ setShowAddNote, pixelColorData }) {
   return (
     <>
-      <button>Close</button>
+      <button onClick={() => setShowAddNote(false)}>Close</button>
 
       <h1>Add note</h1>
       <p>Hide color</p>

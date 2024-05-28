@@ -8,6 +8,7 @@ import { AddNote } from "./studyImage/notes/AddNote";
 
 export function StudyPage() {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+  const [clickedPixelColorData, setClickedPixelColorData] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -78,12 +79,14 @@ export function StudyPage() {
               clickedPosition={clickedPosition}
               showAddNote={showAddNote}
               setShowAddNote={setShowAddNote}
+              setClickedPixelColorData={setClickedPixelColorData}
+              pixelColorData={pixelColorData}
             />
             <section>
               <h1>Notes</h1>
               <section></section>
               <div></div>
-              {showAddNote ? <AddNote /> : null}
+              {showAddNote ? <AddNote setShowAddNote={setShowAddNote} /> : null}
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
             </section>
           </section>
