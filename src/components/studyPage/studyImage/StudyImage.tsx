@@ -2,19 +2,29 @@ import { useEffect } from "react";
 import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
+import { PositionMarker } from "./positionMarker/PositionMarker";
+
 export function StudyImage({
   setPosition,
   setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
+  normalisedPosition,
   setClickedPosition,
   clickedPosition,
+  showAddNote,
+  setShowAddNote,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
     const newY = e.clientY - rect.top;
     setPosition({ x: newX, y: newY });
+  }
+
+  function handleClick() {
+    setClickedPosition(normalisedPosition);
+    setShowAddNote(true);
   }
 
   function addImageToCanvas(imagePath, context, canvas) {
@@ -83,9 +93,11 @@ export function StudyImage({
           onPointerMove={(e) => {
             handleMouseMove(e);
           }}
-          onClick={() => {}}
+          onClick={handleClick}
           ref={canvasRef}
         ></canvas>
+
+        {showAddNote ? <PositionMarker position={clickedPosition} /> : null}
       </section>
     </>
   );

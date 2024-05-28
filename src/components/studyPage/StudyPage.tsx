@@ -46,7 +46,7 @@ export function StudyPage() {
   // console.log(canvasElementDimensions);
   // console.log(normalisedPosition);
   // console.log(canvasContext);
-  // console.log(pixelColorData);
+  console.log(pixelColorData);
   // console.log("");
 
   const colorReferenceRef = useRef<HTMLDivElement>(null);
@@ -76,12 +76,14 @@ export function StudyPage() {
               normalisedPosition={normalisedPosition}
               setClickedPosition={setClickedPosition}
               clickedPosition={clickedPosition}
+              showAddNote={showAddNote}
+              setShowAddNote={setShowAddNote}
             />
             <section>
               <h1>Notes</h1>
               <section></section>
               <div></div>
-              <AddNote />
+              {showAddNote ? <AddNote /> : null}
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
             </section>
           </section>
