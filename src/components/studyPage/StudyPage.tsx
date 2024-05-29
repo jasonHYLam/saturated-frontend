@@ -15,7 +15,7 @@ export function StudyPage() {
     yFraction: 1,
   });
   const [clickedPixelColorData, setClickedPixelColorData] = useState("");
-  const [notePositions, setNotePositions] = useState([]);
+  const [allNotes, setAllNotes] = useState([]);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -74,7 +74,7 @@ export function StudyPage() {
       yFraction: normalisedMousePositionFraction.y,
     });
     setShowAddNote(true);
-    setClickedPixelColorData(clickedPixelColorData);
+    setClickedPixelColorData(pixelColorData);
   }
 
   // console.log(position);
@@ -123,6 +123,8 @@ export function StudyPage() {
                 <AddNote
                   setShowAddNote={setShowAddNote}
                   pixelColorData={clickedPixelColorData}
+                  setAllNotes={setAllNotes}
+                  allNotes={allNotes}
                 />
               ) : null}
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}

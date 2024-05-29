@@ -1,8 +1,33 @@
 import { useState } from "react";
 import styles from "./addNote.module.css";
+import { useForm } from "react-hook-form";
 
-export function AddNote({ setShowAddNote, pixelColorData }) {
+export function AddNote({
+  setShowAddNote,
+  pixelColorData,
+  setAllNotes,
+  allNotes,
+}) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors,
+  } = useForm();
   const [showColorReference, setShowColorReference] = useState(true);
+
+  function uploadNote(data) {
+    console.log(data);
+    const newNote = { data, color: pixelColorData };
+    console.log(newNote);
+    // fetchData
+    if (allNotes) {
+      setAllNotes([...allNotes, newNote]);
+    } else {
+      setAllNotes([newNote]);
+    }
+    setShowAddNote(false);
+  }
   return (
     <>
       <button onClick={() => setShowAddNote(false)}>Close</button>
@@ -19,8 +44,8 @@ export function AddNote({ setShowAddNote, pixelColorData }) {
       ) : (
         <button onClick={() => setShowColorReference(true)}>Show color</button>
       )}
-      <form action="">
-        <input type="text" />
+      <form action="" onSubmit={handleSubmit(uploadNote)}>
+        <input type="text" {...register("text")} placeholder="Add a note" />
         <input type="submit" value="Create" />
       </form>
     </>
