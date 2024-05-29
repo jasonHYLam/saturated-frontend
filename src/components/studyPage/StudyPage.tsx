@@ -129,12 +129,6 @@ export function StudyPage() {
               />
               <section>
                 <h1>Notes</h1>
-                <NotesContainer allNotes={allNotes} />
-                {/* <section>
-                  {allNotes.map((note) => (
-                    <Note note={note} />
-                  ))}
-                </section> */}
                 {showAddNote ? (
                   <AddNote
                     setShowAddNote={setShowAddNote}
@@ -143,7 +137,9 @@ export function StudyPage() {
                     allNotes={allNotes}
                     clickedPositionFraction={clickedPositionFraction}
                   />
-                ) : null}
+                ) : (
+                  <NotesContainer allNotes={allNotes} />
+                )}
               </section>
             </section>
           </StudyPageContext.Provider>
