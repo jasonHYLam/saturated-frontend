@@ -1,9 +1,11 @@
-export function({mode}) {
-
+export function ToggleColorMode({ setColorMode, colorMode }) {
   return (
     <>
-  {mode === 'color' ? <button>Grayscale</button> : <button>Color</button>}
+      {colorMode === "color" ? (
+        <button onClick={() => setColorMode("grayscale")}>Grayscale</button>
+      ) : (
+        <button onClick={() => setColorMode("color")}>Color</button>
+      )}
     </>
-  )
-
+  );
 }

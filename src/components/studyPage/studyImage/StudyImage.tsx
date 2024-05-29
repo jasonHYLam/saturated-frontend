@@ -13,7 +13,11 @@ export function StudyImage({
   showAddNote,
   handleClick,
   allNotes,
+  colorMode,
 }) {
+  console.log(colorMode);
+  const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
+
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
@@ -83,7 +87,7 @@ export function StudyImage({
       <section className={styles.canvasContainer}>
         <p>canvas</p>
         <canvas
-          className={styles.canvas}
+          className={`${styles.canvas} ${colorModeStyle}`}
           onPointerMove={(e) => {
             handleMouseMove(e);
           }}

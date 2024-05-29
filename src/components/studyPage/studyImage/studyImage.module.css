@@ -8,7 +8,6 @@
   height: auto;
   width: 100%;
   /* position: relative; */
-  filter: grayscale(1);
 }
 
 .colorReference {
@@ -21,4 +20,8 @@
   width: var(--marker-size);
   background-color: aqua;
   position: absolute;
+}
+
+.grayscale {
+  filter: grayscale(1);
 }

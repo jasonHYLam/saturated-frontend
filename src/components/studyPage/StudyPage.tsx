@@ -5,6 +5,7 @@ import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
+import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -93,7 +94,7 @@ export function StudyPage() {
       <main className={styles.page}>
         <header className={styles.header}>
           <ColorReference colorData={pixelColorData} size="large" />
-          <button>Grayscale</button>
+          <ToggleColorMode colorMode={colorMode} setColorMode={setColorMode} />
         </header>
 
         <>
@@ -116,6 +117,7 @@ export function StudyPage() {
                 handleClick={handleClick}
                 allNotes={allNotes}
                 canvasElementDimensions={canvasElementDimensions}
+                colorMode={colorMode}
               />
               <section className={styles.notesSection}>
                 <h1>Notes</h1>
