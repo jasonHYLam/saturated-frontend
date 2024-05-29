@@ -9,12 +9,12 @@ import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/AddNote";
 import { Note } from "./studyImage/notes/Note";
 
+const StudyPageContext = createContext({
+  allNotes: [],
+  canvasElementDimensions: [],
+  normalisedClickedPosition: {},
+});
 export function StudyPage() {
-  const studyPageContext = createContext({
-    note: {},
-    canvasElementDimensions: [],
-    normalisedClickedPosition: {},
-  });
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
     yFraction: 1,
@@ -102,37 +102,47 @@ export function StudyPage() {
         </header>
 
         <>
-          <section className={styles.pageContents}>
-            <StudyImage
-              setPosition={setPosition}
-              setImageDimensions={setImageDimensions}
-              setCanvasElementDimensions={setCanvasElementDimensions}
-              canvasRef={canvasRef}
-              normalisedClickedPosition={normalisedClickedPosition}
-              showAddNote={showAddNote}
-              handleClick={handleClick}
-              allNotes={allNotes}
-              canvasElementDimensions={canvasElementDimensions}
-            />
-            <section>
-              <h1>Notes</h1>
+          <StudyPageContext.Provider
+          // value={
+          // {
+          // allNotes,
+          // canvasElementDimensions,
+          // normalisedClickedPosition,
+          // }
+          // }
+          >
+            <section className={styles.pageContents}>
+              <StudyImage
+                setPosition={setPosition}
+                setImageDimensions={setImageDimensions}
+                setCanvasElementDimensions={setCanvasElementDimensions}
+                canvasRef={canvasRef}
+                normalisedClickedPosition={normalisedClickedPosition}
+                showAddNote={showAddNote}
+                handleClick={handleClick}
+                allNotes={allNotes}
+                canvasElementDimensions={canvasElementDimensions}
+              />
               <section>
-                {allNotes.map((note) => (
-                  <Note note={note} />
-                ))}
+                <h1>Notes</h1>
+                <section>
+                  {allNotes.map((note) => (
+                    <Note note={note} />
+                  ))}
+                </section>
+                <div></div>
+                {showAddNote ? (
+                  <AddNote
+                    setShowAddNote={setShowAddNote}
+                    pixelColorData={clickedPixelColorData}
+                    setAllNotes={setAllNotes}
+                    allNotes={allNotes}
+                    clickedPositionFraction={clickedPositionFraction}
+                  />
+                ) : null}
               </section>
-              <div></div>
-              {showAddNote ? (
-                <AddNote
-                  setShowAddNote={setShowAddNote}
-                  pixelColorData={clickedPixelColorData}
-                  setAllNotes={setAllNotes}
-                  allNotes={allNotes}
-                  clickedPositionFraction={clickedPositionFraction}
-                />
-              ) : null}
             </section>
-          </section>
+          </StudyPageContext.Provider>
         </>
       </main>
     </>
