@@ -1,6 +1,10 @@
 import styles from "./marker.module.css";
 import { MARKER_HEIGHT } from "../../../../helpers/constants";
-export function NoteMarker({ note, canvasElementDimensions }) {
+import { useContext } from "react";
+import { StudyPageContext } from "../../StudyPage";
+
+export function NoteMarker({ note }) {
+  const { canvasElementDimensions } = useContext(StudyPageContext);
   const xPosition =
     note.normalisedMousePositionFraction.xFraction *
     canvasElementDimensions.width;

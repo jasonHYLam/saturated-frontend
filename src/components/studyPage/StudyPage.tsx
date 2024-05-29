@@ -9,11 +9,12 @@ import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/AddNote";
 import { Note } from "./studyImage/notes/Note";
 
-const StudyPageContext = createContext({
+export const StudyPageContext = createContext({
   allNotes: [],
   canvasElementDimensions: [],
   normalisedClickedPosition: {},
 });
+
 export function StudyPage() {
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
@@ -103,13 +104,11 @@ export function StudyPage() {
 
         <>
           <StudyPageContext.Provider
-          // value={
-          // {
-          // allNotes,
-          // canvasElementDimensions,
-          // normalisedClickedPosition,
-          // }
-          // }
+            value={{
+              allNotes,
+              canvasElementDimensions,
+              normalisedClickedPosition,
+            }}
           >
             <section className={styles.pageContents}>
               <StudyImage
