@@ -25,3 +25,7 @@
 .pageContents {
   display: flex;
 }
+
+.notesSection {
+  padding-inline: 30px;
+}

@@ -21,6 +21,7 @@ export function StudyPage() {
   const [clickedPixelColorData, setClickedPixelColorData] = useState("");
   // const [allNotes, setAllNotes] = useState([]);
   const [allNotes, setAllNotes] = useState(testNotes);
+  const [colorMode, setColorMode] = useState("color");
   const [activeMarkerAndNoteID, setActiveMarkerAndNoteID] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -92,6 +93,7 @@ export function StudyPage() {
       <main className={styles.page}>
         <header className={styles.header}>
           <ColorReference colorData={pixelColorData} size="large" />
+          <button>Grayscale</button>
         </header>
 
         <>
@@ -115,7 +117,7 @@ export function StudyPage() {
                 allNotes={allNotes}
                 canvasElementDimensions={canvasElementDimensions}
               />
-              <section>
+              <section className={styles.notesSection}>
                 <h1>Notes</h1>
                 {showAddNote ? (
                   <AddNote

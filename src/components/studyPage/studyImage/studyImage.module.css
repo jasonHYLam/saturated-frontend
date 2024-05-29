@@ -8,6 +8,7 @@
   height: auto;
   width: 100%;
   /* position: relative; */
+  filter: grayscale(1);
 }
 
 .colorReference {
