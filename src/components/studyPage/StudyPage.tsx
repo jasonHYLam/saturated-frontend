@@ -4,6 +4,7 @@ import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
+import { ColorReference } from "./colorReference/ColorReference";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -86,19 +87,11 @@ export function StudyPage() {
   // console.log(pixelColorData);
   // console.log("");
 
-  const colorReferenceRef = useRef<HTMLDivElement>(null);
-
   return (
     <>
       <main className={styles.page}>
         <header className={styles.header}>
-          <p>Studying</p>
-
-          <div
-            ref={colorReferenceRef}
-            className={styles.colorReference}
-            style={{ backgroundColor: pixelColorData }}
-          ></div>
+          <ColorReference colorData={pixelColorData} size="large" />
         </header>
 
         <>

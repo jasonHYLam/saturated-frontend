@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./addNote.module.css";
 import { useForm } from "react-hook-form";
+import { ColorReference } from "../../../colorReference/ColorReference";
 
 export function AddNote({
   setShowAddNote,
@@ -35,10 +36,7 @@ export function AddNote({
     <>
       <button onClick={() => setShowAddNote(false)}>Close</button>
       {showColorReference ? (
-        <div
-          style={{ background: pixelColorData }}
-          className={styles.colorReference}
-        ></div>
+        <ColorReference colorData={pixelColorData} size="large" />
       ) : null}
 
       <h1>Add note</h1>
