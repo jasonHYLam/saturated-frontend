@@ -7,7 +7,9 @@ export function AddNote({
   pixelColorData,
   setAllNotes,
   allNotes,
+  normalisedMousePositionFraction,
 }) {
+  console.log(normalisedMousePositionFraction);
   const {
     register,
     handleSubmit,
@@ -18,7 +20,11 @@ export function AddNote({
 
   function uploadNote(data) {
     console.log(data);
-    const newNote = { data, color: pixelColorData };
+    const newNote = {
+      text: data.text,
+      color: pixelColorData,
+      normalisedMousePositionFraction: normalisedMousePositionFraction,
+    };
     console.log(newNote);
     // fetchData
     if (allNotes) {

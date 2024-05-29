@@ -1,8 +1,14 @@
-export function Note(note) {
-  console.log(note);
+import styles from "./note.module.css";
+export function Note({ note }) {
   return (
     <>
-      <div></div>
+      <article>
+        <div
+          style={{ backgroundColor: note.color }}
+          className={styles.colorReference}
+        />
+        <p>{note.text}</p>
+      </article>
     </>
   );
 }

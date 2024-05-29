@@ -7,6 +7,8 @@
   --marker-color: white;
   --marker-size: 20px;
 
+  --note-color-size: 50px;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;

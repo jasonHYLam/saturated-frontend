@@ -1,0 +1,4 @@
+.colorReference {
+  height: var(--note-color-size);
+  width: var(--note-color-size);
+}

@@ -12,7 +12,6 @@ export function StudyImage({
   normalisedClickedPosition,
   showAddNote,
   handleClick,
-  normalisedMousePosition,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();

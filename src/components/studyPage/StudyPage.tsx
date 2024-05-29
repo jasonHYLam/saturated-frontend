@@ -5,11 +5,9 @@ import styles from "./studyPage.module.css";
 
 import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/AddNote";
+import { Note } from "./studyImage/notes/Note";
 
 export function StudyPage() {
-  // need to convert this into fraction, and then somehow use canvas dimensions, maybe multiply
-  // this might depend on position or normalisedPosition
-  // so, normalisedby canvas Element, call that normalisedPositionAsFraction and create another variable for normalisedClickedPosition
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
     yFraction: 1,
@@ -30,28 +28,22 @@ export function StudyPage() {
     height: 1,
   });
 
-  const normalisedClickedPosition = {
-    x: clickedPositionFraction.xFraction * canvasElementDimensions.width,
-    y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
-  };
-
-  // this should only work for color
-  // but why does this work for clickedPosition, surely imageDims isn't necessary...
-  // oh maybe at the start imageDim is the same as canvasElemDim
-
+  // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
     x: position.x / canvasElementDimensions.width,
     y: position.y / canvasElementDimensions.height,
   };
 
+  // Clicked position on canvas. Scales with canvas.
+  const normalisedClickedPosition = {
+    x: clickedPositionFraction.xFraction * canvasElementDimensions.width,
+    y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
+  };
+
+  // Position that corresponds to the canvas image, to obtain colorData of the pixel at the mouse position.
   const normalisedMousePositionForColor = {
     x: normalisedMousePositionFraction.x * imageDimensions.width,
     y: normalisedMousePositionFraction.y * imageDimensions.height,
-  };
-
-  const normalisedMousePosition = {
-    x: (position.x * imageDimensions.width) / canvasElementDimensions.width,
-    y: (position.y * imageDimensions.height) / canvasElementDimensions.height,
   };
 
   const canvasContext = canvasRef.current?.getContext("2d");
@@ -92,8 +84,6 @@ export function StudyPage() {
       <main className={styles.page}>
         <header className={styles.header}>
           <p>Studying</p>
-          <p>{/* x: {position.x}, y: {position.y} */}</p>
-          <p></p>
 
           <div
             ref={colorReferenceRef}
@@ -113,11 +103,14 @@ export function StudyPage() {
               showAddNote={showAddNote}
               handleClick={handleClick}
               // used for testing mouse after changing screen dimensions
-              normalisedMousePosition={normalisedMousePosition}
             />
             <section>
               <h1>Notes</h1>
-              <section></section>
+              <section>
+                {allNotes.map((note) => (
+                  <Note note={note} />
+                ))}
+              </section>
               <div></div>
               {showAddNote ? (
                 <AddNote
@@ -125,6 +118,9 @@ export function StudyPage() {
                   pixelColorData={clickedPixelColorData}
                   setAllNotes={setAllNotes}
                   allNotes={allNotes}
+                  normalisedMousePositionFraction={
+                    normalisedMousePositionFraction
+                  }
                 />
               ) : null}
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}

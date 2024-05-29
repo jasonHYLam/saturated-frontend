@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import styles from "./positionMarker.module.css";
+import styles from "./marker.module.css";
 import { getMarkerHeight } from "../../../../helpers/helpers";
 
 export function PositionMarker({ normalisedClickedPosition }) {
