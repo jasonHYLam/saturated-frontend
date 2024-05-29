@@ -2,7 +2,7 @@ import styles from "./note.module.css";
 export function Note({ note }) {
   return (
     <>
-      <article>
+      <article className={styles.note}>
         <div
           style={{ backgroundColor: note.color }}
           className={styles.colorReference}

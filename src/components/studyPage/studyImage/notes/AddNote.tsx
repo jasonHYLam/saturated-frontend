@@ -9,7 +9,6 @@ export function AddNote({
   allNotes,
   clickedPositionFraction,
 }) {
-  console.log(clickedPositionFraction);
   const {
     register,
     handleSubmit,
@@ -19,13 +18,11 @@ export function AddNote({
   const [showColorReference, setShowColorReference] = useState(true);
 
   function uploadNote(data) {
-    console.log(data);
     const newNote = {
       text: data.text,
       color: pixelColorData,
       normalisedMousePositionFraction: clickedPositionFraction,
     };
-    console.log(newNote);
     // fetchData
     if (allNotes) {
       setAllNotes([...allNotes, newNote]);

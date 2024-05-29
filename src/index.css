@@ -9,6 +9,8 @@
 
   --note-color-size: 50px;
 
+  --note-background-hover: rgb(76, 76, 76);
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;

@@ -6,3 +6,9 @@
   position: absolute;
   z-index: 9;
 }
+
+.marker:hover {
+  /* background-color: aqua; */
+  opacity: 0.3;
+  cursor: pointer;
+}

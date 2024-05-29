@@ -2,3 +2,8 @@
   height: var(--note-color-size);
   width: var(--note-color-size);
 }
+
+.note:hover {
+  cursor: pointer;
+  background-color: var(--note-background-hover);
+}
