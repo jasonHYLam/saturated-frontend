@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styles from "./note.module.css";
-import { StudyPageContext } from "../../StudyPage";
+import { StudyPageContext } from "../../../StudyPage";
 export function Note({ note }) {
   const { activeMarkerAndNoteID, setActiveMarkerAndNoteID } =
     useContext(StudyPageContext);

@@ -5,6 +5,7 @@
   opacity: var(--marker-default-opacity);
   position: absolute;
   z-index: 9;
+  border-radius: 5px;
 }
 
 .marker:hover {
@@ -12,8 +13,10 @@
   opacity: var(--marker-hover-opacity);
   cursor: pointer;
   box-shadow: var(--box-shadow);
+  border-radius: 0;
 }
 
 .activeMarker {
   opacity: var(--marker-hover-opacity);
+  border-radius: 0;
 }

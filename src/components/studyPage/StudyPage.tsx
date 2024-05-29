@@ -1,14 +1,9 @@
 import { createContext, useRef, useState } from "react";
-import test from "../../assets/82620866_p0_master1200.jpg";
-
 import { testNotes } from "../../helpers/testData";
-
 import styles from "./studyPage.module.css";
-
 import { StudyImage } from "./studyImage/StudyImage";
-import { AddNote } from "./studyImage/notes/AddNote";
-import { NotesContainer } from "./studyImage/notes/NotesContainer";
-import { Note } from "./studyImage/notes/Note";
+import { AddNote } from "./studyImage/notes/addNote/AddNote";
+import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],

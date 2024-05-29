@@ -1,8 +1,10 @@
-import { Note } from "./Note";
+import styles from "./notesContainer.module.css";
+import { Note } from "../notes/note/Note";
+
 export function NotesContainer({ allNotes }) {
   return (
     <>
-      <section>
+      <section className={styles.notesContainer}>
         {allNotes.map((note) => (
           <Note note={note} />
         ))}

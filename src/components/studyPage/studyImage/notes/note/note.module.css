@@ -16,8 +16,15 @@
 .note:hover {
   cursor: pointer;
   background-color: var(--note-background-hover);
+  box-shadow: var(--box-shadow);
 }
 
 .editDeleteButtons {
   position: absolute;
+}
+
+.notesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
