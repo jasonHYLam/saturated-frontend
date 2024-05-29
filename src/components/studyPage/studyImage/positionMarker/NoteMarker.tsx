@@ -24,11 +24,9 @@ export function NoteMarker({ note }) {
       : styles.marker;
 
   function handleHover() {
-    console.log("1");
     setActiveMarkerAndNoteID(
       JSON.stringify(note.normalisedMousePositionFraction)
     );
-    console.log(activeMarkerAndNoteID);
   }
 
   function handleMouseLeave() {

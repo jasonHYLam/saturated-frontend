@@ -2,17 +2,17 @@
   height: var(--marker-size);
   width: var(--marker-size);
   background-color: var(--marker-color);
-  opacity: 0.5;
+  opacity: var(--marker-default-opacity);
   position: absolute;
   z-index: 9;
 }
 
 .marker:hover {
   /* background-color: aqua; */
-  opacity: 0.3;
+  opacity: var(--marker-hover-opacity);
   cursor: pointer;
 }
 
 .activeMarker {
-  opacity: 0.1;
+  opacity: var(--marker-hover-opacity);
 }
