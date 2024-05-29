@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
-import { PositionMarker } from "./positionMarker/PositionMarker";
-import { NoteMarker } from "./positionMarker/NoteMarker";
+import { PositionMarker } from "./marker/PositionMarker";
+import { NoteMarker } from "./marker/NoteMarker";
 
 export function StudyImage({
   setPosition,
