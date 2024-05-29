@@ -1,7 +1,10 @@
 import styles from "./marker.module.css";
 import { MARKER_HEIGHT } from "../../../../helpers/constants";
+import { useContext } from "react";
+import { StudyPageContext } from "../../StudyPage";
 
-export function PositionMarker({ normalisedClickedPosition }) {
+export function PositionMarker() {
+  const { normalisedClickedPosition } = useContext(StudyPageContext);
   return (
     <>
       <div
@@ -10,7 +13,7 @@ export function PositionMarker({ normalisedClickedPosition }) {
           left: normalisedClickedPosition.x - MARKER_HEIGHT / 2,
         }}
         className={styles.marker}
-      ></div>
+      />
     </>
   );
 }

@@ -10,11 +10,9 @@ export function StudyImage({
   setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
-  normalisedClickedPosition,
   showAddNote,
   handleClick,
   allNotes,
-  canvasElementDimensions,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -93,16 +91,10 @@ export function StudyImage({
           ref={canvasRef}
         ></canvas>
 
-        {showAddNote ? (
-          <PositionMarker
-            normalisedClickedPosition={normalisedClickedPosition}
-          />
-        ) : null}
+        {showAddNote ? <PositionMarker /> : null}
+
         {allNotes.map((note) => (
-          <NoteMarker
-            note={note}
-            canvasElementDimensions={canvasElementDimensions}
-          />
+          <NoteMarker note={note} />
         ))}
       </section>
     </>
