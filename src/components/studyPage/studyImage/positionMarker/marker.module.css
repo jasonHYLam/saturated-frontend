@@ -12,3 +12,7 @@
   opacity: 0.3;
   cursor: pointer;
 }
+
+.activeMarker {
+  opacity: 0.1;
+}

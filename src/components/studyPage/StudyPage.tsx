@@ -10,9 +10,10 @@ import { AddNote } from "./studyImage/notes/AddNote";
 import { Note } from "./studyImage/notes/Note";
 
 export const StudyPageContext = createContext({
-  allNotes: [],
   canvasElementDimensions: [],
   normalisedClickedPosition: {},
+  activeMarkerAndNoteID: "",
+  setActiveMarkerAndNoteID: () => {},
 });
 
 export function StudyPage() {
@@ -31,6 +32,8 @@ export function StudyPage() {
     width: 1,
     height: 1,
   });
+
+  // console.log(activeMarkerAndNoteID);
 
   // this differs from the canvas dimensions set at the start, which pertain to the imageDimensions
   const [canvasElementDimensions, setCanvasElementDimensions] = useState({
@@ -105,9 +108,10 @@ export function StudyPage() {
         <>
           <StudyPageContext.Provider
             value={{
-              allNotes,
               canvasElementDimensions,
               normalisedClickedPosition,
+              activeMarkerAndNoteID,
+              setActiveMarkerAndNoteID,
             }}
           >
             <section className={styles.pageContents}>

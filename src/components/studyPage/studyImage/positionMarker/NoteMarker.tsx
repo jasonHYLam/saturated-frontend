@@ -4,13 +4,21 @@ import { useContext } from "react";
 import { StudyPageContext } from "../../StudyPage";
 
 export function NoteMarker({ note }) {
-  const { canvasElementDimensions } = useContext(StudyPageContext);
+  const { activeMarkerAndNoteID, canvasElementDimensions } =
+    useContext(StudyPageContext);
+
   const xPosition =
     note.normalisedMousePositionFraction.xFraction *
     canvasElementDimensions.width;
   const yPosition =
     note.normalisedMousePositionFraction.yFraction *
     canvasElementDimensions.height;
+
+  const noteMarkerStyle =
+    activeMarkerAndNoteID ===
+    JSON.stringify(note.normalisedMousePositionFraction)
+      ? `${styles.marker} ${styles.activeMarker}`
+      : styles.marker;
 
   return (
     <>
@@ -19,7 +27,7 @@ export function NoteMarker({ note }) {
           top: yPosition + MARKER_HEIGHT / 2 - 5,
           left: xPosition - MARKER_HEIGHT / 2,
         }}
-        className={styles.marker}
+        className={noteMarkerStyle}
       ></div>
     </>
   );
