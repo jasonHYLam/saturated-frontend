@@ -15,7 +15,6 @@ export function StudyImage({
   allNotes,
   colorMode,
 }) {
-  console.log(colorMode);
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
 
   function handleMouseMove(e) {

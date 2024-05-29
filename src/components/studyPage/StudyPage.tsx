@@ -12,6 +12,8 @@ export const StudyPageContext = createContext({
   normalisedClickedPosition: {},
   activeMarkerAndNoteID: "",
   setActiveMarkerAndNoteID: () => {},
+  setAllNotes: () => {},
+  allNotes: [],
 });
 
 export function StudyPage() {
@@ -104,6 +106,8 @@ export function StudyPage() {
               normalisedClickedPosition,
               activeMarkerAndNoteID,
               setActiveMarkerAndNoteID,
+              setAllNotes,
+              allNotes,
             }}
           >
             <section className={styles.pageContents}>
@@ -112,11 +116,9 @@ export function StudyPage() {
                 setImageDimensions={setImageDimensions}
                 setCanvasElementDimensions={setCanvasElementDimensions}
                 canvasRef={canvasRef}
-                normalisedClickedPosition={normalisedClickedPosition}
                 showAddNote={showAddNote}
                 handleClick={handleClick}
                 allNotes={allNotes}
-                canvasElementDimensions={canvasElementDimensions}
                 colorMode={colorMode}
               />
               <section className={styles.notesSection}>

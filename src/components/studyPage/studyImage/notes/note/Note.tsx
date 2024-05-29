@@ -4,8 +4,12 @@ import { StudyPageContext } from "../../../StudyPage";
 import { ColorReference } from "../../../colorReference/ColorReference";
 
 export function Note({ note }) {
-  const { activeMarkerAndNoteID, setActiveMarkerAndNoteID } =
-    useContext(StudyPageContext);
+  const {
+    activeMarkerAndNoteID,
+    setActiveMarkerAndNoteID,
+    setAllNotes,
+    allNotes,
+  } = useContext(StudyPageContext);
   const [noteText, setNoteText] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -42,6 +46,14 @@ export function Note({ note }) {
     setNoteStatus("edit");
   }
 
+  function submitEdit() {
+    // setAllNotes([...allNotes, ])
+  }
+
+  function askDelete() {
+    setNoteStatus("delete");
+  }
+
   const noteStyle =
     activeMarkerAndNoteID ===
     JSON.stringify(note.normalisedMousePositionFraction)
@@ -56,10 +68,14 @@ export function Note({ note }) {
         onMouseLeave={handleMouseLeave}
       >
         {isHovered ? (
-          <div className={styles.editDeleteButtons}>
-            <button onClick={editNote}>Edit</button>
-            <button>Delete</button>
-          </div>
+          noteStatus === "" ? (
+            <div className={styles.editDeleteButtons}>
+              <button onClick={editNote}>Edit</button>
+              <button onClick={askDelete}>Delete</button>
+            </div>
+          ) : (
+            <button>Cancel</button>
+          )
         ) : null}
         <ColorReference colorData={note.color} size={size} />
         {noteStatus === "edit" ? (
@@ -76,6 +92,12 @@ export function Note({ note }) {
               <input type="submit" />
             </form>
           </>
+        ) : noteStatus === "delete" ? (
+          <section>
+            <p>Sure you want to delete?</p>
+            <button>Yes</button>
+            <button>No</button>
+          </section>
         ) : (
           <p>{note.text}</p>
         )}
