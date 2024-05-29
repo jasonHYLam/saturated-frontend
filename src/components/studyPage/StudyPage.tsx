@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import test from "../../assets/82620866_p0_master1200.jpg";
+
+import { testNotes } from "../../helpers/testData";
 
 import styles from "./studyPage.module.css";
 
@@ -8,12 +10,19 @@ import { AddNote } from "./studyImage/notes/AddNote";
 import { Note } from "./studyImage/notes/Note";
 
 export function StudyPage() {
+  const studyPageContext = createContext({
+    note: {},
+    canvasElementDimensions: [],
+    normalisedClickedPosition: {},
+  });
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
     yFraction: 1,
   });
   const [clickedPixelColorData, setClickedPixelColorData] = useState("");
-  const [allNotes, setAllNotes] = useState([]);
+  // const [allNotes, setAllNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState(testNotes);
+  const [activeMarkerAndNoteID, setActiveMarkerAndNoteID] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -122,7 +131,6 @@ export function StudyPage() {
                   clickedPositionFraction={clickedPositionFraction}
                 />
               ) : null}
-              {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
             </section>
           </section>
         </>

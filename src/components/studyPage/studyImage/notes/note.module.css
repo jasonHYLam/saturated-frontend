@@ -3,7 +3,15 @@
   width: var(--note-color-size);
 }
 
+.note {
+  position: relative;
+}
+
 .note:hover {
   cursor: pointer;
   background-color: var(--note-background-hover);
+}
+
+.editDeleteButtons {
+  position: absolute;
 }

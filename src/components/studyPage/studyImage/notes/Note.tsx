@@ -18,7 +18,7 @@ export function Note({ note }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {isHovered ? (
-          <div>
+          <div className={styles.editDeleteButtons}>
             <button>Edit</button>
             <button>Delete</button>
           </div>
