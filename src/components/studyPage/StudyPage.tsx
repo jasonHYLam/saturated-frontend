@@ -7,6 +7,7 @@ import styles from "./studyPage.module.css";
 
 import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/AddNote";
+import { NotesContainer } from "./studyImage/notes/NotesContainer";
 import { Note } from "./studyImage/notes/Note";
 
 export const StudyPageContext = createContext({
@@ -128,12 +129,12 @@ export function StudyPage() {
               />
               <section>
                 <h1>Notes</h1>
-                <section>
+                <NotesContainer allNotes={allNotes} />
+                {/* <section>
                   {allNotes.map((note) => (
                     <Note note={note} />
                   ))}
-                </section>
-                <div></div>
+                </section> */}
                 {showAddNote ? (
                   <AddNote
                     setShowAddNote={setShowAddNote}
