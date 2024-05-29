@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
@@ -9,25 +9,16 @@ export function StudyImage({
   setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
-  normalisedPosition,
-  setClickedPosition,
-  clickedPosition,
+  normalisedClickedPosition,
   showAddNote,
-  setShowAddNote,
-  setClickedPixelColorData,
-  pixelColorData,
+  handleClick,
+  normalisedMousePosition,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
     const newY = e.clientY - rect.top;
     setPosition({ x: newX, y: newY });
-  }
-
-  function handleClick() {
-    setClickedPosition(normalisedPosition);
-    setShowAddNote(true);
-    setClickedPixelColorData(pixelColorData);
   }
 
   function addImageToCanvas(imagePath, context, canvas) {
@@ -100,7 +91,15 @@ export function StudyImage({
           ref={canvasRef}
         ></canvas>
 
-        {showAddNote ? <PositionMarker position={clickedPosition} /> : null}
+        {showAddNote ? (
+          <PositionMarker
+            normalisedClickedPosition={normalisedClickedPosition}
+          />
+        ) : null}
+        {/* <div className={styles.test} style={{
+          top: normalisedMousePosition.y,
+          left: normalisedMousePosition.x,
+        }}></div> */}
       </section>
     </>
   );

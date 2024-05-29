@@ -7,8 +7,15 @@ import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/AddNote";
 
 export function StudyPage() {
-  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+  // need to convert this into fraction, and then somehow use canvas dimensions, maybe multiply
+  // this might depend on position or normalisedPosition
+  // so, normalisedby canvas Element, call that normalisedPositionAsFraction and create another variable for normalisedClickedPosition
+  const [clickedPositionFraction, setClickedPositionFraction] = useState({
+    xFraction: 1,
+    yFraction: 1,
+  });
   const [clickedPixelColorData, setClickedPixelColorData] = useState("");
+  const [notePositions, setNotePositions] = useState([]);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -23,7 +30,26 @@ export function StudyPage() {
     height: 1,
   });
 
-  const normalisedPosition = {
+  const normalisedClickedPosition = {
+    x: clickedPositionFraction.xFraction * canvasElementDimensions.width,
+    y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
+  };
+
+  // this should only work for color
+  // but why does this work for clickedPosition, surely imageDims isn't necessary...
+  // oh maybe at the start imageDim is the same as canvasElemDim
+
+  const normalisedMousePositionFraction = {
+    x: position.x / canvasElementDimensions.width,
+    y: position.y / canvasElementDimensions.height,
+  };
+
+  const normalisedMousePositionForColor = {
+    x: normalisedMousePositionFraction.x * imageDimensions.width,
+    y: normalisedMousePositionFraction.y * imageDimensions.height,
+  };
+
+  const normalisedMousePosition = {
     x: (position.x * imageDimensions.width) / canvasElementDimensions.width,
     y: (position.y * imageDimensions.height) / canvasElementDimensions.height,
   };
@@ -34,12 +60,21 @@ export function StudyPage() {
   let pixelColorData = "";
   if (canvasContext) {
     pixelData = canvasContext?.getImageData(
-      normalisedPosition.x,
-      normalisedPosition.y,
+      normalisedMousePositionForColor.x,
+      normalisedMousePositionForColor.y,
       1,
       1
     ).data;
     pixelColorData = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
+  }
+
+  function handleClick() {
+    setClickedPositionFraction({
+      xFraction: normalisedMousePositionFraction.x,
+      yFraction: normalisedMousePositionFraction.y,
+    });
+    setShowAddNote(true);
+    setClickedPixelColorData(clickedPixelColorData);
   }
 
   // console.log(position);
@@ -74,13 +109,11 @@ export function StudyPage() {
               setImageDimensions={setImageDimensions}
               setCanvasElementDimensions={setCanvasElementDimensions}
               canvasRef={canvasRef}
-              normalisedPosition={normalisedPosition}
-              setClickedPosition={setClickedPosition}
-              clickedPosition={clickedPosition}
+              normalisedClickedPosition={normalisedClickedPosition}
               showAddNote={showAddNote}
-              setShowAddNote={setShowAddNote}
-              setClickedPixelColorData={setClickedPixelColorData}
-              pixelColorData={pixelColorData}
+              handleClick={handleClick}
+              // used for testing mouse after changing screen dimensions
+              normalisedMousePosition={normalisedMousePosition}
             />
             <section>
               <h1>Notes</h1>

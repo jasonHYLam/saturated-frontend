@@ -12,3 +12,10 @@
   height: 20px;
   width: 20px;
 }
+
+.test {
+  height: var(--marker-size);
+  width: var(--marker-size);
+  background-color: aqua;
+  position: absolute;
+}

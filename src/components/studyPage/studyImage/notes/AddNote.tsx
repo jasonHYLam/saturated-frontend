@@ -21,6 +21,7 @@ export function AddNote({ setShowAddNote, pixelColorData }) {
       )}
       <form action="">
         <input type="text" />
+        <input type="submit" value="Create" />
       </form>
     </>
   );
