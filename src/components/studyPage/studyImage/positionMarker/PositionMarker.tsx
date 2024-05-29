@@ -1,19 +1,17 @@
 import { useRef } from "react";
 import styles from "./marker.module.css";
-import { getMarkerHeight } from "../../../../helpers/helpers";
+import { MARKER_HEIGHT } from "../../../../helpers/constants";
 
 export function PositionMarker({ normalisedClickedPosition }) {
   const markerRef = useRef(null);
-
-  const markerHeight = getMarkerHeight(markerRef.current);
 
   return (
     <>
       <div
         ref={markerRef}
         style={{
-          top: normalisedClickedPosition.y + markerHeight / 2 - 5,
-          left: normalisedClickedPosition.x - markerHeight / 2,
+          top: normalisedClickedPosition.y + MARKER_HEIGHT / 2 - 5,
+          left: normalisedClickedPosition.x - MARKER_HEIGHT / 2,
         }}
         className={styles.marker}
       ></div>
