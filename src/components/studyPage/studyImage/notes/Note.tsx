@@ -8,7 +8,10 @@ export function Note({ note }) {
   const [isHovered, setIsHovered] = useState(false);
 
   // console.log(note.normalisedMousePositionFraction);
+  // console.log(activeMarkerAndNoteID);
+
   function handleHover() {
+    console.log(activeMarkerAndNoteID);
     setIsHovered(true);
     setActiveMarkerAndNoteID(
       JSON.stringify(note.normalisedMousePositionFraction)
@@ -16,14 +19,22 @@ export function Note({ note }) {
   }
   function handleMouseLeave() {
     setIsHovered(false);
+    setActiveMarkerAndNoteID("");
   }
   function handleClick() {
     setIsActive(true);
   }
+
+  const noteStyle =
+    activeMarkerAndNoteID ===
+    JSON.stringify(note.normalisedMousePositionFraction)
+      ? `${styles.note} ${styles.activeNote}`
+      : styles.note;
+
   return (
     <>
       <article
-        className={styles.note}
+        className={noteStyle}
         onMouseOver={handleHover}
         onMouseLeave={handleMouseLeave}
       >

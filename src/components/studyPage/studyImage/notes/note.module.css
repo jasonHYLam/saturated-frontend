@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.activeNote {
+  background-color: black;
+}
+
 .note:hover {
   cursor: pointer;
   background-color: var(--note-background-hover);
