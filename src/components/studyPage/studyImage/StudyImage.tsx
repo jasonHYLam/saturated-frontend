@@ -3,6 +3,7 @@ import styles from "./studyImage.module.css";
 import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
 import { PositionMarker } from "./positionMarker/PositionMarker";
+import { NoteMarker } from "./positionMarker/NoteMarker";
 
 export function StudyImage({
   setPosition,
@@ -12,6 +13,8 @@ export function StudyImage({
   normalisedClickedPosition,
   showAddNote,
   handleClick,
+  allNotes,
+  canvasElementDimensions,
 }) {
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -95,10 +98,12 @@ export function StudyImage({
             normalisedClickedPosition={normalisedClickedPosition}
           />
         ) : null}
-        {/* <div className={styles.test} style={{
-          top: normalisedMousePosition.y,
-          left: normalisedMousePosition.x,
-        }}></div> */}
+        {allNotes.map((note) => (
+          <NoteMarker
+            note={note}
+            canvasElementDimensions={canvasElementDimensions}
+          />
+        ))}
       </section>
     </>
   );

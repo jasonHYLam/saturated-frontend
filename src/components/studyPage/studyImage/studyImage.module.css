@@ -1,11 +1,13 @@
 .canvasContainer {
   height: 80%;
+
+  position: relative;
 }
 
 .canvas {
   height: auto;
   width: 100%;
-  position: relative;
+  /* position: relative; */
 }
 
 .colorReference {

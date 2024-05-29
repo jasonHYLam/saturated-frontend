@@ -102,7 +102,8 @@ export function StudyPage() {
               normalisedClickedPosition={normalisedClickedPosition}
               showAddNote={showAddNote}
               handleClick={handleClick}
-              // used for testing mouse after changing screen dimensions
+              allNotes={allNotes}
+              canvasElementDimensions={canvasElementDimensions}
             />
             <section>
               <h1>Notes</h1>
@@ -118,9 +119,7 @@ export function StudyPage() {
                   pixelColorData={clickedPixelColorData}
                   setAllNotes={setAllNotes}
                   allNotes={allNotes}
-                  normalisedMousePositionFraction={
-                    normalisedMousePositionFraction
-                  }
+                  clickedPositionFraction={clickedPositionFraction}
                 />
               ) : null}
               {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
