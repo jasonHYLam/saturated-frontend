@@ -11,6 +11,7 @@
   /* background-color: aqua; */
   opacity: var(--marker-hover-opacity);
   cursor: pointer;
+  box-shadow: var(--box-shadow);
 }
 
 .activeMarker {
