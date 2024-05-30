@@ -50,6 +50,10 @@ export function Note({ note }) {
     // setAllNotes([...allNotes, ])
   }
 
+  function submitDelete() {
+    // setAllNotes([...allNotes]);
+  }
+
   function askDelete() {
     setNoteStatus("delete");
   }
