@@ -62,6 +62,8 @@ export function StudyPage() {
 
   const canvasContext = canvasRef.current?.getContext("2d");
 
+  // May have to refactor pixelData into an object like {r: 100, b: 100, g: 100}
+  // For the purpose of converting rgb to hex, and perhaps converting to grayscale
   let pixelData;
   let pixelColorData = "";
   if (canvasContext) {
