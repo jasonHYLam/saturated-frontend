@@ -21,6 +21,7 @@ export function StudyPage() {
     xFraction: 1,
     yFraction: 1,
   });
+  // need to change this to be an object
   const [clickedPixelColorData, setClickedPixelColorData] = useState("");
   // const [allNotes, setAllNotes] = useState([]);
   const [allNotes, setAllNotes] = useState(testNotes);

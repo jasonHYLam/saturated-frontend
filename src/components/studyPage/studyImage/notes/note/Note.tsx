@@ -81,7 +81,7 @@ export function Note({ note }) {
             <button>Cancel</button>
           )
         ) : null}
-        <ColorReference colorData={note.color} size={size} />
+        <ColorReference colorData={note.colorData} size={size} />
         {noteStatus === "edit" ? (
           <>
             <form action="">

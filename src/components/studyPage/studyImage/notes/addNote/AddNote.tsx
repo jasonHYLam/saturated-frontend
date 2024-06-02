@@ -21,12 +21,6 @@ export function AddNote({
   const [guessedColor, setGuessedColor] = useState({ r: 255, g: 255, b: 255 });
 
   const guessedColorAsString = `rgb(${guessedColor.r} ${guessedColor.g} ${guessedColor.b})`;
-  console.log(pixelColorData);
-
-  console.log(guessedColor);
-  console.log(typeof guessedColor);
-
-  console.log(String(guessedColor));
 
   function uploadNote(data) {
     const newNote = {
