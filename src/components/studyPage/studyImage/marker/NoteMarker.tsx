@@ -5,7 +5,7 @@ import { StudyPageContext } from "../../StudyPage";
 
 export function NoteMarker({ note }) {
   const {
-    activeMarkerAndNoteID,
+    hoveredMarkerAndNoteID,
     setHoveredMarkerAndNoteID,
     setOpenedNoteID,
     canvasElementDimensions,
@@ -19,7 +19,7 @@ export function NoteMarker({ note }) {
     canvasElementDimensions.height;
 
   const noteMarkerStyle =
-    activeMarkerAndNoteID ===
+    hoveredMarkerAndNoteID ===
     JSON.stringify(note.normalisedMousePositionFraction)
       ? `${styles.noteMarker} ${styles.activeMarker}`
       : styles.noteMarker;

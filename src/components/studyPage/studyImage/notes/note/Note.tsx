@@ -17,8 +17,6 @@ export function Note({ note }) {
     allNotes,
   } = useContext(StudyPageContext);
   const [noteText, setNoteText] = useState("");
-  const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [noteStatus, setNoteStatus] = useState("");
   useEffect(() => {
     setNoteText(note.text);
@@ -26,25 +24,29 @@ export function Note({ note }) {
 
   // console.log(note.normalisedMousePositionFraction);
   // console.log(activeMarkerAndNoteID);
-  let size = "small";
-  if (openedNoteID === JSON.stringify(note.normalisedMousePositionFraction)) {
-    console.log("sweet dreams are made of these");
-    console.log(openedNoteID);
-    size = "large";
-  }
+
+  const isNoteHovered =
+    hoveredMarkerAndNoteID ===
+    JSON.stringify(note.normalisedMousePositionFraction);
+
+  const isNoteOpened =
+    openedNoteID === JSON.stringify(note.normalisedMousePositionFraction);
+
+  const size = isNoteOpened ? "large" : "small";
 
   function handleHover() {
-    setIsHovered(true);
+    // setIsHovered(true);
     setHoveredMarkerAndNoteID(
       JSON.stringify(note.normalisedMousePositionFraction)
     );
   }
   function handleMouseLeave() {
-    setIsHovered(false);
+    // setIsHovered(false);
     setHoveredMarkerAndNoteID("");
   }
   function handleClick() {
-    setIsActive(true);
+    // setIsActive(true);
+    setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
   }
 
   function editNote() {
@@ -75,8 +77,9 @@ export function Note({ note }) {
         className={noteStyle}
         onMouseOver={handleHover}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
-        {isHovered ? (
+        {isNoteHovered ? (
           noteStatus === "" ? (
             <div className={styles.editDeleteButtons}>
               <button onClick={editNote}>Edit</button>
@@ -87,8 +90,12 @@ export function Note({ note }) {
           )
         ) : null}
         <ColorReference colorData={note.colorData} size={size} />
-        <p>{rgbToHex(note.colorData)}</p>
-        <p>{pixelColorDataToStringForNote(note.colorData)}</p>
+        {isNoteOpened ? (
+          <>
+            <p>{rgbToHex(note.colorData)}</p>
+            <p>{pixelColorDataToStringForNote(note.colorData)}</p>
+          </>
+        ) : null}
         {noteStatus === "edit" ? (
           <>
             <form action="">
