@@ -115,8 +115,10 @@ export function StudyPage() {
             value={{
               canvasElementDimensions,
               normalisedClickedPosition,
-              activeMarkerAndNoteID: hoveredMarkerAndNoteID,
-              setActiveMarkerAndNoteID: setHoveredMarkerAndNoteID,
+              hoveredMarkerAndNoteID,
+              setHoveredMarkerAndNoteID,
+              openedNoteID,
+              setOpenedNoteID,
               setAllNotes,
               allNotes,
             }}

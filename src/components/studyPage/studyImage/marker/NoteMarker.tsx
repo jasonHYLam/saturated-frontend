@@ -6,7 +6,8 @@ import { StudyPageContext } from "../../StudyPage";
 export function NoteMarker({ note }) {
   const {
     activeMarkerAndNoteID,
-    setActiveMarkerAndNoteID,
+    setHoveredMarkerAndNoteID,
+    setOpenedNoteID,
     canvasElementDimensions,
   } = useContext(StudyPageContext);
 
@@ -24,13 +25,17 @@ export function NoteMarker({ note }) {
       : styles.noteMarker;
 
   function handleHover() {
-    setActiveMarkerAndNoteID(
+    setHoveredMarkerAndNoteID(
       JSON.stringify(note.normalisedMousePositionFraction)
     );
   }
 
   function handleMouseLeave() {
-    setActiveMarkerAndNoteID("");
+    setHoveredMarkerAndNoteID("");
+  }
+
+  function handleClick() {
+    setOpenedNoteID(note.normalisedMousePositionFraction);
   }
 
   return (
@@ -43,6 +48,7 @@ export function NoteMarker({ note }) {
         className={noteMarkerStyle}
         onMouseOver={handleHover}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       ></div>
     </>
   );

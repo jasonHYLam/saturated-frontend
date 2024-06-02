@@ -9,8 +9,10 @@ import {
 
 export function Note({ note }) {
   const {
-    activeMarkerAndNoteID,
-    setActiveMarkerAndNoteID,
+    hoveredMarkerAndNoteID,
+    setHoveredMarkerAndNoteID,
+    openedNoteID,
+    setOpenedNoteID,
     setAllNotes,
     allNotes,
   } = useContext(StudyPageContext);
@@ -25,22 +27,19 @@ export function Note({ note }) {
   // console.log(note.normalisedMousePositionFraction);
   // console.log(activeMarkerAndNoteID);
   let size = "small";
-  if (
-    activeMarkerAndNoteID ===
-    JSON.stringify(note.normalisedMousePositionFraction)
-  ) {
+  if (openedNoteID === JSON.stringify(note.normalisedMousePositionFraction)) {
     size = "large";
   }
 
   function handleHover() {
     setIsHovered(true);
-    setActiveMarkerAndNoteID(
+    setHoveredMarkerAndNoteID(
       JSON.stringify(note.normalisedMousePositionFraction)
     );
   }
   function handleMouseLeave() {
     setIsHovered(false);
-    setActiveMarkerAndNoteID("");
+    setHoveredMarkerAndNoteID("");
   }
   function handleClick() {
     setIsActive(true);
@@ -63,7 +62,7 @@ export function Note({ note }) {
   }
 
   const noteStyle =
-    activeMarkerAndNoteID ===
+    hoveredMarkerAndNoteID ===
     JSON.stringify(note.normalisedMousePositionFraction)
       ? `${styles.note} ${styles.activeNote}`
       : styles.note;
