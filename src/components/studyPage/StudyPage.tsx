@@ -64,15 +64,22 @@ export function StudyPage() {
 
   // May have to refactor pixelData into an object like {r: 100, b: 100, g: 100}
   // For the purpose of converting rgb to hex, and perhaps converting to grayscale
-  let pixelData;
+  // let pixelData;
   let pixelColorData = "";
+  let pixelColorDataObject = { r: 0, g: 0, b: 0 };
   if (canvasContext) {
-    pixelData = canvasContext?.getImageData(
+    const pixelData = canvasContext?.getImageData(
       normalisedMousePositionForColor.x,
       normalisedMousePositionForColor.y,
       1,
       1
     ).data;
+    pixelColorDataObject = {
+      r: pixelData[0],
+      g: pixelData[1],
+      b: pixelData[2],
+    };
+
     pixelColorData = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
   }
 
