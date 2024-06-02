@@ -12,7 +12,7 @@ export function PositionMarker() {
           top: normalisedClickedPosition.y + MARKER_HEIGHT / 2 - 5,
           left: normalisedClickedPosition.x - MARKER_HEIGHT / 2,
         }}
-        className={styles.marker}
+        className={styles.positionMarker}
       />
     </>
   );

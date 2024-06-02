@@ -9,7 +9,13 @@
 }
 
 .positionMarker {
+  height: var(--marker-size);
+  width: var(--marker-size);
+  opacity: var(--marker-default-opacity);
+  z-index: 9;
+  position: absolute;
   border: 2px solid var(--marker-color);
+  border-radius: 5px;
 }
 
 .noteMarker:hover {
