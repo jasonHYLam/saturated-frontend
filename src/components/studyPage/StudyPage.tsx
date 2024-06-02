@@ -22,7 +22,12 @@ export function StudyPage() {
     yFraction: 1,
   });
   // need to change this to be an object
-  const [clickedPixelColorData, setClickedPixelColorData] = useState("");
+  // const [clickedPixelColorData, setClickedPixelColorData] = useState("");
+  const [clickedPixelColorData, setClickedPixelColorData] = useState({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
   // const [allNotes, setAllNotes] = useState([]);
   const [allNotes, setAllNotes] = useState(testNotes);
   const [colorMode, setColorMode] = useState("color");
@@ -63,10 +68,7 @@ export function StudyPage() {
 
   const canvasContext = canvasRef.current?.getContext("2d");
 
-  // May have to refactor pixelData into an object like {r: 100, b: 100, g: 100}
   // For the purpose of converting rgb to hex, and perhaps converting to grayscale
-  // let pixelData;
-  let pixelColorData = "";
   let pixelColorDataObject = { r: 0, g: 0, b: 0 };
   if (canvasContext) {
     const pixelData = canvasContext?.getImageData(
@@ -80,8 +82,6 @@ export function StudyPage() {
       g: pixelData[1],
       b: pixelData[2],
     };
-
-    pixelColorData = `rgb(${pixelData[0]} ${pixelData[1]} ${pixelData[2]})`;
   }
 
   function handleClick() {
@@ -90,7 +90,7 @@ export function StudyPage() {
       yFraction: normalisedMousePositionFraction.y,
     });
     setShowAddNote(true);
-    setClickedPixelColorData(pixelColorData);
+    setClickedPixelColorData(pixelColorDataObject);
   }
 
   // console.log(position);
@@ -105,7 +105,7 @@ export function StudyPage() {
     <>
       <main className={styles.page}>
         <header className={styles.header}>
-          <ColorReference colorData={pixelColorData} size="large" />
+          <ColorReference colorData={pixelColorDataObject} size="large" />
           <ToggleColorMode colorMode={colorMode} setColorMode={setColorMode} />
         </header>
 

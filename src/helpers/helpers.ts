@@ -9,5 +9,5 @@ export function getMarkerHeight(marker) {
   }
 }
 export function pixelColorDataToString(pixelColorData) {
-  return `rgb(${pixelColorData[0]} ${pixelColorData[1]} ${pixelColorData[2]} )`;
+  return `rgb(${pixelColorData.r} ${pixelColorData.g} ${pixelColorData.b})`;
 }

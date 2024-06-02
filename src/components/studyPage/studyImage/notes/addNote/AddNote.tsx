@@ -26,7 +26,8 @@ export function AddNote({
     const newNote = {
       text: data.text,
       color: pixelColorData,
-      // guessedColor: ,
+      colorData: pixelColorData,
+      guessedColor: guessedColor,
       normalisedMousePositionFraction: clickedPositionFraction,
     };
     // fetchData
