@@ -21,8 +21,6 @@ export function StudyPage() {
     xFraction: 1,
     yFraction: 1,
   });
-  // need to change this to be an object
-  // const [clickedPixelColorData, setClickedPixelColorData] = useState("");
   const [clickedPixelColorData, setClickedPixelColorData] = useState({
     r: 0,
     g: 0,
@@ -40,8 +38,6 @@ export function StudyPage() {
     width: 1,
     height: 1,
   });
-
-  // console.log(activeMarkerAndNoteID);
 
   // this differs from the canvas dimensions set at the start, which pertain to the imageDimensions
   const [canvasElementDimensions, setCanvasElementDimensions] = useState({

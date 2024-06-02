@@ -35,7 +35,7 @@ export function NoteMarker({ note }) {
   }
 
   function handleClick() {
-    setOpenedNoteID(note.normalisedMousePositionFraction);
+    setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
   }
 
   return (

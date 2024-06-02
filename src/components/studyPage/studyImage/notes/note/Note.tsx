@@ -28,6 +28,8 @@ export function Note({ note }) {
   // console.log(activeMarkerAndNoteID);
   let size = "small";
   if (openedNoteID === JSON.stringify(note.normalisedMousePositionFraction)) {
+    console.log("sweet dreams are made of these");
+    console.log(openedNoteID);
     size = "large";
   }
 
