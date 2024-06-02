@@ -20,8 +20,8 @@ export function NoteMarker({ note }) {
   const noteMarkerStyle =
     activeMarkerAndNoteID ===
     JSON.stringify(note.normalisedMousePositionFraction)
-      ? `${styles.marker} ${styles.activeMarker}`
-      : styles.marker;
+      ? `${styles.noteMarker} ${styles.activeMarker}`
+      : styles.noteMarker;
 
   function handleHover() {
     setActiveMarkerAndNoteID(

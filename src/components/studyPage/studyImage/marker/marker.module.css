@@ -1,4 +1,4 @@
-.marker {
+.noteMarker {
   height: var(--marker-size);
   width: var(--marker-size);
   background-color: var(--marker-color);
@@ -8,7 +8,11 @@
   border-radius: 5px;
 }
 
-.marker:hover {
+.positionMarker {
+  border: 2px solid var(--marker-color);
+}
+
+.noteMarker:hover {
   /* background-color: aqua; */
   opacity: var(--marker-hover-opacity);
   cursor: pointer;
