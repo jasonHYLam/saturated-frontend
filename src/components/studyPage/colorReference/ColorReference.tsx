@@ -1,9 +1,9 @@
 import styles from "./colorReference.module.css";
-import { pixelColorDataToString } from "../../../helpers/helpers";
+import { pixelColorDataToStringForCSS } from "../../../helpers/helpers";
 
 export function ColorReference({ colorData, size }) {
   const sizeStyle = size === "small" ? styles.small : styles.large;
-  const colorDataAsString = pixelColorDataToString(colorData);
+  const colorDataAsString = pixelColorDataToStringForCSS(colorData);
   return (
     <div
       style={{ backgroundColor: colorDataAsString }}

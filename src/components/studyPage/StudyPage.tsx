@@ -31,7 +31,8 @@ export function StudyPage() {
   // const [allNotes, setAllNotes] = useState([]);
   const [allNotes, setAllNotes] = useState(testNotes);
   const [colorMode, setColorMode] = useState("color");
-  const [activeMarkerAndNoteID, setActiveMarkerAndNoteID] = useState("");
+  const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState("");
+  const [openedNoteID, setOpenedNoteID] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -114,8 +115,8 @@ export function StudyPage() {
             value={{
               canvasElementDimensions,
               normalisedClickedPosition,
-              activeMarkerAndNoteID,
-              setActiveMarkerAndNoteID,
+              activeMarkerAndNoteID: hoveredMarkerAndNoteID,
+              setActiveMarkerAndNoteID: setHoveredMarkerAndNoteID,
               setAllNotes,
               allNotes,
             }}

@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./note.module.css";
 import { StudyPageContext } from "../../../StudyPage";
 import { ColorReference } from "../../../colorReference/ColorReference";
+import {
+  rgbToHex,
+  pixelColorDataToStringForNote,
+} from "../../../../../helpers/helpers";
 
 export function Note({ note }) {
   const {
@@ -82,6 +86,8 @@ export function Note({ note }) {
           )
         ) : null}
         <ColorReference colorData={note.colorData} size={size} />
+        <p>{rgbToHex(note.colorData)}</p>
+        <p>{pixelColorDataToStringForNote(note.colorData)}</p>
         {noteStatus === "edit" ? (
           <>
             <form action="">
