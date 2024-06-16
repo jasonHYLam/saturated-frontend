@@ -5,6 +5,7 @@ export function Signup() {
       <form action="">
         <input type="text" placeholder="Username" />
         <input type="text" placeholder="Password" />
+        <input type="text" placeholder="Confirm password" />
         <input type="submit" value="Sign up" />
       </form>
       <Link to={"/login"}>Have an account? Login</Link>
