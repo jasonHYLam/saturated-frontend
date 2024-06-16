@@ -1,4 +1,4 @@
-import { createContext, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { testNotes } from "../../helpers/testData";
 import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
@@ -6,6 +6,7 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
+import { fetchData } from "../../helpers/fetchData";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -17,6 +18,12 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
+  useEffect(() => {
+    function testFetch() {
+      // fetchData()
+    }
+  });
+
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
     yFraction: 1,
