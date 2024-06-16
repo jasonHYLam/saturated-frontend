@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import { StudyPage } from "./components/studyPage/StudyPage.tsx";
+import { Signup } from "./components/LoginSignup/Signup.tsx";
 import "./reset.css";
 import "./index.css";
 
@@ -11,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     children: [
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
       {
         path: "/",
         element: <StudyPage />,
