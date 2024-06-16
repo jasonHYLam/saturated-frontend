@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { StudyPage } from "./components/studyPage/StudyPage.tsx";
 import { Signup } from "./components/LoginSignup/Signup.tsx";
+import { Login } from "./components/LoginSignup/Login.tsx";
+
 import "./reset.css";
 import "./index.css";
 
@@ -14,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/",
