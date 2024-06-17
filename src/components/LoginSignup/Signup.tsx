@@ -17,8 +17,8 @@ export function Signup() {
       <form onSubmit={handleSubmit(submitSignup)}>
         <input
           type="text"
-          placeholder="Username"
-          {...register("username", { required: true })}
+          placeholder="Email"
+          {...register("email", { required: true })}
         />
         <input
           type="password"
@@ -38,7 +38,7 @@ export function Signup() {
           })}
         />
         <input type="submit" value="Sign up" />
-        {errors.username && <span>Please provide username</span>}
+        {errors.email && <span>Please provide email</span>}
         {errors.password && <span>Please provide password</span>}
         {errors.confirmPassword && (
           <span>{errors.confirmPassword.message}</span>
