@@ -10,6 +10,7 @@ export function Login() {
   } = useForm();
 
   async function submitLogin(data) {
+    console.log(data);
     const credentials = JSON.stringify(data);
     await fetchData("login", "POST", credentials);
   }
@@ -25,7 +26,7 @@ export function Login() {
         <input
           type="password"
           placeholder="Password"
-          {...register("email", { required: true })}
+          {...register("password", { required: true })}
         />
         <input type="submit" value="Login" />
         {errors.email && <span>Please provide email</span>}
