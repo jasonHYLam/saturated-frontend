@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { StudyPage } from "./components/studyPage/StudyPage.tsx";
-import { Signup } from "./components/LoginSignup/Signup.tsx";
-import { Login } from "./components/LoginSignup/Login.tsx";
+import { Signup } from "./components/loginSignup/Signup.tsx";
+import { Login } from "./components/loginSignup/Login.tsx";
+import { HomePage } from "./components/homePage/HomePage.tsx";
 
 import "./reset.css";
 import "./index.css";
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/study",
         element: <StudyPage />,
       },
     ],
