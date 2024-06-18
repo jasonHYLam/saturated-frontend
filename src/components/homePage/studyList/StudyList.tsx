@@ -1,3 +1,7 @@
 export function StudyList() {
-  return <></>;
+  return (
+    <>
+      <p>study list</p>
+    </>
+  );
 }
