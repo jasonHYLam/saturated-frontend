@@ -9,9 +9,18 @@ export function Signup() {
     formState: { errors },
     getValues,
   } = useForm();
-  async function submitSignup() {
-    await fetchData();
+
+  async function submitSignup(data) {
+    console.log(data);
+    console.log(JSON.stringify(data));
+    const credentials = JSON.stringify({
+      email: data.email,
+      password: data.password,
+    });
+
+    await fetchData("register", "POST", credentials);
   }
+
   return (
     <>
       <form onSubmit={handleSubmit(submitSignup)}>
