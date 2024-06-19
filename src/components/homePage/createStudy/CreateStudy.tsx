@@ -23,7 +23,7 @@ export function CreateStudy() {
       {showCreateStudy && (
         <div>
           <p>Creating a study</p>
-          <form>
+          <form encType="multipart/form-data">
             <input type="text" placeholder="Title" />
             <input type="text" placeholder="Original link" />
             <input type="file" onChange={selectImageToUpload} />
