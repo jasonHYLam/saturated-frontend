@@ -4,6 +4,7 @@ import { StudyPage } from "./components/studyPage/StudyPage.tsx";
 import { Signup } from "./components/loginSignup/Signup.tsx";
 import { Login } from "./components/loginSignup/Login.tsx";
 import { HomePage } from "./components/homePage/HomePage.tsx";
+import { Error } from "./components/error/Error.tsx";
 
 import "./reset.css";
 import "./index.css";
@@ -13,6 +14,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error />,
     children: [
       {
         path: "/signup",
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/study",
         element: <StudyPage />,
+      },
+      {
+        path: "/error",
+        element: <Error />,
       },
     ],
   },
