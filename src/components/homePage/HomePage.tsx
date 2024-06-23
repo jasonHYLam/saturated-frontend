@@ -6,7 +6,7 @@ export function HomePage() {
     <>
       <p>Home page</p>
       <CreateStudy />
-      <StudyList />
+      {/* <StudyList /> */}
     </>
   );
 }

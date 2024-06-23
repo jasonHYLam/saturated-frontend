@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postDataOnFetch } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Login() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,7 +13,17 @@ export function Login() {
   async function submitLogin(data) {
     console.log(data);
     const credentials = JSON.stringify(data);
-    await postDataOnFetch("login", "POST", credentials, false);
+    const loginResponse = await postDataOnFetch(
+      "login",
+      "POST",
+      credentials,
+      false
+    );
+    console.log("checking loginResponse");
+    console.log(loginResponse);
+    if (loginResponse.ok) {
+      navigate("/");
+    }
   }
 
   return (
