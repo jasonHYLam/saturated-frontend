@@ -12,7 +12,7 @@ export function Login() {
   async function submitLogin(data) {
     console.log(data);
     const credentials = JSON.stringify(data);
-    await postDataOnFetch("login", "POST", credentials);
+    await postDataOnFetch("login", "POST", credentials, false);
   }
 
   return (

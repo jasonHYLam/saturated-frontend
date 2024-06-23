@@ -19,7 +19,11 @@ export function useGetAllStudies() {
         console.log("checking allStudiesResponse");
         console.log(allStudiesResponse);
 
-        return allStudiesResponse;
+        const allStudies = await allStudiesResponse.json();
+        console.log(allStudies);
+
+        setLoading(false);
+        setAllStudies(allStudies);
       } catch (err) {
         navigate("/error");
       }
