@@ -6,7 +6,7 @@ export function StudyList() {
 
   useEffect(() => {
     async function fetchAllStudies() {
-      const allStudiesResponse = await getDataFromFetch("allStudies");
+      const allStudiesResponse = await getDataFromFetch("Study/allStudies");
 
       console.log("checking allStudiesResponse");
       console.log(allStudiesResponse);
