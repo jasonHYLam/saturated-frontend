@@ -1,13 +1,18 @@
 export async function fetchWithQuery(endpoint, method, data, query) {
   try {
-    const response = await fetch(endpoint + new URLSearchParams(query), {
-      method,
-      body: data,
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}?${new URLSearchParams(
+        query
+      ).toString()}`,
+      {
+        method,
+        body: data,
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return response;
   } catch (err) {
     if (err) return err;
