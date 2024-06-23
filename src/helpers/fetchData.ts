@@ -1,6 +1,12 @@
-export async function postDataOnFetch(endpoint, method, data) {
+export async function postDataOnFetch(endpoint, method, data, withImage) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
+    const headers = withImage
+      ? {
+          "Content-Type": "application/json",
+        }
+      : null;
+
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {
@@ -8,8 +14,11 @@ export async function postDataOnFetch(endpoint, method, data) {
         method,
         body: data,
         credentials: "include",
+        headers: headers,
       }
     );
+    console.log("checking response");
+    console.log(response);
     return response;
   } catch (err) {
     if (err) return err;
