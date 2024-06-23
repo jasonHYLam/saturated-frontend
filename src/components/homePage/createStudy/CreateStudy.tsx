@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { postDataOnFetch } from "../../../helpers/fetchData";
+import { postDataOnFetchWithImage } from "../../../helpers/fetchData";
 import { useNavigate } from "react-router-dom";
 
 export function CreateStudy() {
@@ -28,11 +28,10 @@ export function CreateStudy() {
     createStudyInput.append("ImageFile", uploadedImage);
 
     console.log("attempting fetch");
-    const response = await postDataOnFetch(
-      "studies",
+    const response = await postDataOnFetchWithImage(
+      "Study",
       "POST",
-      createStudyInput,
-      true
+      createStudyInput
     );
 
     if (!response.ok || response instanceof Error) {
