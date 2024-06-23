@@ -26,4 +26,6 @@ export function useGetAllStudies() {
     }
     fetchAllStudies();
   }, []);
+
+  return { allStudies, loading };
 }
