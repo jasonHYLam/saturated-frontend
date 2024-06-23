@@ -1,3 +1,19 @@
+export async function fetchWithQuery(endpoint, method, data, query) {
+  try {
+    const response = await fetch(endpoint + new URLSearchParams(query), {
+      method,
+      body: data,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  } catch (err) {
+    if (err) return err;
+  }
+}
+
 export async function postDataOnFetch(endpoint, method, data, withImage) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
