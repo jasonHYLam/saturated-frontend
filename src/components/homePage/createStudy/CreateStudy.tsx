@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export function CreateStudy() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [showCreateStudy, setShowCreateStudy] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -11,6 +17,8 @@ export function CreateStudy() {
   function selectImageToUpload(e) {
     setUploadedImage(e.target.files[0]);
   }
+
+  function submitCreateStudyInput(data) {}
 
   return (
     <>
