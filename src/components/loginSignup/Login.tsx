@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { postDataOnFetch } from "../../helpers/fetchData";
+import { postDataOnFetch, fetchWithQuery } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Login() {
@@ -12,12 +12,13 @@ export function Login() {
 
   async function submitLogin(data) {
     console.log(data);
+    const cookieQuery = { useCookies: "true" };
     const credentials = JSON.stringify(data);
-    const loginResponse = await postDataOnFetch(
+    const loginResponse = await fetchWithQuery(
       "login",
       "POST",
       credentials,
-      false
+      cookieQuery
     );
     console.log("checking loginResponse");
     console.log(loginResponse);
