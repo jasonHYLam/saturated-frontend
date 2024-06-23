@@ -2,11 +2,10 @@ export async function postDataOnFetch(endpoint, method, data, withImage) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
     const headers = withImage
-      ? {
+      ? null
+      : {
           "Content-Type": "application/json",
-        }
-      : null;
-
+        };
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {
