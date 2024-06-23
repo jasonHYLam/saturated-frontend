@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { fetchData } from "../../helpers/fetchData";
+import { postDataOnFetch } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Signup() {
@@ -18,7 +18,7 @@ export function Signup() {
       password: data.password,
     });
 
-    await fetchData("register", "POST", credentials);
+    await postDataOnFetch("register", "POST", credentials);
   }
 
   return (

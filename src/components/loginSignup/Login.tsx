@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { fetchData } from "../../helpers/fetchData";
+import { postDataOnFetch } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Login() {
@@ -12,7 +12,7 @@ export function Login() {
   async function submitLogin(data) {
     console.log(data);
     const credentials = JSON.stringify(data);
-    await fetchData("login", "POST", credentials);
+    await postDataOnFetch("login", "POST", credentials);
   }
 
   return (

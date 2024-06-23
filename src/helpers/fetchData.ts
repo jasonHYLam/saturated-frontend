@@ -1,4 +1,4 @@
-export async function PostDataOnFetch(endpoint, method, data) {
+export async function postDataOnFetch(endpoint, method, data) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
