@@ -6,7 +6,7 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { fetchData } from "../../helpers/fetchData";
+import { useGetStudy } from "../../helpers/hooks";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -18,11 +18,9 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
-  useEffect(() => {
-    function testFetch() {
-      // fetchData()
-    }
-  });
+  const { study, loading } = useGetStudy();
+  console.log("checking study");
+  console.log(study);
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
