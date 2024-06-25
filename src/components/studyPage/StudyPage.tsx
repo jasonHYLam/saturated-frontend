@@ -37,8 +37,8 @@ export function StudyPage() {
     g: 0,
     b: 0,
   });
-  // const [allNotes, setAllNotes] = useState([]);
-  const [allNotes, setAllNotes] = useState(testNotes);
+  const [allNotes, setAllNotes] = useState([]);
+  // const [allNotes, setAllNotes] = useState(testNotes);
   const [colorMode, setColorMode] = useState("color");
   const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState("");
   const [openedNoteID, setOpenedNoteID] = useState("");
@@ -109,7 +109,9 @@ export function StudyPage() {
   // console.log(pixelColorData);
   // console.log("");
 
-  return (
+  return loading ? (
+    <p>loading...</p>
+  ) : (
     <>
       <main className={styles.page}>
         <header className={styles.header}>

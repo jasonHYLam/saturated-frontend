@@ -16,6 +16,8 @@ export function StudyImage({
   allNotes,
   colorMode,
 }) {
+  console.log("checking imageLink");
+  console.log(imageLink);
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
 
   function handleMouseMove(e) {
@@ -27,6 +29,7 @@ export function StudyImage({
 
   function addImageToCanvas(imagePath, context, canvas) {
     const studyImage = new Image();
+    studyImage.crossOrigin = "Anonymous";
     studyImage.src = imagePath;
     studyImage.onload = () => {
       setImageDimensions({
@@ -67,7 +70,7 @@ export function StudyImage({
       const canvas = canvasRef.current;
       if (canvas) {
         const canvasContext = canvas.getContext("2d");
-        addImageToCanvas(testImage, canvasContext, canvas);
+        addImageToCanvas(imageLink, canvasContext, canvas);
 
         setCanvasElementDimensions({
           width: canvas.clientWidth,
