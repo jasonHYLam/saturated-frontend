@@ -19,14 +19,9 @@ export async function fetchWithQuery(endpoint, method, data, query) {
   }
 }
 
-export async function postDataOnFetch(endpoint, method, data, withImage) {
+export async function postDataOnFetchWithoutImage(endpoint, method, data) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
-    const headers = withImage
-      ? null
-      : {
-          "Content-Type": "application/json",
-        };
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {
@@ -34,7 +29,9 @@ export async function postDataOnFetch(endpoint, method, data, withImage) {
         method,
         body: data,
         credentials: "include",
-        headers: headers,
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
     console.log("checking response");
