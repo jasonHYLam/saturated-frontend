@@ -12,7 +12,10 @@ export function Login() {
 
   async function submitLogin(data) {
     console.log(data);
-    const cookieQuery = { useCookies: "true" };
+    const cookieQuery = {
+      useCookies: "true",
+      useSessionCookies: "true",
+    };
     const credentials = JSON.stringify(data);
     const loginResponse = await fetchWithQuery(
       "login",

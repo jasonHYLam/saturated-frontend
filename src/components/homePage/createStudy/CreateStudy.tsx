@@ -44,14 +44,14 @@ export function CreateStudy() {
 
   return (
     <>
-      {uploadedImage && (
-        <div>
-          <img src={URL.createObjectURL(uploadedImage)} alt="" />
-        </div>
-      )}
       <button onClick={toggleCreateStudy}>Create a study</button>
       {showCreateStudy && (
         <div>
+          {uploadedImage && (
+            <div>
+              <img src={URL.createObjectURL(uploadedImage)} alt="" />
+            </div>
+          )}
           <p>Creating a study</p>
           <form
             encType="multipart/form-data"
