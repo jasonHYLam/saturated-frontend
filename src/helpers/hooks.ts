@@ -40,7 +40,7 @@ export function useGetStudy(studyId) {
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchStudy() {
-      const response = await getDataFromFetch(`/study/${studyId}`);
+      const response = await getDataFromFetch(`Study/${studyId}`);
 
       if (!response.ok || response instanceof Error) {
         navigate("/error");

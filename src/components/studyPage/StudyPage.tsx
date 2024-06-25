@@ -7,6 +7,7 @@ import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
 import { useGetStudy } from "../../helpers/hooks";
+import { useParams } from "react-router-dom";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -18,9 +19,14 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
-  const { study, loading } = useGetStudy();
+  const { studyId } = useParams();
+  const { study, loading } = useGetStudy(studyId);
+
   console.log("checking study");
   console.log(study);
+
+  console.log("checking loading");
+  console.log(loading);
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
