@@ -1,4 +1,5 @@
 import { useGetAllStudies } from "../../../helpers/hooks";
+import { StudyPreview } from "./studyPreview/StudyPreview";
 
 export function StudyList() {
   const { allStudies, loading } = useGetAllStudies();
@@ -12,7 +13,7 @@ export function StudyList() {
         <section>
           {allStudies.map((study) => (
             <>
-              <p>Study title</p>
+              <StudyPreview study={study} />
             </>
           ))}
         </section>
