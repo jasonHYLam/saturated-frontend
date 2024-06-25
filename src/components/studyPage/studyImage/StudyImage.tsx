@@ -6,6 +6,7 @@ import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
 
 export function StudyImage({
+  imageLink,
   setPosition,
   setImageDimensions,
   setCanvasElementDimensions,

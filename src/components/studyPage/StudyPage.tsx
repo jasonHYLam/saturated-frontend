@@ -132,6 +132,7 @@ export function StudyPage() {
           >
             <section className={styles.pageContents}>
               <StudyImage
+                imageLink={study.imageLink}
                 setPosition={setPosition}
                 setImageDimensions={setImageDimensions}
                 setCanvasElementDimensions={setCanvasElementDimensions}
