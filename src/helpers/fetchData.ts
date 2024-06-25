@@ -19,7 +19,7 @@ export async function fetchWithQuery(endpoint, method, data, query) {
   }
 }
 
-export async function postDataOnFetchWithoutImage(endpoint, method, data) {
+export async function fetchWithoutQueryOrImage(endpoint, method, data) {
   console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
     const response = await fetch(
