@@ -33,3 +33,26 @@ export function useGetAllStudies() {
 
   return { allStudies, loading };
 }
+
+export function useGetStudy(studyId) {
+  const [study, setStudy] = useState({});
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function fetchStudy() {
+      const response = await getDataFromFetch(`/study/${studyId}`);
+
+      if (!response.ok || response instanceof Error) {
+        navigate("/error");
+      }
+
+      const study = await response.json();
+
+      setLoading(false);
+      setStudy(study);
+    }
+    fetchStudy();
+  }, []);
+
+  return { study, loading };
+}
