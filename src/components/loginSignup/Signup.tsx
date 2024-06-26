@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { postDataOnFetch } from "../../helpers/fetchData";
+import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Signup() {
@@ -18,7 +18,7 @@ export function Signup() {
       password: data.password,
     });
 
-    await postDataOnFetch("register", "POST", credentials);
+    await fetchWithoutQueryOrImage("register", "POST", credentials);
   }
 
   return (

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import styles from "./addNote.module.css";
 import { RgbColorPicker, RgbColor } from "react-colorful";
 import { useForm } from "react-hook-form";
 import { ColorReference } from "../../../colorReference/ColorReference";
+import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
+import { rgbToHex } from "../../../../../helpers/helpers";
 
 export function AddNote({
   setShowAddNote,
@@ -21,23 +22,32 @@ export function AddNote({
   const [guessedColor, setGuessedColor] = useState({ r: 255, g: 255, b: 255 });
 
   const guessedColorAsString = `rgb(${guessedColor.r} ${guessedColor.g} ${guessedColor.b})`;
+  const originalColorAsHex = rgbToHex(pixelColorData);
+  const guessedColorAsHex = rgbToHex(guessedColor);
 
-  function uploadNote(data) {
-    const newNote = {
+  async function uploadNote(data) {
+    const newNoteInput = {
       text: data.text,
-      color: pixelColorData,
-      colorData: pixelColorData,
-      guessedColor: guessedColor,
-      normalisedMousePositionFraction: clickedPositionFraction,
+      originalHexColor: originalColorAsHex,
+      guessedHexColor: guessedColorAsHex,
+      xOrdinateAsFraction: clickedPositionFraction.xFraction,
+      yOrdinateAsFraction: clickedPositionFraction.yFraction,
     };
+
+    console.log("checking newNote");
+    console.log(newNoteInput);
+
     // fetchData
-    if (allNotes) {
-      setAllNotes([...allNotes, newNote]);
-    } else {
-      setAllNotes([newNote]);
-    }
-    setShowAddNote(false);
+    // const response = await fetchWithoutQueryOrImage("Note", "POST", newNote);
+
+    // if (allNotes) {
+    //   setAllNotes([...allNotes, newNote]);
+    // } else {
+    //   setAllNotes([newNote]);
+    // }
+    // setShowAddNote(false);
   }
+
   return (
     <>
       <button onClick={() => setShowAddNote(false)}>Close</button>
