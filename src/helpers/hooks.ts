@@ -34,7 +34,7 @@ export function useGetAllStudies() {
   return { allStudies, loading };
 }
 
-export function useGetStudy(studyId) {
+export function useGetStudyAndNotes(studyId) {
   const [study, setStudy] = useState({});
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);

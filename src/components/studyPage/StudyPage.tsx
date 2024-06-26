@@ -6,7 +6,7 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { useGetStudy } from "../../helpers/hooks";
+import { useGetStudyAndNotes } from "../../helpers/hooks";
 import { useParams } from "react-router-dom";
 
 export const StudyPageContext = createContext({
@@ -20,7 +20,7 @@ export const StudyPageContext = createContext({
 
 export function StudyPage() {
   const { studyId } = useParams();
-  const { study, loading } = useGetStudy(studyId);
+  const { study, loading } = useGetStudyAndNotes(studyId);
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
