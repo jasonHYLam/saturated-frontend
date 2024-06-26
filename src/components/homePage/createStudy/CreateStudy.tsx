@@ -40,6 +40,9 @@ export function CreateStudy() {
     }
 
     console.log("a most successful fetch");
+    const createdStudy = await response.json();
+    console.log("checking createdStudy");
+    console.log(createdStudy);
   }
 
   return (
