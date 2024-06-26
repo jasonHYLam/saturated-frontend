@@ -7,6 +7,14 @@ import {
   pixelColorDataToStringForNote,
 } from "../../../../../helpers/helpers";
 
+// note contains
+// text
+// originalHexColor
+// guessed color if guessed
+// position
+
+// will need to convert hex to rgb
+
 export function Note({ note }) {
   const {
     hoveredMarkerAndNoteID,

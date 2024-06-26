@@ -54,12 +54,12 @@ export function AddNote({
     console.log("checking createdNote");
     console.log(createdNote);
 
-    // if (allNotes) {
-    //   setAllNotes([...allNotes, newNote]);
-    // } else {
-    //   setAllNotes([newNote]);
-    // }
-    // setShowAddNote(false);
+    if (allNotes) {
+      setAllNotes([...allNotes, createdNote]);
+    } else {
+      setAllNotes([createdNote]);
+    }
+    setShowAddNote(false);
   }
 
   return (

@@ -29,3 +29,8 @@ export function rgbToHex(pixelColorData) {
 
   return colorAsHex;
 }
+
+export function hexToRgb(hex) {
+  const bigInt = parseInt(hex, 16);
+  console.log(bigInt);
+}
