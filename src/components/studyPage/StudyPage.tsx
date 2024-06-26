@@ -20,7 +20,8 @@ export const StudyPageContext = createContext({
 
 export function StudyPage() {
   const { studyId } = useParams();
-  const { study, loading } = useGetStudyAndNotes(studyId);
+  const { study, allNotes, setAllNotes, loading } =
+    useGetStudyAndNotes(studyId);
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
@@ -31,8 +32,6 @@ export function StudyPage() {
     g: 0,
     b: 0,
   });
-  const [allNotes, setAllNotes] = useState([]);
-  // const [allNotes, setAllNotes] = useState(testNotes);
   const [colorMode, setColorMode] = useState("color");
   const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState("");
   const [openedNoteID, setOpenedNoteID] = useState("");
