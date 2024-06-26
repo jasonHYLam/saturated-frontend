@@ -12,21 +12,23 @@ export function NoteMarker({ note }) {
   } = useContext(StudyPageContext);
 
   const xPosition =
-    note.normalisedMousePositionFraction.xFraction *
-    canvasElementDimensions.width;
+    // note.normalisedMousePositionFraction.xFraction *
+    note.xOrdinateAsFraction * canvasElementDimensions.width;
   const yPosition =
-    note.normalisedMousePositionFraction.yFraction *
-    canvasElementDimensions.height;
+    // note.normalisedMousePositionFraction.yFraction *
+    note.yOrdinateAsFraction * canvasElementDimensions.height;
 
   const noteMarkerStyle =
     hoveredMarkerAndNoteID ===
-    JSON.stringify(note.normalisedMousePositionFraction)
+    // JSON.stringify(note.normalisedMousePositionFraction)
+    note.id
       ? `${styles.noteMarker} ${styles.activeMarker}`
       : styles.noteMarker;
 
   function handleHover() {
     setHoveredMarkerAndNoteID(
-      JSON.stringify(note.normalisedMousePositionFraction)
+      // JSON.stringify(note.normalisedMousePositionFraction)
+      note.id
     );
   }
 
@@ -35,7 +37,10 @@ export function NoteMarker({ note }) {
   }
 
   function handleClick() {
-    setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
+    setOpenedNoteID(
+      // JSON.stringify(note.normalisedMousePositionFraction)
+      note.id
+    );
   }
 
   return (

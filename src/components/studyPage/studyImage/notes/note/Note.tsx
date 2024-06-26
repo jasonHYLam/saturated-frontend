@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./note.module.css";
 import { StudyPageContext } from "../../../StudyPage";
-import { ColorReference } from "../../../colorReference/ColorReference";
-import {
-  rgbToHex,
-  pixelColorDataToStringForNote,
-} from "../../../../../helpers/helpers";
+// import { ColorReference } from "../../../colorReference/ColorReference";
+// import {
+//   rgbToHex,
+//   pixelColorDataToStringForNote,
+// } from "../../../../../helpers/helpers";
+import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceForNote";
 
 // note contains
 // text
@@ -35,17 +36,20 @@ export function Note({ note }) {
 
   const isNoteHovered =
     hoveredMarkerAndNoteID ===
-    JSON.stringify(note.normalisedMousePositionFraction);
+    // JSON.stringify(note.normalisedMousePositionFraction);
+    note.id;
 
   const isNoteOpened =
-    openedNoteID === JSON.stringify(note.normalisedMousePositionFraction);
+    // openedNoteID === JSON.stringify(note.normalisedMousePositionFraction);
+    openedNoteID === note.id;
 
   const size = isNoteOpened ? "large" : "small";
 
   function handleHover() {
     // setIsHovered(true);
     setHoveredMarkerAndNoteID(
-      JSON.stringify(note.normalisedMousePositionFraction)
+      // JSON.stringify(note.normalisedMousePositionFraction)
+      note.id
     );
   }
   function handleMouseLeave() {
@@ -54,7 +58,8 @@ export function Note({ note }) {
   }
   function handleClick() {
     // setIsActive(true);
-    setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
+    // setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
+    setOpenedNoteID(note.id);
   }
 
   function editNote() {
@@ -75,7 +80,8 @@ export function Note({ note }) {
 
   const noteStyle =
     hoveredMarkerAndNoteID ===
-    JSON.stringify(note.normalisedMousePositionFraction)
+    // JSON.stringify(note.normalisedMousePositionFraction)
+    note.id
       ? `${styles.note} ${styles.activeNote}`
       : styles.note;
 
@@ -97,11 +103,13 @@ export function Note({ note }) {
             <button>Cancel</button>
           )
         ) : null}
-        <ColorReference colorData={note.colorData} size={size} />
+        <ColorReferenceForNote colorAsHex={note.originalHexColor} size={size} />
+        {/* <ColorReference colorData={note.colorData} size={size} /> */}
         {isNoteOpened ? (
           <>
-            <p>{rgbToHex(note.colorData)}</p>
-            <p>{pixelColorDataToStringForNote(note.colorData)}</p>
+            {/* <p>{rgbToHex(note.colorData)}</p>
+            <p>{pixelColorDataToStringForNote(note.colorData)}</p> */}
+            <p>{note.originalHexColor}</p>
           </>
         ) : null}
         {noteStatus === "edit" ? (

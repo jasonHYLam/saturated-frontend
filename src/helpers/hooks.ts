@@ -36,6 +36,7 @@ export function useGetAllStudies() {
 
 export function useGetStudy(studyId) {
   const [study, setStudy] = useState({});
+  const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,9 +51,10 @@ export function useGetStudy(studyId) {
 
       setLoading(false);
       setStudy(study);
+      setNotes(study.notes);
     }
     fetchStudy();
   }, []);
 
-  return { study, loading };
+  return { study, loading, notes, setNotes };
 }
