@@ -22,12 +22,6 @@ export function StudyPage() {
   const { studyId } = useParams();
   const { study, loading } = useGetStudy(studyId);
 
-  console.log("checking study");
-  console.log(study);
-
-  console.log("checking loading");
-  console.log(loading);
-
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
     yFraction: 1,
@@ -148,6 +142,7 @@ export function StudyPage() {
                 <h1>Notes</h1>
                 {showAddNote ? (
                   <AddNote
+                    studyId={studyId}
                     setShowAddNote={setShowAddNote}
                     pixelColorData={clickedPixelColorData}
                     setAllNotes={setAllNotes}

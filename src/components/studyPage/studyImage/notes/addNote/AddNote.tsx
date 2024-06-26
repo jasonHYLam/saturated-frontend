@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import { ColorReference } from "../../../colorReference/ColorReference";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
+import { useNavigate } from "react-router-dom";
 
 export function AddNote({
+  studyId,
   setShowAddNote,
   pixelColorData,
   setAllNotes,
   allNotes,
   clickedPositionFraction,
 }) {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,19 +29,30 @@ export function AddNote({
   const guessedColorAsHex = rgbToHex(guessedColor);
 
   async function uploadNote(data) {
-    const newNoteInput = {
-      text: data.text,
-      originalHexColor: originalColorAsHex,
-      guessedHexColor: guessedColorAsHex,
-      xOrdinateAsFraction: clickedPositionFraction.xFraction,
-      yOrdinateAsFraction: clickedPositionFraction.yFraction,
-    };
+    const newNoteInput = JSON.stringify({
+      Text: data.text,
+      OriginalHexColor: originalColorAsHex,
+      GuessedHexColor: guessedColorAsHex,
+      XOrdinateAsFraction: clickedPositionFraction.xFraction,
+      YOrdinateAsFraction: clickedPositionFraction.yFraction,
+    });
 
     console.log("checking newNote");
     console.log(newNoteInput);
 
-    // fetchData
-    // const response = await fetchWithoutQueryOrImage("Note", "POST", newNote);
+    const response = await fetchWithoutQueryOrImage(
+      `Note/${studyId}`,
+      "POST",
+      newNoteInput
+    );
+
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
+    }
+
+    const createdNote = await response.json();
+    console.log("checking createdNote");
+    console.log(createdNote);
 
     // if (allNotes) {
     //   setAllNotes([...allNotes, newNote]);
