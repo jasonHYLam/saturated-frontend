@@ -99,6 +99,10 @@ export function Note({ note }) {
     setNoteStatus("delete");
   }
 
+  function cancelChanges() {
+    setNoteStatus("");
+  }
+
   const noteStyle =
     hoveredMarkerAndNoteID === note.id
       ? `${styles.note} ${styles.activeNote}`
@@ -119,7 +123,7 @@ export function Note({ note }) {
               <button onClick={askDelete}>Delete</button>
             </div>
           ) : (
-            <button>Cancel</button>
+            <button onClick={cancelChanges}>Cancel</button>
           )
         ) : null}
         <ColorReferenceForNote colorAsHex={note.originalHexColor} size={size} />
