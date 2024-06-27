@@ -58,3 +58,24 @@ export function useGetStudyAndNotes(studyId) {
 
   return { study, loading, allNotes, setAllNotes };
 }
+
+export function useScreenResize(canvasRef, setCanvasElementDimensions) {
+  useEffect(() => {
+    function handleScreenResize(canvas) {
+      setCanvasElementDimensions({
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      });
+    }
+
+    window.addEventListener("resize", () =>
+      handleScreenResize(canvasRef.current)
+    );
+
+    return () => {
+      window.removeEventListener("resize", () =>
+        handleScreenResize(canvasRef.current)
+      );
+    };
+  }, []);
+}

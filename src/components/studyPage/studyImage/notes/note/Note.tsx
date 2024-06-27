@@ -1,21 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./note.module.css";
 import { StudyPageContext } from "../../../StudyPage";
-// import { ColorReference } from "../../../colorReference/ColorReference";
-// import {
-//   rgbToHex,
-//   pixelColorDataToStringForNote,
-// } from "../../../../../helpers/helpers";
 import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceForNote";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-// note contains
-// text
-// originalHexColor
-// guessed color if guessed
-// position
 
 // will need to convert hex to rgb
 

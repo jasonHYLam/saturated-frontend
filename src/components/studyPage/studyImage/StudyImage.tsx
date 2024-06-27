@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import styles from "./studyImage.module.css";
-import testImage from "../../../assets/82620866_p0_master1200.jpg";
 
 import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
+import { useScreenResize } from "../../../helpers/hooks";
 
 export function StudyImage({
   imageLink,
@@ -16,6 +16,8 @@ export function StudyImage({
   allNotes,
   colorMode,
 }) {
+  useScreenResize(canvasRef, setCanvasElementDimensions);
+
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
 
   function handleMouseMove(e) {
@@ -25,6 +27,9 @@ export function StudyImage({
     setPosition({ x: newX, y: newY });
   }
 
+  // ImageDimensions refer to the image in the canvas; these should never change.
+  // CanvasElementDimensions refer to the canvas HTML element.
+  // Canvas.width and canvas.height refer to the image height and width, which should never change.
   function addImageToCanvas(imagePath, context, canvas) {
     const studyImage = new Image();
     studyImage.crossOrigin = "Anonymous";
@@ -43,25 +48,6 @@ export function StudyImage({
       context.drawImage(studyImage, 0, 0);
     };
   }
-
-  useEffect(() => {
-    function handleScreenResize(canvas) {
-      setCanvasElementDimensions({
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      });
-    }
-
-    window.addEventListener("resize", () =>
-      handleScreenResize(canvasRef.current)
-    );
-
-    return () => {
-      window.removeEventListener("resize", () =>
-        handleScreenResize(canvasRef.current)
-      );
-    };
-  }, []);
 
   useEffect(() => {
     if (canvasRef) {
