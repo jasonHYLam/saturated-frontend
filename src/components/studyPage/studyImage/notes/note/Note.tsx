@@ -7,6 +7,9 @@ import { StudyPageContext } from "../../../StudyPage";
 //   pixelColorDataToStringForNote,
 // } from "../../../../../helpers/helpers";
 import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceForNote";
+import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // note contains
 // text
@@ -17,6 +20,9 @@ import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceFor
 // will need to convert hex to rgb
 
 export function Note({ note }) {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
   const {
     hoveredMarkerAndNoteID,
     setHoveredMarkerAndNoteID,
@@ -25,32 +31,25 @@ export function Note({ note }) {
     setAllNotes,
     allNotes,
   } = useContext(StudyPageContext);
-  const [noteText, setNoteText] = useState("");
+  // const [noteText, setNoteText] = useState("");
   const [noteStatus, setNoteStatus] = useState("");
-  useEffect(() => {
-    setNoteText(note.text);
-  }, [note.text]);
 
-  // console.log(note.normalisedMousePositionFraction);
+  // why do I have this here? Seems like a code smell.
+  // useEffect(() => {
+  //   setNoteText(note.text);
+  // }, [note.text]);
+
   // console.log(activeMarkerAndNoteID);
 
-  const isNoteHovered =
-    hoveredMarkerAndNoteID ===
-    // JSON.stringify(note.normalisedMousePositionFraction);
-    note.id;
+  const isNoteHovered = hoveredMarkerAndNoteID === note.id;
 
-  const isNoteOpened =
-    // openedNoteID === JSON.stringify(note.normalisedMousePositionFraction);
-    openedNoteID === note.id;
+  const isNoteOpened = openedNoteID === note.id;
 
   const size = isNoteOpened ? "large" : "small";
 
   function handleHover() {
     // setIsHovered(true);
-    setHoveredMarkerAndNoteID(
-      // JSON.stringify(note.normalisedMousePositionFraction)
-      note.id
-    );
+    setHoveredMarkerAndNoteID(note.id);
   }
   function handleMouseLeave() {
     // setIsHovered(false);
@@ -58,7 +57,6 @@ export function Note({ note }) {
   }
   function handleClick() {
     // setIsActive(true);
-    // setOpenedNoteID(JSON.stringify(note.normalisedMousePositionFraction));
     setOpenedNoteID(note.id);
   }
 
@@ -66,11 +64,34 @@ export function Note({ note }) {
     setNoteStatus("edit");
   }
 
-  function submitEdit() {
-    // setAllNotes([...allNotes, ])
+  async function submitEdit(data) {
+    console.log("checking data");
+    console.log(data);
+    const dataToSubmit = JSON.stringify(data);
+    const response = await fetchWithoutQueryOrImage(
+      `Note/${note.id}`,
+      "PUT",
+      dataToSubmit
+    );
+
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
+    }
+
+    const updatedNote = await response.json();
+
+    // allNotes.map()
+    const updatedNoteId = allNotes.findIndex(
+      (note) => note.id === updatedNote.id
+    );
+    const updatedNotes = allNotes.with(updatedNoteId, updatedNote);
+    console.log("checking updatedNotes");
+    console.log(updatedNotes);
+    setAllNotes(updatedNotes);
   }
 
   function submitDelete() {
+    // await fetchWithoutQueryOrImage(`Note/${note.id}`, "DELETE");
     // setAllNotes([...allNotes]);
   }
 
@@ -79,9 +100,7 @@ export function Note({ note }) {
   }
 
   const noteStyle =
-    hoveredMarkerAndNoteID ===
-    // JSON.stringify(note.normalisedMousePositionFraction)
-    note.id
+    hoveredMarkerAndNoteID === note.id
       ? `${styles.note} ${styles.activeNote}`
       : styles.note;
 
@@ -114,14 +133,15 @@ export function Note({ note }) {
         ) : null}
         {noteStatus === "edit" ? (
           <>
-            <form action="">
+            <form onSubmit={handleSubmit(submitEdit)}>
               <input
                 type="text"
-                value={noteText}
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  setNoteText(e.target.value);
-                }}
+                {...register("text")}
+                // value={noteText}
+                // onChange={(e) => {
+                //   console.log(e.target.value);
+                //   setNoteText(e.target.value);
+                // }}
               />
               <input type="submit" />
             </form>
