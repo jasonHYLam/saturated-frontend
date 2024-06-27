@@ -31,15 +31,7 @@ export function Note({ note }) {
     setAllNotes,
     allNotes,
   } = useContext(StudyPageContext);
-  // const [noteText, setNoteText] = useState("");
   const [noteStatus, setNoteStatus] = useState("");
-
-  // why do I have this here? Seems like a code smell.
-  // useEffect(() => {
-  //   setNoteText(note.text);
-  // }, [note.text]);
-
-  // console.log(activeMarkerAndNoteID);
 
   const isNoteHovered = hoveredMarkerAndNoteID === note.id;
 
@@ -48,15 +40,12 @@ export function Note({ note }) {
   const size = isNoteOpened ? "large" : "small";
 
   function handleHover() {
-    // setIsHovered(true);
     setHoveredMarkerAndNoteID(note.id);
   }
   function handleMouseLeave() {
-    // setIsHovered(false);
     setHoveredMarkerAndNoteID("");
   }
   function handleClick() {
-    // setIsActive(true);
     setOpenedNoteID(note.id);
   }
 
@@ -65,8 +54,6 @@ export function Note({ note }) {
   }
 
   async function submitEdit(data) {
-    console.log("checking data");
-    console.log(data);
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchWithoutQueryOrImage(
       `Note/${note.id}`,
@@ -80,14 +67,12 @@ export function Note({ note }) {
 
     const updatedNote = await response.json();
 
-    // allNotes.map()
     const updatedNoteId = allNotes.findIndex(
       (note) => note.id === updatedNote.id
     );
     const updatedNotes = allNotes.with(updatedNoteId, updatedNote);
-    console.log("checking updatedNotes");
-    console.log(updatedNotes);
     setAllNotes(updatedNotes);
+    setNoteStatus("");
   }
 
   async function submitDelete() {
@@ -105,6 +90,7 @@ export function Note({ note }) {
     );
     const updatedNotes = allNotes.splice(deletedNoteId, 1);
     setAllNotes(updatedNotes);
+    setNoteStatus("");
   }
 
   function askDelete() {
