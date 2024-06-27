@@ -90,9 +90,21 @@ export function Note({ note }) {
     setAllNotes(updatedNotes);
   }
 
-  function submitDelete() {
-    // await fetchWithoutQueryOrImage(`Note/${note.id}`, "DELETE");
-    // setAllNotes([...allNotes]);
+  async function submitDelete() {
+    const response = await fetchWithoutQueryOrImage(
+      `Note/${note.id}`,
+      "DELETE"
+    );
+
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
+    }
+
+    const deletedNoteId = allNotes.findIndex(
+      (studyNote) => studyNote.id === note.id
+    );
+    const updatedNotes = allNotes.splice(deletedNoteId, 1);
+    setAllNotes(updatedNotes);
   }
 
   function askDelete() {
@@ -138,23 +150,15 @@ export function Note({ note }) {
         {noteStatus === "edit" ? (
           <>
             <form onSubmit={handleSubmit(submitEdit)}>
-              <input
-                type="text"
-                {...register("text")}
-                // value={noteText}
-                // onChange={(e) => {
-                //   console.log(e.target.value);
-                //   setNoteText(e.target.value);
-                // }}
-              />
+              <input type="text" {...register("text")} />
               <input type="submit" />
             </form>
           </>
         ) : noteStatus === "delete" ? (
           <section>
             <p>Sure you want to delete?</p>
-            <button>Yes</button>
-            <button>No</button>
+            <button onClick={submitDelete}>Yes</button>
+            <button onClick={cancelChanges}>No</button>
           </section>
         ) : (
           <p>{note.text}</p>
