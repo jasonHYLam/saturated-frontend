@@ -53,6 +53,7 @@ export function StudyImage({
     if (canvasRef) {
       const canvas = canvasRef.current;
       if (canvas) {
+        console.log("checking that this add image to canvas is not called");
         const canvasContext = canvas.getContext("2d");
         addImageToCanvas(imageLink, canvasContext, canvas);
 
