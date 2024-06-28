@@ -80,6 +80,9 @@ export function useScreenResize(canvasRef, setCanvasElementDimensions) {
   }, []);
 }
 
+// ImageDimensions refer to the image in the canvas; these should never change.
+// CanvasElementDimensions refer to the canvas HTML element.
+// Canvas.width and canvas.height refer to the image height and width, which should never change.
 export function useAddImageToCanvas({
   canvasRef,
   imageLink,
@@ -87,40 +90,24 @@ export function useAddImageToCanvas({
   setCanvasElementDimensions,
 }) {
   useEffect(() => {
-    if (canvasRef) {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        console.log("checking that this add image to canvas is not called");
-        const canvasContext = canvas.getContext("2d");
-        // addImageToCanvas(imageLink, canvasContext, canvas);
+    const canvas = canvasRef.current;
+    const canvasContext = canvas.getContext("2d");
 
-        const studyImage = new Image();
-        studyImage.crossOrigin = "Anonymous";
-        studyImage.src = imageLink;
-        studyImage.onload = () => {
-          setImageDimensions({
-            width: studyImage.naturalWidth,
-            height: studyImage.naturalHeight,
-          });
-          canvas.width = studyImage.naturalWidth;
-          canvas.height = studyImage.naturalHeight;
-          setCanvasElementDimensions({
-            width: canvas.clientWidth,
-            height: canvas.clientHeight,
-          });
-          canvasContext.drawImage(studyImage, 0, 0);
-
-          // setCanvasElementDimensions({
-          //   width: canvas.clientWidth,
-          //   height: canvas.clientHeight,
-          // });
-
-          // setImageDimensions({
-          //   width: canvas.width,
-          //   height: canvas.height,
-          // });
-        };
-      }
-    }
+    const studyImage = new Image();
+    studyImage.crossOrigin = "Anonymous";
+    studyImage.src = imageLink;
+    studyImage.onload = () => {
+      setImageDimensions({
+        width: studyImage.naturalWidth,
+        height: studyImage.naturalHeight,
+      });
+      canvas.width = studyImage.naturalWidth;
+      canvas.height = studyImage.naturalHeight;
+      setCanvasElementDimensions({
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      });
+      canvasContext.drawImage(studyImage, 0, 0);
+    };
   }, []);
 }

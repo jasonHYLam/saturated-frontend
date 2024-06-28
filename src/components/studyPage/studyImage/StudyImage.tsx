@@ -19,8 +19,9 @@ export function StudyImage({
   useScreenResize(canvasRef, setCanvasElementDimensions);
   useAddImageToCanvas({
     canvasRef: canvasRef,
-    addImageToCanvas: addImageToCanvas,
     imageLink: imageLink,
+    setImageDimensions: setImageDimensions,
+    setCanvasElementDimensions: setCanvasElementDimensions,
   });
 
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
@@ -31,49 +32,6 @@ export function StudyImage({
     const newY = e.clientY - rect.top;
     setPosition({ x: newX, y: newY });
   }
-
-  // ImageDimensions refer to the image in the canvas; these should never change.
-  // CanvasElementDimensions refer to the canvas HTML element.
-  // Canvas.width and canvas.height refer to the image height and width, which should never change.
-  function addImageToCanvas(imagePath, context, canvas) {
-    const studyImage = new Image();
-    studyImage.crossOrigin = "Anonymous";
-    studyImage.src = imagePath;
-    studyImage.onload = () => {
-      setImageDimensions({
-        width: studyImage.naturalWidth,
-        height: studyImage.naturalHeight,
-      });
-      canvas.width = studyImage.naturalWidth;
-      canvas.height = studyImage.naturalHeight;
-      setCanvasElementDimensions({
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      });
-      context.drawImage(studyImage, 0, 0);
-    };
-  }
-
-  // useEffect(() => {
-  //   if (canvasRef) {
-  //     const canvas = canvasRef.current;
-  //     if (canvas) {
-  //       console.log("checking that this add image to canvas is not called");
-  //       const canvasContext = canvas.getContext("2d");
-  //       addImageToCanvas(imageLink, canvasContext, canvas);
-
-  //       setCanvasElementDimensions({
-  //         width: canvas.clientWidth,
-  //         height: canvas.clientHeight,
-  //       });
-
-  //       setImageDimensions({
-  //         width: canvas.width,
-  //         height: canvas.height,
-  //       });
-  //     }
-  //   }
-  // }, []);
 
   return (
     <>
