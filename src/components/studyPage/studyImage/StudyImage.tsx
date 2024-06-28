@@ -3,7 +3,7 @@ import styles from "./studyImage.module.css";
 
 import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
-import { useScreenResize } from "../../../helpers/hooks";
+import { useAddImageToCanvas, useScreenResize } from "../../../helpers/hooks";
 
 export function StudyImage({
   imageLink,
@@ -17,6 +17,11 @@ export function StudyImage({
   colorMode,
 }) {
   useScreenResize(canvasRef, setCanvasElementDimensions);
+  useAddImageToCanvas({
+    canvasRef: canvasRef,
+    addImageToCanvas: addImageToCanvas,
+    imageLink: imageLink,
+  });
 
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
 
@@ -49,26 +54,26 @@ export function StudyImage({
     };
   }
 
-  useEffect(() => {
-    if (canvasRef) {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        console.log("checking that this add image to canvas is not called");
-        const canvasContext = canvas.getContext("2d");
-        addImageToCanvas(imageLink, canvasContext, canvas);
+  // useEffect(() => {
+  //   if (canvasRef) {
+  //     const canvas = canvasRef.current;
+  //     if (canvas) {
+  //       console.log("checking that this add image to canvas is not called");
+  //       const canvasContext = canvas.getContext("2d");
+  //       addImageToCanvas(imageLink, canvasContext, canvas);
 
-        setCanvasElementDimensions({
-          width: canvas.clientWidth,
-          height: canvas.clientHeight,
-        });
+  //       setCanvasElementDimensions({
+  //         width: canvas.clientWidth,
+  //         height: canvas.clientHeight,
+  //       });
 
-        setImageDimensions({
-          width: canvas.width,
-          height: canvas.height,
-        });
-      }
-    }
-  }, []);
+  //       setImageDimensions({
+  //         width: canvas.width,
+  //         height: canvas.height,
+  //       });
+  //     }
+  //   }
+  // }, []);
 
   return (
     <>

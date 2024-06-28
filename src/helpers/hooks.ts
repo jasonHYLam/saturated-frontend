@@ -82,8 +82,9 @@ export function useScreenResize(canvasRef, setCanvasElementDimensions) {
 
 export function useAddImageToCanvas({
   canvasRef,
-  addImageToCanvas,
   imageLink,
+  setImageDimensions,
+  setCanvasElementDimensions,
 }) {
   useEffect(() => {
     if (canvasRef) {
@@ -91,17 +92,34 @@ export function useAddImageToCanvas({
       if (canvas) {
         console.log("checking that this add image to canvas is not called");
         const canvasContext = canvas.getContext("2d");
-        addImageToCanvas(imageLink, canvasContext, canvas);
+        // addImageToCanvas(imageLink, canvasContext, canvas);
 
-        // setCanvasElementDimensions({
-        //   width: canvas.clientWidth,
-        //   height: canvas.clientHeight,
-        // });
+        const studyImage = new Image();
+        studyImage.crossOrigin = "Anonymous";
+        studyImage.src = imageLink;
+        studyImage.onload = () => {
+          setImageDimensions({
+            width: studyImage.naturalWidth,
+            height: studyImage.naturalHeight,
+          });
+          canvas.width = studyImage.naturalWidth;
+          canvas.height = studyImage.naturalHeight;
+          setCanvasElementDimensions({
+            width: canvas.clientWidth,
+            height: canvas.clientHeight,
+          });
+          canvasContext.drawImage(studyImage, 0, 0);
 
-        // setImageDimensions({
-        //   width: canvas.width,
-        //   height: canvas.height,
-        // });
+          // setCanvasElementDimensions({
+          //   width: canvas.clientWidth,
+          //   height: canvas.clientHeight,
+          // });
+
+          // setImageDimensions({
+          //   width: canvas.width,
+          //   height: canvas.height,
+          // });
+        };
       }
     }
   }, []);
