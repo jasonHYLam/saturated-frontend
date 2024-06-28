@@ -6,8 +6,12 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { useGetStudyAndNotes, useMousePosition } from "../../helpers/hooks";
-import { useParams } from "react-router-dom";
+import {
+  useGetStudyAndNotes,
+  useMousePosition,
+  useScreenResize,
+} from "../../helpers/hooks";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -19,10 +23,9 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
+  const [displayInfo, setDisplayInfo] = useState("notes");
+  const navigate = useNavigate();
   const { studyId } = useParams();
-  const { study, allNotes, setAllNotes, loading } =
-    useGetStudyAndNotes(studyId);
-  const { position, handleMouseMove } = useMousePosition();
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
@@ -38,6 +41,12 @@ export function StudyPage() {
   const [openedNoteID, setOpenedNoteID] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const { study, allNotes, setAllNotes, loading } =
+    useGetStudyAndNotes(studyId);
+
+  const { position, handleMouseMove } = useMousePosition();
+
   // Height and width of the image set on the canvas. Required for obtaining color data from pixels.
   const [imageDimensions, setImageDimensions] = useState({
     width: 1,
@@ -50,6 +59,7 @@ export function StudyPage() {
     height: 1,
   });
 
+  useScreenResize({ canvasRef, setCanvasElementDimensions });
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
     x: position.x / canvasElementDimensions.width,
@@ -139,9 +149,15 @@ export function StudyPage() {
                 handleMouseMove={handleMouseMove}
               />
               <section>
-                {/* <button>All studies</button>
-                <button>Study</button>
-                <button>Notes</button> */}
+                <button onClick={() => navigate("/")}>All studies</button>
+                <button onClick={() => setDisplayInfo("study")}>Study</button>
+                <button onClick={() => setDisplayInfo("notes")}>Notes</button>
+
+                <section>
+                  <h1>Study Info</h1>
+                  <p>{study.title}</p>
+                  <p>{study.originalLink}</p>
+                </section>
                 <section className={styles.notesSection}>
                   <h1>Notes</h1>
                   {showAddNote ? (

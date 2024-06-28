@@ -2,7 +2,7 @@ import styles from "./studyImage.module.css";
 
 import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
-import { useAddImageToCanvas, useScreenResize } from "../../../helpers/hooks";
+import { useAddImageToCanvas } from "../../../helpers/hooks";
 
 export function StudyImage({
   imageLink,
@@ -15,10 +15,6 @@ export function StudyImage({
   colorMode,
   handleMouseMove,
 }) {
-  useScreenResize({
-    canvasRef: canvasRef,
-    setCanvasElementDimensions: setCanvasElementDimensions,
-  });
   useAddImageToCanvas({
     canvasRef: canvasRef,
     imageLink: imageLink,
