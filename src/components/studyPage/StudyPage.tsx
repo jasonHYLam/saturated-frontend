@@ -6,7 +6,7 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { useGetStudyAndNotes } from "../../helpers/hooks";
+import { useGetStudyAndNotes, useMousePosition } from "../../helpers/hooks";
 import { useParams } from "react-router-dom";
 
 export const StudyPageContext = createContext({
@@ -22,6 +22,7 @@ export function StudyPage() {
   const { studyId } = useParams();
   const { study, allNotes, setAllNotes, loading } =
     useGetStudyAndNotes(studyId);
+  const { position, handleMouseMove } = useMousePosition();
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,
@@ -37,13 +38,13 @@ export function StudyPage() {
   const [openedNoteID, setOpenedNoteID] = useState("");
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // Height and width of the image set on the canvas. Required for obtaining color data from pixels.
   const [imageDimensions, setImageDimensions] = useState({
     width: 1,
     height: 1,
   });
 
-  // this differs from the canvas dimensions set at the start, which pertain to the imageDimensions
+  // Height and width of the canvas HTML element.
   const [canvasElementDimensions, setCanvasElementDimensions] = useState({
     width: 1,
     height: 1,
@@ -128,7 +129,6 @@ export function StudyPage() {
             <section className={styles.pageContents}>
               <StudyImage
                 imageLink={study.imageLink}
-                setPosition={setPosition}
                 setImageDimensions={setImageDimensions}
                 setCanvasElementDimensions={setCanvasElementDimensions}
                 canvasRef={canvasRef}
@@ -136,21 +136,27 @@ export function StudyPage() {
                 handleClick={handleClick}
                 allNotes={allNotes}
                 colorMode={colorMode}
+                handleMouseMove={handleMouseMove}
               />
-              <section className={styles.notesSection}>
-                <h1>Notes</h1>
-                {showAddNote ? (
-                  <AddNote
-                    studyId={studyId}
-                    setShowAddNote={setShowAddNote}
-                    pixelColorData={clickedPixelColorData}
-                    setAllNotes={setAllNotes}
-                    allNotes={allNotes}
-                    clickedPositionFraction={clickedPositionFraction}
-                  />
-                ) : (
-                  <NotesContainer allNotes={allNotes} />
-                )}
+              <section>
+                {/* <button>All studies</button>
+                <button>Study</button>
+                <button>Notes</button> */}
+                <section className={styles.notesSection}>
+                  <h1>Notes</h1>
+                  {showAddNote ? (
+                    <AddNote
+                      studyId={studyId}
+                      setShowAddNote={setShowAddNote}
+                      pixelColorData={clickedPixelColorData}
+                      setAllNotes={setAllNotes}
+                      allNotes={allNotes}
+                      clickedPositionFraction={clickedPositionFraction}
+                    />
+                  ) : (
+                    <NotesContainer allNotes={allNotes} />
+                  )}
+                </section>
               </section>
             </section>
           </StudyPageContext.Provider>

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "./studyImage.module.css";
 
 import { PositionMarker } from "./marker/PositionMarker";
@@ -7,7 +6,6 @@ import { useAddImageToCanvas, useScreenResize } from "../../../helpers/hooks";
 
 export function StudyImage({
   imageLink,
-  setPosition,
   setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
@@ -15,6 +13,7 @@ export function StudyImage({
   handleClick,
   allNotes,
   colorMode,
+  handleMouseMove,
 }) {
   useScreenResize({
     canvasRef: canvasRef,
@@ -28,13 +27,6 @@ export function StudyImage({
   });
 
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
-
-  function handleMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const newX = e.clientX - rect.left;
-    const newY = e.clientY - rect.top;
-    setPosition({ x: newX, y: newY });
-  }
 
   return (
     <>
