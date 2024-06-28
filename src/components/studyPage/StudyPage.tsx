@@ -47,11 +47,12 @@ export function StudyPage() {
 
   const { position, handleMouseMove } = useMousePosition();
 
-  // Height and width of the image set on the canvas. Required for obtaining color data from pixels.
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 1,
-    height: 1,
-  });
+  const imageDimensions = {
+    width: canvasRef.current?.width,
+    height: canvasRef.current?.height,
+  };
+
+  const canvasContext = canvasRef.current?.getContext("2d");
 
   // Height and width of the canvas HTML element.
   const [canvasElementDimensions, setCanvasElementDimensions] = useState({
@@ -78,9 +79,7 @@ export function StudyPage() {
     y: normalisedMousePositionFraction.y * imageDimensions.height,
   };
 
-  const canvasContext = canvasRef.current?.getContext("2d");
-
-  // For the purpose of converting rgb to hex, and perhaps converting to grayscale
+  // For the purpose of converting rgb to hex
   let pixelColorDataObject = { r: 0, g: 0, b: 0 };
   if (canvasContext) {
     const pixelData = canvasContext?.getImageData(
@@ -106,7 +105,6 @@ export function StudyPage() {
   }
 
   // console.log(position);
-  // console.log(imageDimensions);
   // console.log(canvasElementDimensions);
   // console.log(normalisedPosition);
   // console.log(canvasContext);
@@ -139,7 +137,6 @@ export function StudyPage() {
             <section className={styles.pageContents}>
               <StudyImage
                 imageLink={study.imageLink}
-                setImageDimensions={setImageDimensions}
                 setCanvasElementDimensions={setCanvasElementDimensions}
                 canvasRef={canvasRef}
                 showAddNote={showAddNote}

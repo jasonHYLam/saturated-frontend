@@ -6,7 +6,7 @@ import { useAddImageToCanvas } from "../../../helpers/hooks";
 
 export function StudyImage({
   imageLink,
-  setImageDimensions,
+  // setImageDimensions,
   setCanvasElementDimensions,
   canvasRef,
   showAddNote,
@@ -18,7 +18,7 @@ export function StudyImage({
   useAddImageToCanvas({
     canvasRef: canvasRef,
     imageLink: imageLink,
-    setImageDimensions: setImageDimensions,
+    // setImageDimensions: setImageDimensions,
     setCanvasElementDimensions: setCanvasElementDimensions,
   });
 

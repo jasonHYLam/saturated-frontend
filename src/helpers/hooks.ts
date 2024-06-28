@@ -88,7 +88,6 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
 export function useAddImageToCanvas({
   canvasRef,
   imageLink,
-  setImageDimensions,
   setCanvasElementDimensions,
 }) {
   useEffect(() => {
@@ -99,10 +98,6 @@ export function useAddImageToCanvas({
     studyImage.crossOrigin = "Anonymous";
     studyImage.src = imageLink;
     studyImage.onload = () => {
-      setImageDimensions({
-        width: studyImage.naturalWidth,
-        height: studyImage.naturalHeight,
-      });
       canvas.width = studyImage.naturalWidth;
       canvas.height = studyImage.naturalHeight;
       setCanvasElementDimensions({
