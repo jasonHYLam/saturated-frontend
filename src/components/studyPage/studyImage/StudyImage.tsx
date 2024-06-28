@@ -16,7 +16,10 @@ export function StudyImage({
   allNotes,
   colorMode,
 }) {
-  useScreenResize(canvasRef, setCanvasElementDimensions);
+  useScreenResize({
+    canvasRef: canvasRef,
+    setCanvasElementDimensions: setCanvasElementDimensions,
+  });
   useAddImageToCanvas({
     canvasRef: canvasRef,
     imageLink: imageLink,

@@ -59,7 +59,7 @@ export function useGetStudyAndNotes(studyId) {
   return { study, loading, allNotes, setAllNotes };
 }
 
-export function useScreenResize(canvasRef, setCanvasElementDimensions) {
+export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
   useEffect(() => {
     function handleScreenResize(canvas) {
       setCanvasElementDimensions({
@@ -110,4 +110,16 @@ export function useAddImageToCanvas({
       canvasContext.drawImage(studyImage, 0, 0);
     };
   }, []);
+}
+
+export function useMousePosition() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  function handleMouseMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const newX = e.clientX - rect.left;
+    const newY = e.clientY - rect.top;
+    setPosition({ x: newX, y: newY });
+  }
+  return { position, handleMouseMove };
 }
