@@ -60,8 +60,6 @@ export function useGetStudyAndNotes(studyId) {
 }
 
 export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
-  console.log("checkiung canvas");
-  console.log(canvasRef);
   useEffect(() => {
     function handleScreenResize(canvas) {
       setCanvasElementDimensions({
