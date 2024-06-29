@@ -5,6 +5,7 @@ import { AddNote } from "./studyImage/notes/addNote/AddNote";
 import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
+import { StudyInformation } from "./studyInformation/StudyInformation";
 import {
   useGetStudyAndNotes,
   useMousePosition,
