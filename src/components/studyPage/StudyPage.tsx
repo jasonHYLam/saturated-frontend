@@ -24,7 +24,7 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
-  const [displayInfo, setDisplayInfo] = useState("notes");
+  // const [displayInfo, setDisplayInfo] = useState("notes");
   const navigate = useNavigate();
   const { studyId } = useParams();
 
@@ -130,32 +130,17 @@ export function StudyPage() {
                 colorMode={colorMode}
                 handleMouseMove={handleMouseMove}
               />
-              <section>
-                <button onClick={() => navigate("/")}>All studies</button>
-                <button onClick={() => setDisplayInfo("study")}>Study</button>
-                <button onClick={() => setDisplayInfo("notes")}>Notes</button>
 
-                <section>
-                  <h1>Study Info</h1>
-                  <p>{study.title}</p>
-                  <p>{study.originalLink}</p>
-                </section>
-                <section className={styles.notesSection}>
-                  <h1>Notes</h1>
-                  {showAddNote ? (
-                    <AddNote
-                      studyId={studyId}
-                      setShowAddNote={setShowAddNote}
-                      pixelColorData={clickedPixelColorData}
-                      setAllNotes={setAllNotes}
-                      allNotes={allNotes}
-                      clickedPositionFraction={clickedPositionFraction}
-                    />
-                  ) : (
-                    <NotesContainer allNotes={allNotes} />
-                  )}
-                </section>
-              </section>
+              <StudyInformation
+                studyTitle={study.title}
+                studyOriginalLink={study.originalLink}
+                studyId={studyId}
+                showAddNote={showAddNote}
+                setShowAddNote={setShowAddNote}
+                clickedPixelColorData={clickedPixelColorData}
+                setAllNotes={setAllNotes}
+                clickedPositionFraction={clickedPositionFraction}
+              />
             </section>
           </StudyPageContext.Provider>
         </>
