@@ -77,7 +77,7 @@ export function StudyPage() {
   };
 
   const colorDataForPixel = getColorDataForPixel(
-    normalisedClickedPosition,
+    normalisedMousePositionFraction,
     imageDimensions,
     canvasContext
   );

@@ -41,7 +41,13 @@ export function getColorDataForPixel(
   imageDimensions,
   canvasContext
 ) {
-  if (!canvasContext) return;
+  if (!canvasContext) {
+    return {
+      r: 0,
+      g: 0,
+      b: 0,
+    };
+  }
   const xOrdinateForImage =
     normalisedMousePositionFraction.x * imageDimensions.width;
   const yOrdinateForImage =
