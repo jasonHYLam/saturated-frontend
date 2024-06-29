@@ -34,3 +34,27 @@ export function hexToRgb(hex) {
   const bigInt = parseInt(hex, 16);
   console.log(bigInt);
 }
+
+export function getColorDataForPixel(
+  normalisedMousePositionFraction,
+  imageDimensions,
+  canvasContext
+) {
+  const xOrdinateForImage =
+    normalisedMousePositionFraction.x * imageDimensions.width;
+  const yOrdinateForImage =
+    normalisedMousePositionFraction.y * imageDimensions.height;
+
+  const pixelData = canvasContext?.getImageData(
+    xOrdinateForImage,
+    yOrdinateForImage,
+    1,
+    1
+  ).data;
+
+  return {
+    r: pixelData[0],
+    g: pixelData[1],
+    b: pixelData[2],
+  };
+}

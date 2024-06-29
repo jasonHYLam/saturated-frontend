@@ -1,5 +1,4 @@
 import { createContext, useEffect, useRef, useState } from "react";
-import { testNotes } from "../../helpers/testData";
 import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
 import { AddNote } from "./studyImage/notes/addNote/AddNote";
@@ -31,6 +30,8 @@ export function StudyPage() {
     xFraction: 1,
     yFraction: 1,
   });
+
+  // may be able to derive clickedPCD from clikedPostiionFraction
   const [clickedPixelColorData, setClickedPixelColorData] = useState({
     r: 0,
     g: 0,
@@ -61,6 +62,7 @@ export function StudyPage() {
   });
 
   useScreenResize({ canvasRef, setCanvasElementDimensions });
+
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
     x: position.x / canvasElementDimensions.width,
@@ -107,9 +109,7 @@ export function StudyPage() {
   // console.log(position);
   // console.log(canvasElementDimensions);
   // console.log(normalisedPosition);
-  // console.log(canvasContext);
   // console.log(pixelColorData);
-  // console.log("");
 
   return loading ? (
     <p>loading...</p>

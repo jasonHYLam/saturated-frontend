@@ -82,9 +82,8 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
   }, []);
 }
 
-// ImageDimensions refer to the image in the canvas; these should never change.
-// CanvasElementDimensions refer to the canvas HTML element.
-// Canvas.width and canvas.height refer to the image height and width, which should never change.
+// CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.
+// Canvas.width and canvas.height refer to the image height and width, which is used for determining color data from the image.
 export function useAddImageToCanvas({
   canvasRef,
   imageLink,
