@@ -11,6 +11,7 @@ import {
   useScreenResize,
 } from "../../helpers/hooks";
 import { useNavigate, useParams } from "react-router-dom";
+import { getColorDataForPixel } from "../../helpers/helpers";
 
 export const StudyPageContext = createContext({
   canvasElementDimensions: [],
@@ -75,27 +76,11 @@ export function StudyPage() {
     y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
   };
 
-  // Position that corresponds to the canvas image, to obtain colorData of the pixel at the mouse position.
-  const normalisedMousePositionForColor = {
-    x: normalisedMousePositionFraction.x * imageDimensions.width,
-    y: normalisedMousePositionFraction.y * imageDimensions.height,
-  };
-
-  // For the purpose of converting rgb to hex
-  let pixelColorDataObject = { r: 0, g: 0, b: 0 };
-  if (canvasContext) {
-    const pixelData = canvasContext?.getImageData(
-      normalisedMousePositionForColor.x,
-      normalisedMousePositionForColor.y,
-      1,
-      1
-    ).data;
-    pixelColorDataObject = {
-      r: pixelData[0],
-      g: pixelData[1],
-      b: pixelData[2],
-    };
-  }
+  const colorDataForPixel = getColorDataForPixel(
+    normalisedClickedPosition,
+    imageDimensions,
+    canvasContext
+  );
 
   function handleClick() {
     setClickedPositionFraction({
@@ -103,13 +88,12 @@ export function StudyPage() {
       yFraction: normalisedMousePositionFraction.y,
     });
     setShowAddNote(true);
-    setClickedPixelColorData(pixelColorDataObject);
+    setClickedPixelColorData(colorDataForPixel);
   }
 
   // console.log(position);
   // console.log(canvasElementDimensions);
   // console.log(normalisedPosition);
-  // console.log(pixelColorData);
 
   return loading ? (
     <p>loading...</p>
@@ -117,7 +101,7 @@ export function StudyPage() {
     <>
       <main className={styles.page}>
         <header className={styles.header}>
-          <ColorReference colorData={pixelColorDataObject} size="large" />
+          <ColorReference colorData={colorDataForPixel} size="large" />
           <ToggleColorMode colorMode={colorMode} setColorMode={setColorMode} />
         </header>
 

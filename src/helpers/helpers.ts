@@ -35,11 +35,13 @@ export function hexToRgb(hex) {
   console.log(bigInt);
 }
 
+// ColorData is in rgb, and will be converted to hex format for database storage.
 export function getColorDataForPixel(
   normalisedMousePositionFraction,
   imageDimensions,
   canvasContext
 ) {
+  if (!canvasContext) return;
   const xOrdinateForImage =
     normalisedMousePositionFraction.x * imageDimensions.width;
   const yOrdinateForImage =
