@@ -128,3 +128,24 @@ export function useMousePosition() {
 
   return { position, setPositionOnImage };
 }
+
+export function useGuest() {
+  const navigate = useNavigate();
+  const [isGuest, setIsGuest] = useState(false);
+
+  useEffect(() => {
+    async function getIsGuest() {
+      const response = await getDataFromFetch("User/isGuest");
+
+      if (!response.ok || response instanceof Error) {
+        navigate("/error");
+      }
+
+      const { isGuest } = await response.json();
+      setIsGuest(isGuest);
+    }
+    getIsGuest();
+  }, []);
+
+  return isGuest;
+}
