@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { StudyPageContext } from "../StudyPage";
-import { AddNote } from "../studyImage/notes/addNote/AddNote";
-import { NotesContainer } from "../studyImage/notesContainer/NotesContainer";
+import { AddNote } from "./notes/addNote/AddNote";
+import { NotesContainer } from "./notesContainer/NotesContainer";
 import { useNavigate } from "react-router-dom";
-import styles from "./studyInformation.module.css";
+import styles from "./studyInformationAndNotes.module.css";
 
-export function StudyInformation({
+export function StudyInformationAndNotes({
   studyTitle,
   studyOriginalLink,
   studyId,
@@ -36,6 +36,7 @@ export function StudyInformation({
             <h1>Study Info</h1>
             <p>{studyTitle}</p>
             <p>{studyOriginalLink}</p>
+            <button>Delete study</button>
           </section>
         ) : (
           <section>

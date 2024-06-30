@@ -3,7 +3,7 @@ import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { StudyInformation } from "./studyInformation/StudyInformation";
+import { StudyInformation } from "./studyInformationAndNotes/StudyInformationAndNotes";
 import {
   useGetStudyAndNotes,
   useMousePosition,
