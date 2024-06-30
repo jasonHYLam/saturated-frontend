@@ -142,7 +142,7 @@ export function useGuest() {
         navigate("/error");
       }
 
-      const { isGuest } = await response.json();
+      const isGuest = await response.json();
       setIsGuest(isGuest);
       setLoading(false);
     }

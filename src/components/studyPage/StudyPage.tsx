@@ -24,10 +24,6 @@ export const StudyPageContext = createContext({
 
 export function StudyPage() {
   const { studyId } = useParams();
-  const isGuest = useGuest();
-
-  console.log("checking isGuest");
-  console.log(isGuest);
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,

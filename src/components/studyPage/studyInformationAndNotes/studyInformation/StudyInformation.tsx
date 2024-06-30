@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { fetchWithoutQueryOrImage } from "../../../../helpers/fetchData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function StudyInformation({ studyTitle, studyOriginalLink, studyId }) {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
+  const { isGuest } = useOutletContext();
+
+  const deleteSection = isGuest ? (
+    <>
+      <p>Cannot delete study on guest account</p>
+    </>
+  ) : (
+    <>
+      <p>Are you sure you want to delete this study?</p>
+      <button onClick={submitDelete}>Yes</button>
+      <button onClick={() => setStatus("")}>No</button>
+    </>
+  );
   async function submitDelete() {
     const response = await fetchWithoutQueryOrImage(
       `Study/${studyId}`,
@@ -25,11 +38,7 @@ export function StudyInformation({ studyTitle, studyOriginalLink, studyId }) {
         <p>{studyOriginalLink}</p>
 
         {status === "delete" ? (
-          <>
-            <p>Are you sure you want to delete this study?</p>
-            <button onClick={submitDelete}>Yes</button>
-            <button onClick={() => setStatus("")}>No</button>
-          </>
+          deleteSection
         ) : (
           <button onClick={() => setStatus("delete")}>Delete study</button>
         )}
