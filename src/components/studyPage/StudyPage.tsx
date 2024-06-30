@@ -87,6 +87,7 @@ export function StudyPage() {
     setClickedPixelColorData(colorDataForPixel);
   }
 
+  console.log(`is mobile: ${isMobile}`);
   const pageStyle = isMobile
     ? `${styles.pageContents} ${styles.mobile}`
     : `${styles.pageContents} ${styles.desktop}`;

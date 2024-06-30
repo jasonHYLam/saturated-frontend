@@ -62,14 +62,15 @@ export function useGetStudyAndNotes(studyId) {
 
 // add a checkMobile; requires mobile breakpoint
 export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
-  const screenSize = useRef();
+  const [screenSize, setScreenSize] = useState(1);
+
   useEffect(() => {
     function handleScreenResize(canvas) {
       setCanvasElementDimensions({
         width: canvas.clientWidth,
         height: canvas.clientHeight,
       });
-      screenSize.current = window.innerWidth;
+      setScreenSize(window.innerWidth);
     }
 
     window.addEventListener("resize", () =>
@@ -83,7 +84,7 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
     };
   }, []);
 
-  const isMobile = screenSize.current <= MOBILE_BREAKPOINT;
+  const isMobile = screenSize <= MOBILE_BREAKPOINT;
 
   return isMobile;
 }
