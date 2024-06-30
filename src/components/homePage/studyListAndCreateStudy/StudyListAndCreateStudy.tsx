@@ -1,5 +1,5 @@
+import { fetchWithoutQueryOrImage } from "../../../helpers/fetchData";
 import { CreateStudy } from "../createStudy/CreateStudy";
-import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
 import { StudyList } from "../studyList/StudyList";
 import { useNavigate } from "react-router-dom";
 
