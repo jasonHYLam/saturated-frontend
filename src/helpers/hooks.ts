@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getDataFromFetch } from "./fetchData";
 import { useNavigate } from "react-router-dom";
+import { MOBILE_BREAKPOINT } from "./constants";
 
 export function useGetAllStudies() {
   const [allStudies, setAllStudies] = useState([]);
@@ -82,7 +83,7 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
     };
   }, []);
 
-  return screenSize.current < 500;
+  return screenSize.current <= MOBILE_BREAKPOINT;
 }
 
 // CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.
