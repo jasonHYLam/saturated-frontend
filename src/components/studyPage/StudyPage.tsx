@@ -95,8 +95,6 @@ export function StudyPage() {
     ? `${styles.pageContents} ${styles.mobile}`
     : `${styles.pageContents} ${styles.desktop}`;
 
-  console.log("checking position");
-  console.log(position);
   return loading ? (
     <p>loading...</p>
   ) : (

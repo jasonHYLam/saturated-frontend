@@ -1,9 +1,7 @@
 import styles from "./studyImage.module.css";
-
 import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
 import { useAddImageToCanvas } from "../../../helpers/hooks";
-import { useContext } from "react";
 
 export function StudyImage({
   imageLink,
@@ -38,7 +36,6 @@ export function StudyImage({
   return (
     <>
       <section className={styles.canvasContainer}>
-        <p>canvas</p>
         <canvas
           className={`${styles.canvas} ${colorModeStyle}`}
           {...canvasEventHandlers}

@@ -37,9 +37,6 @@ export function AddNote({
       YOrdinateAsFraction: clickedPositionFraction.yFraction,
     });
 
-    console.log("checking newNote");
-    console.log(newNoteInput);
-
     const response = await fetchWithoutQueryOrImage(
       `Note/${studyId}`,
       "POST",
@@ -51,8 +48,6 @@ export function AddNote({
     }
 
     const createdNote = await response.json();
-    console.log("checking createdNote");
-    console.log(createdNote);
 
     if (allNotes) {
       setAllNotes([...allNotes, createdNote]);
