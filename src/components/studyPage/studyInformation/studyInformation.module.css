@@ -7,6 +7,6 @@
   /* i think this is needed? */
   /* overflow-y: scroll; */
   height: 100svh;
-  /* not sure if this is needed? */
-  /* width: 100%; */
+  overflow-wrap: break-word;
+  max-width: 50%;
 }

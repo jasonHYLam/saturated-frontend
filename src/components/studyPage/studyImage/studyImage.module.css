@@ -1,6 +1,7 @@
 .canvasContainer {
   height: 80%;
   position: relative;
+  width: 50%;
 }
 
 .canvas {
