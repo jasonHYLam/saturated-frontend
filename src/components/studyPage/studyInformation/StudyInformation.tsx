@@ -20,10 +20,12 @@ export function StudyInformation({
   const navigate = useNavigate();
   const [displayInfo, setDisplayInfo] = useState("notes");
 
-  const studyInformationStyle = isMobile ? "" : "";
+  const studyInformationStyle = isMobile
+    ? `${styles.studyInformation} ${styles.mobile}`
+    : `${styles.studyInformation} `;
   return (
     <>
-      <section className={styles.studyInformation}>
+      <section className={studyInformationStyle}>
         <section>
           <button onClick={() => navigate("/")}>All studies</button>
           <button onClick={() => setDisplayInfo("study")}>Study</button>

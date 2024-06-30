@@ -10,3 +10,7 @@
   overflow-wrap: break-word;
   max-width: 50%;
 }
+
+.mobile {
+  max-width: 100%;
+}

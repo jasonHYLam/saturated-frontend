@@ -113,15 +113,34 @@ export function Note({ note }) {
             <button onClick={cancelChanges}>Cancel</button>
           )
         ) : null}
-        <ColorReferenceForNote colorAsHex={note.originalHexColor} size={size} />
-        {/* <ColorReference colorData={note.colorData} size={size} /> */}
+
         {isNoteOpened ? (
           <>
-            {/* <p>{rgbToHex(note.colorData)}</p>
-            <p>{pixelColorDataToStringForNote(note.colorData)}</p> */}
-            <p>{note.originalHexColor}</p>
+            <section className={styles.colorInformationContainer}>
+              <article>
+                <p>Actual</p>
+                <ColorReferenceForNote
+                  colorAsHex={note.originalHexColor}
+                  size={size}
+                />
+                <p>{note.originalHexColor}</p>
+              </article>
+              <article>
+                <p>Guessed</p>
+                <ColorReferenceForNote
+                  colorAsHex={note.guessedHexColor}
+                  size={size}
+                />
+                <p>{note.guessedHexColor}</p>
+              </article>
+            </section>
           </>
-        ) : null}
+        ) : (
+          <ColorReferenceForNote
+            colorAsHex={note.originalHexColor}
+            size={size}
+          />
+        )}
         {noteStatus === "edit" ? (
           <>
             <form onSubmit={handleSubmit(submitEdit)}>

@@ -7,6 +7,9 @@
   --color-reference-large: 70px;
 
   /* --page-width: 100svw; */
+  --mobile-breakwidth: 500px;
+
+
   --marker-color: white;
   --marker-default-opacity: 0.1;
   --marker-hover-opacity: 0.3;
