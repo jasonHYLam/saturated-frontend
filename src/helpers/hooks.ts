@@ -132,6 +132,7 @@ export function useMousePosition() {
 export function useGuest() {
   const navigate = useNavigate();
   const [isGuest, setIsGuest] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getIsGuest() {
@@ -143,9 +144,10 @@ export function useGuest() {
 
       const { isGuest } = await response.json();
       setIsGuest(isGuest);
+      setLoading(false);
     }
     getIsGuest();
   }, []);
 
-  return isGuest;
+  return { isGuest, loading };
 }
