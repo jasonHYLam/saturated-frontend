@@ -9,7 +9,7 @@ export function PositionMarker() {
     <>
       <div
         style={{
-          top: normalisedClickedPosition.y + MARKER_HEIGHT / 2 - 5,
+          top: normalisedClickedPosition.y - MARKER_HEIGHT / 2,
           left: normalisedClickedPosition.x - MARKER_HEIGHT / 2,
         }}
         className={styles.positionMarker}
