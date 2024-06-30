@@ -3,7 +3,7 @@ import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
-import { StudyInformation } from "./studyInformationAndNotes/StudyInformationAndNotes";
+import { StudyInformationAndNotes } from "./studyInformationAndNotes/StudyInformationAndNotes";
 import {
   useGetStudyAndNotes,
   useMousePosition,
@@ -95,6 +95,11 @@ export function StudyPage() {
     ? `${styles.pageContents} ${styles.mobile}`
     : `${styles.pageContents} ${styles.desktop}`;
 
+  console.log("checking position");
+  console.log(position);
+  console.log("checking isMobile");
+  console.log(isMobile);
+
   return loading ? (
     <p>loading...</p>
   ) : (
@@ -131,7 +136,7 @@ export function StudyPage() {
                 isMobile={isMobile}
               />
 
-              <StudyInformation
+              <StudyInformationAndNotes
                 studyTitle={study.title}
                 studyOriginalLink={study.originalLink}
                 studyId={studyId}

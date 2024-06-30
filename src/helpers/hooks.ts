@@ -62,7 +62,7 @@ export function useGetStudyAndNotes(studyId) {
 
 // add a checkMobile; requires mobile breakpoint
 export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
-  const [screenSize, setScreenSize] = useState(1);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
     function handleScreenResize(canvas) {
@@ -119,7 +119,6 @@ export function useAddImageToCanvas({
 export function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  //  this should be renamed setPositionOnImage
   function setPositionOnImage(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
