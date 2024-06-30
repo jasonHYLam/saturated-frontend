@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
 import { CreateStudy } from "./createStudy/CreateStudy";
 import { StudyList } from "./studyList/StudyList";
@@ -21,6 +21,7 @@ export function HomePage() {
       {/* <button onClick={submitLogout}>Logout</button> */}
       <CreateStudy />
       <StudyList />
+      <Outlet />
     </>
   );
 }

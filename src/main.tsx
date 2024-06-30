@@ -10,6 +10,8 @@ import "./reset.css";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { StudyInformationAndNotes } from "./components/studyPage/studyInformationAndNotes/StudyInformationAndNotes.tsx";
+import { StudyListAndCreateStudy } from "./components/homePage/studyListAndCreateStudy/StudyListAndCreateStudy.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,14 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-      },
-      {
-        path: "/study",
-        element: <StudyPage />,
-      },
-      {
-        path: "/study/:studyId",
-        element: <StudyPage />,
+        children: [
+          { path: "/", element: <StudyListAndCreateStudy /> },
+          { path: "/study/:studyId", element: <StudyPage /> },
+        ],
       },
       {
         path: "/error",
