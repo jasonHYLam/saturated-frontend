@@ -14,10 +14,13 @@ export function StudyInformation({
   clickedPixelColorData,
   setAllNotes,
   clickedPositionFraction,
+  isMobile,
 }) {
   const { allNotes } = useContext(StudyPageContext);
   const navigate = useNavigate();
   const [displayInfo, setDisplayInfo] = useState("notes");
+
+  const studyInformationStyle = isMobile ? "" : "";
   return (
     <>
       <section className={styles.studyInformation}>

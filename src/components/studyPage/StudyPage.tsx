@@ -1,8 +1,6 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import styles from "./studyPage.module.css";
 import { StudyImage } from "./studyImage/StudyImage";
-import { AddNote } from "./studyImage/notes/addNote/AddNote";
-import { NotesContainer } from "./studyImage/notesContainer/NotesContainer";
 import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
 import { StudyInformation } from "./studyInformation/StudyInformation";
@@ -11,7 +9,7 @@ import {
   useMousePosition,
   useScreenResize,
 } from "../../helpers/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 
 export const StudyPageContext = createContext({
@@ -24,8 +22,6 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
-  // const [displayInfo, setDisplayInfo] = useState("notes");
-  const navigate = useNavigate();
   const { studyId } = useParams();
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
@@ -33,7 +29,6 @@ export function StudyPage() {
     yFraction: 1,
   });
 
-  // may be able to derive clickedPCD from clikedPostiionFraction
   const [clickedPixelColorData, setClickedPixelColorData] = useState({
     r: 0,
     g: 0,
@@ -63,7 +58,7 @@ export function StudyPage() {
     height: 1,
   });
 
-  useScreenResize({ canvasRef, setCanvasElementDimensions });
+  const isMobile = useScreenResize({ canvasRef, setCanvasElementDimensions });
 
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
@@ -92,9 +87,9 @@ export function StudyPage() {
     setClickedPixelColorData(colorDataForPixel);
   }
 
-  // console.log(position);
-  // console.log(canvasElementDimensions);
-  // console.log(normalisedPosition);
+  const pageStyle = isMobile
+    ? `${styles.pageContents} ${styles.mobile}`
+    : `${styles.pageContents} ${styles.desktop}`;
 
   return loading ? (
     <p>loading...</p>
@@ -119,7 +114,7 @@ export function StudyPage() {
               allNotes,
             }}
           >
-            <section className={styles.pageContents}>
+            <section className={pageStyle}>
               <StudyImage
                 imageLink={study.imageLink}
                 setCanvasElementDimensions={setCanvasElementDimensions}
@@ -140,6 +135,7 @@ export function StudyPage() {
                 clickedPixelColorData={clickedPixelColorData}
                 setAllNotes={setAllNotes}
                 clickedPositionFraction={clickedPositionFraction}
+                isMobile={isMobile}
               />
             </section>
           </StudyPageContext.Provider>

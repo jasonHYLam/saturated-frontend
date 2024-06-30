@@ -31,3 +31,10 @@
 .notesSection {
   padding-inline: 30px;
 }
+
+.desktop {
+  flex-direction: row;
+}
+.mobile {
+  flex-direction: column;
+}

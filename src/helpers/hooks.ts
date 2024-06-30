@@ -83,7 +83,9 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
     };
   }, []);
 
-  return screenSize.current <= MOBILE_BREAKPOINT;
+  const isMobile = screenSize.current <= MOBILE_BREAKPOINT;
+
+  return isMobile;
 }
 
 // CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.
