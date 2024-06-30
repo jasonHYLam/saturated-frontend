@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getDataFromFetch } from "./fetchData";
 import { useNavigate } from "react-router-dom";
 
@@ -59,13 +59,16 @@ export function useGetStudyAndNotes(studyId) {
   return { study, loading, allNotes, setAllNotes };
 }
 
+// add a checkMobile; requires mobile breakpoint
 export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
+  const screenSize = useRef();
   useEffect(() => {
     function handleScreenResize(canvas) {
       setCanvasElementDimensions({
         width: canvas.clientWidth,
         height: canvas.clientHeight,
       });
+      screenSize.current = window.innerWidth;
     }
 
     window.addEventListener("resize", () =>
@@ -78,6 +81,8 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
       );
     };
   }, []);
+
+  return screenSize.current < 500;
 }
 
 // CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.

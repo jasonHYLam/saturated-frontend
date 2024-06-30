@@ -1,0 +1,12 @@
+.studyInformation {
+  display: flex;
+  /* position:fixed; */
+  /* right: 0; */
+  flex-direction: column;
+
+  /* i think this is needed? */
+  /* overflow-y: scroll; */
+  height: 100svh;
+  /* not sure if this is needed? */
+  /* width: 100%; */
+}
