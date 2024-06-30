@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { postDataOnFetch, fetchWithQuery } from "../../helpers/fetchData";
+import { fetchWithQuery } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 
 export function Login() {
@@ -11,7 +11,6 @@ export function Login() {
   } = useForm();
 
   async function submitLogin(data) {
-    console.log(data);
     const cookieQuery = {
       useCookies: "true",
       useSessionCookies: "true",
@@ -23,9 +22,12 @@ export function Login() {
       credentials,
       cookieQuery
     );
-    if (loginResponse.ok) {
-      navigate("/");
+
+    if (!loginResponse.ok || loginResponse instanceof Error) {
+      navigate("/error");
     }
+
+    navigate("/");
   }
 
   return (

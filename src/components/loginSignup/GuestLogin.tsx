@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { fetchWithQuery } from "../../helpers/fetchData";
 
 export function GuestLogin() {
-
   const navigate = useNavigate();
 
   async function submitGuestLogin() {
@@ -22,15 +21,15 @@ export function GuestLogin() {
       cookieQuery
     );
 
-    if (!response.ok || response.instanceof Error) {
-      navigate("/error")
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
     }
 
     navigate("/");
   }
   return (
     <>
-      <button>Try guest account!</button>
+      <button onClick={submitGuestLogin}>Try guest account!</button>
     </>
   );
 }
