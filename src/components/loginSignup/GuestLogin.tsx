@@ -23,9 +23,9 @@ export function GuestLogin() {
 
     if (!response.ok || response instanceof Error) {
       navigate("/error");
+    } else {
+      navigate("/");
     }
-
-    navigate("/");
   }
   return (
     <>
