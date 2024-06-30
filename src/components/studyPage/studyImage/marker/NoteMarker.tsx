@@ -35,7 +35,7 @@ export function NoteMarker({ note }) {
     <>
       <div
         style={{
-          top: yPosition + MARKER_HEIGHT / 2 - 5,
+          top: yPosition - MARKER_HEIGHT / 2,
           left: xPosition - MARKER_HEIGHT / 2,
         }}
         className={noteMarkerStyle}
