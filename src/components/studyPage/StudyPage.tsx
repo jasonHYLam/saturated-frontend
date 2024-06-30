@@ -43,7 +43,7 @@ export function StudyPage() {
   const { study, allNotes, setAllNotes, loading } =
     useGetStudyAndNotes(studyId);
 
-  const { position, handleMouseMove } = useMousePosition();
+  const { position, setPositionOnImage } = useMousePosition();
 
   const imageDimensions = {
     width: canvasRef.current?.width,
@@ -78,7 +78,11 @@ export function StudyPage() {
     canvasContext
   );
 
-  function handleClick() {
+  function handleClick(isMobile, e) {
+    if (isMobile) {
+      setPositionOnImage(e);
+    }
+
     setClickedPositionFraction({
       xFraction: normalisedMousePositionFraction.x,
       yFraction: normalisedMousePositionFraction.y,
@@ -87,11 +91,12 @@ export function StudyPage() {
     setClickedPixelColorData(colorDataForPixel);
   }
 
-  console.log(`is mobile: ${isMobile}`);
   const pageStyle = isMobile
     ? `${styles.pageContents} ${styles.mobile}`
     : `${styles.pageContents} ${styles.desktop}`;
 
+  console.log("checking position");
+  console.log(position);
   return loading ? (
     <p>loading...</p>
   ) : (
@@ -124,7 +129,8 @@ export function StudyPage() {
                 handleClick={handleClick}
                 allNotes={allNotes}
                 colorMode={colorMode}
-                handleMouseMove={handleMouseMove}
+                setPositionOnImage={setPositionOnImage}
+                isMobile={isMobile}
               />
 
               <StudyInformation

@@ -115,14 +115,17 @@ export function useAddImageToCanvas({
   }, []);
 }
 
+//
 export function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  function handleMouseMove(e) {
+  //  this should be renamed setPositionOnImage
+  function setPositionOnImage(e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
     const newY = e.clientY - rect.top;
     setPosition({ x: newX, y: newY });
   }
-  return { position, handleMouseMove };
+
+  return { position, setPositionOnImage };
 }

@@ -3,6 +3,7 @@ import styles from "./studyImage.module.css";
 import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
 import { useAddImageToCanvas } from "../../../helpers/hooks";
+import { useContext } from "react";
 
 export function StudyImage({
   imageLink,
@@ -12,7 +13,8 @@ export function StudyImage({
   handleClick,
   allNotes,
   colorMode,
-  handleMouseMove,
+  setPositionOnImage,
+  isMobile,
 }) {
   useAddImageToCanvas({
     canvasRef: canvasRef,
@@ -29,9 +31,9 @@ export function StudyImage({
         <canvas
           className={`${styles.canvas} ${colorModeStyle}`}
           onPointerMove={(e) => {
-            handleMouseMove(e);
+            setPositionOnImage(e);
           }}
-          onClick={handleClick}
+          onClick={(e) => handleClick(isMobile, e)}
           ref={canvasRef}
         ></canvas>
 

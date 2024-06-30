@@ -29,25 +29,28 @@ export function StudyInformation({
           <button onClick={() => setDisplayInfo("study")}>Study</button>
           <button onClick={() => setDisplayInfo("notes")}>Notes</button>
         </section>
-        <section>
-          <h1>Study Info</h1>
-          <p>{studyTitle}</p>
-          <p>{studyOriginalLink}</p>
-        </section>
-        <section>
-          {showAddNote ? (
-            <AddNote
-              studyId={studyId}
-              setShowAddNote={setShowAddNote}
-              pixelColorData={clickedPixelColorData}
-              setAllNotes={setAllNotes}
-              allNotes={allNotes}
-              clickedPositionFraction={clickedPositionFraction}
-            />
-          ) : (
-            <NotesContainer allNotes={allNotes} />
-          )}
-        </section>
+        {displayInfo === "study" ? (
+          <section>
+            <h1>Study Info</h1>
+            <p>{studyTitle}</p>
+            <p>{studyOriginalLink}</p>
+          </section>
+        ) : (
+          <section>
+            {showAddNote ? (
+              <AddNote
+                studyId={studyId}
+                setShowAddNote={setShowAddNote}
+                pixelColorData={clickedPixelColorData}
+                setAllNotes={setAllNotes}
+                allNotes={allNotes}
+                clickedPositionFraction={clickedPositionFraction}
+              />
+            ) : (
+              <NotesContainer allNotes={allNotes} />
+            )}
+          </section>
+        )}
       </section>
     </>
   );
