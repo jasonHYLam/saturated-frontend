@@ -4,6 +4,7 @@ import { AddNote } from "./notes/addNote/AddNote";
 import { NotesContainer } from "./notesContainer/NotesContainer";
 import { useNavigate } from "react-router-dom";
 import styles from "./studyInformationAndNotes.module.css";
+import { StudyInformation } from "./studyInformation/StudyInformation";
 
 export function StudyInformationAndNotes({
   studyTitle,
@@ -32,12 +33,11 @@ export function StudyInformationAndNotes({
           <button onClick={() => setDisplayInfo("notes")}>Notes</button>
         </section>
         {displayInfo === "study" ? (
-          <section>
-            <h1>Study Info</h1>
-            <p>{studyTitle}</p>
-            <p>{studyOriginalLink}</p>
-            <button>Delete study</button>
-          </section>
+          <StudyInformation
+            studyTitle={studyTitle}
+            studyOriginalLink={studyOriginalLink}
+            studyId={studyId}
+          />
         ) : (
           <section>
             {showAddNote ? (
