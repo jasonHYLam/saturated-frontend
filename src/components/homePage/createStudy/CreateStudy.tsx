@@ -23,11 +23,12 @@ export function CreateStudy() {
 
   async function submitCreateStudyInput(data) {
     const createStudyInput = new FormData();
-    createStudyInput.append("Title", data.title);
+
+    const studyTitle = !data.title ? "Untitled" : data.title;
+    createStudyInput.append("Title", studyTitle);
     createStudyInput.append("OriginalLink", data.originalLink);
     createStudyInput.append("ImageFile", uploadedImage);
 
-    console.log("attempting fetch");
     const response = await postDataOnFetchWithImage(
       "Study",
       "POST",
@@ -35,14 +36,12 @@ export function CreateStudy() {
     );
 
     if (!response.ok || response instanceof Error) {
-      console.log("error eep");
       navigate("/error");
     }
 
-    console.log("a most successful fetch");
-    const createdStudy = await response.json();
-    console.log("checking createdStudy");
-    console.log(createdStudy);
+    const { id } = await response.json();
+
+    navigate(`/study/${id}`);
   }
 
   return (

@@ -23,8 +23,6 @@ export function Login() {
       credentials,
       cookieQuery
     );
-    console.log("checking loginResponse");
-    console.log(loginResponse);
     if (loginResponse.ok) {
       navigate("/");
     }

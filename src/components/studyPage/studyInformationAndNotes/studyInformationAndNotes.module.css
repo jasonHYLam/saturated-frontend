@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
 
-  /* i think this is needed? */
-  /* overflow-y: scroll; */
   height: 100svh;
   overflow-wrap: break-word;
-  max-width: 50%;
+  max-width: 300px;
+
   min-width: 300px;
 }
 
