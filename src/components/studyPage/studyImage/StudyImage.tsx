@@ -24,16 +24,24 @@ export function StudyImage({
 
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
 
+  const canvasEventHandlers = isMobile
+    ? {
+        onClick: (e) => handleClick(isMobile, e),
+      }
+    : {
+        onPointerMove: (e) => {
+          setPositionOnImage(e);
+        },
+        onClick: (e) => handleClick(isMobile, e),
+      };
+
   return (
     <>
       <section className={styles.canvasContainer}>
         <p>canvas</p>
         <canvas
           className={`${styles.canvas} ${colorModeStyle}`}
-          onPointerMove={(e) => {
-            setPositionOnImage(e);
-          }}
-          onClick={(e) => handleClick(isMobile, e)}
+          {...canvasEventHandlers}
           ref={canvasRef}
         ></canvas>
 
