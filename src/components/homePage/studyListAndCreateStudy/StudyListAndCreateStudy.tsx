@@ -11,8 +11,8 @@ export function StudyListAndCreateStudy() {
   console.log(isGuest);
 
   async function submitLogout() {
-    const response = await fetchWithoutQueryOrImage("logout", "POST");
-    if (response.ok || response instanceof Error) {
+    const response = await fetchWithoutQueryOrImage("User/logout", "POST");
+    if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
       navigate("/login");
@@ -20,6 +20,7 @@ export function StudyListAndCreateStudy() {
   }
   return (
     <>
+      <button onClick={submitLogout}>Logout</button>
       <CreateStudy />
       <StudyList />
     </>

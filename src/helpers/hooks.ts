@@ -13,18 +13,18 @@ export function useGetAllStudies() {
       try {
         const allStudiesResponse = await getDataFromFetch("Study/allStudies");
 
-        if (!allStudiesResponse.ok || allStudiesResponse instanceof Error) {
+        if (allStudiesResponse.status === 401) {
+          navigate("/login");
+        } else if (
+          !allStudiesResponse.ok ||
+          allStudiesResponse instanceof Error
+        ) {
           navigate("/error");
+        } else {
+          const allStudies = await allStudiesResponse.json();
+          setLoading(false);
+          setAllStudies(allStudies);
         }
-
-        console.log("checking allStudiesResponse");
-        console.log(allStudiesResponse);
-
-        const allStudies = await allStudiesResponse.json();
-        console.log(allStudies);
-
-        setLoading(false);
-        setAllStudies(allStudies);
       } catch (err) {
         navigate("/error");
       }
@@ -44,15 +44,19 @@ export function useGetStudyAndNotes(studyId) {
     async function fetchStudy() {
       const response = await getDataFromFetch(`Study/${studyId}`);
 
-      if (!response.ok || response instanceof Error) {
+      if (response.status === 401) {
+        navigate("/login");
+      } else if (response.status === 403) {
+        navigate("/");
+      } else if (!response.ok || response instanceof Error) {
         navigate("/error");
+      } else {
+        const study = await response.json();
+
+        setLoading(false);
+        setStudy(study);
+        setAllNotes(study.notes);
       }
-
-      const study = await response.json();
-
-      setLoading(false);
-      setStudy(study);
-      setAllNotes(study.notes);
     }
     fetchStudy();
   }, []);

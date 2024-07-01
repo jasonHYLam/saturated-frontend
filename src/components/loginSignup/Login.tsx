@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { fetchWithQuery } from "../../helpers/fetchData";
 import { useForm } from "react-hook-form";
+import { GuestLogin } from "./GuestLogin";
 
 export function Login() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export function Login() {
         {errors.password && <span>Please provide password</span>}
       </form>
       <Link to={"/signup"}>Don't have an account? Sign up</Link>
+      <GuestLogin />
     </>
   );
 }
