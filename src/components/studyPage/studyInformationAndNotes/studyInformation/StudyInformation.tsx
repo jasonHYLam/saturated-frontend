@@ -2,7 +2,16 @@ import { useState } from "react";
 import { fetchWithoutQueryOrImage } from "../../../../helpers/fetchData";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
-export function StudyInformation({ studyTitle, studyOriginalLink, studyId }) {
+interface StudyInformationProps {
+  studyTitle: string;
+  studyOriginalLink: string;
+  studyId: number;
+}
+export function StudyInformation({
+  studyTitle,
+  studyOriginalLink,
+  studyId,
+}: StudyInformationProps) {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
