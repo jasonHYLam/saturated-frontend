@@ -1,6 +1,11 @@
+enum HttpMethods {
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
 export async function fetchWithQuery(
   endpoint: string,
-  method: string,
+  method: HttpMethods,
   data: any,
   query: { [key: string]: string }
 ) {
@@ -10,7 +15,7 @@ export async function fetchWithQuery(
         query
       ).toString()}`,
       {
-        method,
+        method: method,
         body: data,
         credentials: "include",
         headers: {
@@ -24,7 +29,11 @@ export async function fetchWithQuery(
   }
 }
 
-export async function fetchWithoutQueryOrImage(endpoint, method, data) {
+export async function fetchWithoutQueryOrImage(
+  endpoint: string,
+  method: HttpMethods,
+  data: any
+) {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -44,17 +53,17 @@ export async function fetchWithoutQueryOrImage(endpoint, method, data) {
   }
 }
 
-export async function postDataOnFetchWithImage<T>(
-  endpoint,
-  method,
-  data
-): Promise<T> {
+export async function postDataOnFetchWithImage(
+  endpoint: string,
+  method: HttpMethods,
+  data: any
+) {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {
         mode: "cors",
-        method,
+        method: method,
         body: data,
         credentials: "include",
       }
@@ -65,7 +74,7 @@ export async function postDataOnFetchWithImage<T>(
   }
 }
 
-export async function getDataFromFetch(endpoint) {
+export async function getDataFromFetch(endpoint: string) {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
