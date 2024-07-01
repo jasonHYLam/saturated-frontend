@@ -76,6 +76,7 @@ export function CreateStudy() {
               {...(register("imageFile"), { required: true })}
               onChange={selectImageToUpload}
             />
+            {errors.imageFile && <p>Please upload an image</p>}
             <input type="submit" value="Create study" />
           </form>
         </div>
