@@ -28,7 +28,7 @@ export async function fetchWithQuery(
 export async function fetchWithoutQueryOrImage(
   endpoint: string,
   method: HttpMethods,
-  data: any
+  data?: any
 ): Promise<Response | Error> {
   try {
     const response = await fetch(
