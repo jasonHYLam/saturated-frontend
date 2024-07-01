@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MOBILE_BREAKPOINT } from "./constants";
 
 export function useGetAllStudies() {
-  const [allStudies, setAllStudies] = useState([]);
+  const [allStudies, setAllStudies] = useState<StudyPreview[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -40,8 +40,15 @@ interface useGetStudyAndNotesProps {
 }
 
 export function useGetStudyAndNotes(studyId: useGetStudyAndNotesProps) {
-  const [study, setStudy] = useState({});
-  const [allNotes, setAllNotes] = useState([]);
+  const [study, setStudy] = useState<Study>({
+    id: 0,
+    title: "",
+    originalLink: "",
+    imageLink: "",
+    dateUploaded: new Date(),
+    notes: [],
+  });
+  const [allNotes, setAllNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
