@@ -1,7 +1,10 @@
 import styles from "./notesContainer.module.css";
 import { Note } from "../notes/note/Note";
 
-export function NotesContainer({ allNotes }) {
+interface NotesContainerProps {
+  allNotes: Note[];
+}
+export function NotesContainer({ allNotes }: NotesContainerProps) {
   return (
     <>
       <section className={styles.notesContainer}>
