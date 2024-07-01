@@ -8,7 +8,9 @@ export function StudyListAndCreateStudy() {
 
   async function submitLogout() {
     const response = await fetchWithoutQueryOrImage("User/logout", "POST");
-    if (!response.ok || response instanceof Error) {
+    if (response instanceof Error) {
+      return navigate("/error");
+    } else if (!response.ok) {
       navigate("/error");
     } else {
       navigate("/login");
