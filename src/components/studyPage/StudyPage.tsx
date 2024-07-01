@@ -156,7 +156,7 @@ export function StudyPage() {
               <StudyInformationAndNotes
                 studyTitle={study.title}
                 studyOriginalLink={study.originalLink}
-                studyId={studyId}
+                studyId={Number(studyId)}
                 showAddNote={showAddNote}
                 setShowAddNote={setShowAddNote}
                 clickedPixelColorData={clickedPixelColorData}
