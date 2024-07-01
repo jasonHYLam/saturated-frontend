@@ -1,8 +1,6 @@
-type ColorModeOptions = "grayscale" | "color";
-
 interface ToggleColorModeProps {
-  setColorMode: React.Dispatch<React.SetStateAction<string>>;
-  colorMode: ColorModeOptions;
+  setColorMode: React.Dispatch<React.SetStateAction<ColorModes>>;
+  colorMode: ColorModes;
 }
 
 export function ToggleColorMode({
