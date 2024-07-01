@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { postDataOnFetchWithImage } from "../../../helpers/fetchData";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,14 @@ export function CreateStudy() {
     formState: { errors },
   } = useForm();
   const [showCreateStudy, setShowCreateStudy] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
   function toggleCreateStudy() {
     setShowCreateStudy(!showCreateStudy);
   }
 
-  function selectImageToUpload(e) {
+  function selectImageToUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) return;
     setUploadedImage(e.target.files[0]);
   }
 
