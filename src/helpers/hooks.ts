@@ -130,7 +130,7 @@ export function useAddImageToCanvas({
 export function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  function setPositionOnImage(e) {
+  function setPositionOnImage(e: React.MouseEvent) {
     const rect = e.currentTarget.getBoundingClientRect();
     const newX = e.clientX - rect.left;
     const newY = e.clientY - rect.top;
