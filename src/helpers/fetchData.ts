@@ -1,8 +1,4 @@
-enum HttpMethods {
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-}
+type HttpMethods = "POST" | "PUT" | "DELETE";
 export async function fetchWithQuery(
   endpoint: string,
   method: HttpMethods,
