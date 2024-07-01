@@ -22,3 +22,8 @@ interface Note {
   xOrdinateAsFraction: number;
   yOrdinateAsFraction: number;
 }
+
+interface CanvasElementDimensions {
+  width: number;
+  height: number;
+}

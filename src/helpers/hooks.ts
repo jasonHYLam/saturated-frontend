@@ -72,11 +72,21 @@ export function useGetStudyAndNotes(studyId: useGetStudyAndNotesProps) {
   return { study, loading, allNotes, setAllNotes };
 }
 
-export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
+interface useScreenResizeProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  setCanvasElementDimensions: React.Dispatch<
+    React.SetStateAction<CanvasElementDimensions>
+  >;
+}
+
+export function useScreenResize({
+  canvasRef,
+  setCanvasElementDimensions,
+}: useScreenResizeProps) {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
-    function handleScreenResize(canvas) {
+    function handleScreenResize(canvas: HTMLCanvasElement) {
       setCanvasElementDimensions({
         width: canvas.clientWidth,
         height: canvas.clientHeight,
@@ -84,14 +94,16 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
       setScreenSize(window.innerWidth);
     }
 
-    window.addEventListener("resize", () =>
-      handleScreenResize(canvasRef.current)
-    );
+    window.addEventListener("resize", () => {
+      if (!canvasRef.current) return;
+      handleScreenResize(canvasRef.current);
+    });
 
     return () => {
-      window.removeEventListener("resize", () =>
-        handleScreenResize(canvasRef.current)
-      );
+      window.removeEventListener("resize", () => {
+        if (!canvasRef.current) return;
+        handleScreenResize(canvasRef.current);
+      });
     };
   }, []);
 
@@ -100,15 +112,24 @@ export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
   return isMobile;
 }
 
+interface useAddImageToCanvasProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  imageLink: string;
+  setCanvasElementDimensions: React.Dispatch<
+    React.SetStateAction<CanvasElementDimensions>
+  >;
+}
+
 // CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.
 // Canvas.width and canvas.height refer to the image height and width, which is used for determining color data from the image.
 export function useAddImageToCanvas({
   canvasRef,
   imageLink,
   setCanvasElementDimensions,
-}) {
+}: useAddImageToCanvasProps) {
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const canvasContext = canvas.getContext("2d");
 
     const studyImage = new Image();
@@ -121,12 +142,12 @@ export function useAddImageToCanvas({
         width: canvas.clientWidth,
         height: canvas.clientHeight,
       });
+      if (!canvasContext) return;
       canvasContext.drawImage(studyImage, 0, 0);
     };
   }, []);
 }
 
-//
 export function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
