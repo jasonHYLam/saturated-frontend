@@ -1,17 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { fetchWithQuery } from "../../helpers/fetchData";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
 
 export function Login() {
+  interface FormInput {
+    email: string;
+    password: string;
+  }
+
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormInput>();
 
-  async function submitLogin(data) {
+  const submitLogin: SubmitHandler<FormInput> = async (data) => {
     const cookieQuery = {
       useCookies: "true",
       useSessionCookies: "true",
@@ -24,12 +29,14 @@ export function Login() {
       cookieQuery
     );
 
-    if (!loginResponse.ok || loginResponse instanceof Error) {
-      navigate("/error");
+    if (loginResponse instanceof Error) {
+      return navigate("/error");
+    } else if (!loginResponse.ok) {
+      return navigate("/error");
+    } else {
+      return navigate("/");
     }
-
-    navigate("/");
-  }
+  };
 
   return (
     <>
