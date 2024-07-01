@@ -6,7 +6,6 @@ import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
 import { StudyInformationAndNotes } from "./studyInformationAndNotes/StudyInformationAndNotes";
 import {
   useGetStudyAndNotes,
-  useGuest,
   useMousePosition,
   useScreenResize,
 } from "../../helpers/hooks";

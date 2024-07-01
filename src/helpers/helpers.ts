@@ -1,5 +1,4 @@
 export function getMarkerHeight(marker) {
-  // console.log(marker);
   if (marker) {
     const markerHeightString = getComputedStyle(marker).height;
     const markerHeightValue = parseInt(
@@ -32,7 +31,6 @@ export function rgbToHex(pixelColorData) {
 
 export function hexToRgb(hex) {
   const bigInt = parseInt(hex, 16);
-  console.log(bigInt);
 }
 
 // ColorData is in rgb, and will be converted to hex format for database storage.

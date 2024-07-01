@@ -25,8 +25,9 @@ export function CreateStudy() {
     const createStudyInput = new FormData();
 
     const studyTitle = !data.title ? "Untitled" : data.title;
+    const studyOriginalLink = !data.originalLink ? "" : data.originalLink;
     createStudyInput.append("Title", studyTitle);
-    createStudyInput.append("OriginalLink", data.originalLink);
+    createStudyInput.append("OriginalLink", studyOriginalLink);
     createStudyInput.append("ImageFile", uploadedImage);
 
     const response = await postDataOnFetchWithImage(
@@ -60,6 +61,11 @@ export function CreateStudy() {
             onSubmit={handleSubmit(submitCreateStudyInput)}
           >
             <input type="text" placeholder="Title" {...register("title")} />
+
+            <p>
+              If you are studying from an existing artwork, be a good digital
+              citizen and provide a link to the original artist/artwork.
+            </p>
             <input
               type="text"
               placeholder="Original link"

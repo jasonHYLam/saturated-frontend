@@ -12,8 +12,6 @@ export function Signup() {
   } = useForm();
 
   async function submitSignup(data) {
-    console.log(data);
-    console.log(JSON.stringify(data));
     const credentials = JSON.stringify({
       email: data.email,
       password: data.password,

@@ -20,7 +20,6 @@ export async function fetchWithQuery(endpoint, method, data, query) {
 }
 
 export async function fetchWithoutQueryOrImage(endpoint, method, data) {
-  console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -34,8 +33,6 @@ export async function fetchWithoutQueryOrImage(endpoint, method, data) {
         },
       }
     );
-    console.log("checking response");
-    console.log(response);
     return response;
   } catch (err) {
     if (err) return err;
@@ -43,7 +40,6 @@ export async function fetchWithoutQueryOrImage(endpoint, method, data) {
 }
 
 export async function postDataOnFetchWithImage(endpoint, method, data) {
-  console.log(`${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`);
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -54,8 +50,6 @@ export async function postDataOnFetchWithImage(endpoint, method, data) {
         credentials: "include",
       }
     );
-    console.log("checking response");
-    console.log(response);
     return response;
   } catch (err) {
     if (err) return err;
