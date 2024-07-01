@@ -86,7 +86,7 @@ export function StudyPage() {
     canvasContext
   );
 
-  function handleClick(isMobile, e) {
+  function handleClick(isMobile: boolean, e: React.MouseEvent) {
     if (isMobile) {
       setPositionOnImage(e);
     }
