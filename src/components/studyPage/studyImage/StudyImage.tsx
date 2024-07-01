@@ -38,13 +38,13 @@ export function StudyImage({
 
   const canvasEventHandlers = isMobile
     ? {
-        onClick: (e) => handleClick(isMobile, e),
+        onClick: (e: React.MouseEvent) => handleClick(isMobile, e),
       }
     : {
-        onPointerMove: (e) => {
+        onPointerMove: (e: React.MouseEvent) => {
           setPositionOnImage(e);
         },
-        onClick: (e) => handleClick(isMobile, e),
+        onClick: (e: React.MouseEvent) => handleClick(isMobile, e),
       };
 
   return (
