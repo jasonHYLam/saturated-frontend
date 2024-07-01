@@ -6,9 +6,10 @@ import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-// will need to convert hex to rgb
-
-export function Note({ note }) {
+interface NoteProps {
+  note: Note;
+}
+export function Note({ note }: NoteProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -32,7 +33,7 @@ export function Note({ note }) {
     setHoveredMarkerAndNoteID(note.id);
   }
   function handleMouseLeave() {
-    setHoveredMarkerAndNoteID("");
+    setHoveredMarkerAndNoteID(null);
   }
   function handleClick() {
     setOpenedNoteID(note.id);
