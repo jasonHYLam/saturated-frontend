@@ -55,7 +55,10 @@ export function Note({ note }: NoteProps) {
       dataToSubmit
     );
 
-    if (!response.ok || response instanceof Error) {
+    if (response instanceof Error) {
+      return navigate("/error");
+    }
+    if (!response.ok) {
       navigate("/error");
     }
 
@@ -64,7 +67,10 @@ export function Note({ note }: NoteProps) {
     const updatedNoteId = allNotes.findIndex(
       (note) => note.id === updatedNote.id
     );
-    const updatedNotes = allNotes.with(updatedNoteId, updatedNote);
+
+    const updatedNotes = allNotes.map((note) => {
+      return note.id === updatedNoteId ? updatedNote : note;
+    });
     setAllNotes(updatedNotes);
     setNoteStatus("");
   };
