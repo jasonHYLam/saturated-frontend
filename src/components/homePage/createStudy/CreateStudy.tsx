@@ -1,17 +1,24 @@
-import { SetStateAction, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { postDataOnFetchWithImage } from "../../../helpers/fetchData";
 import { useNavigate } from "react-router-dom";
 
 export function CreateStudy() {
+  type FormInput = {
+    title: string;
+    originalLink: string;
+    imageFile: File;
+  };
+
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormInput>();
   const [showCreateStudy, setShowCreateStudy] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<Blob | null>(null);
 
   function toggleCreateStudy() {
     setShowCreateStudy(!showCreateStudy);
@@ -22,7 +29,8 @@ export function CreateStudy() {
     setUploadedImage(e.target.files[0]);
   }
 
-  async function submitCreateStudyInput(data) {
+  const submitCreateStudyInput: SubmitHandler<FormInput> = async (data) => {
+    if (!uploadedImage) return;
     const createStudyInput = new FormData();
 
     const studyTitle = !data.title ? "Untitled" : data.title;
@@ -37,14 +45,16 @@ export function CreateStudy() {
       createStudyInput
     );
 
-    if (!response.ok || response instanceof Error) {
-      navigate("/error");
+    if (response) {
+      if (!response.ok || response instanceof Error) {
+        navigate("/error");
+      }
+
+      const { id } = await response.json();
+
+      navigate(`/study/${id}`);
     }
-
-    const { id } = await response.json();
-
-    navigate(`/study/${id}`);
-  }
+  };
 
   return (
     <>

@@ -1,4 +1,9 @@
-export async function fetchWithQuery(endpoint, method, data, query) {
+export async function fetchWithQuery(
+  endpoint: string,
+  method: string,
+  data: any,
+  query: { [key: string]: string }
+) {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}?${new URLSearchParams(
@@ -39,7 +44,11 @@ export async function fetchWithoutQueryOrImage(endpoint, method, data) {
   }
 }
 
-export async function postDataOnFetchWithImage(endpoint, method, data) {
+export async function postDataOnFetchWithImage<T>(
+  endpoint,
+  method,
+  data
+): Promise<T> {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
