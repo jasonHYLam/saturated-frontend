@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { RgbColorPicker, RgbColor } from "react-colorful";
-import { useForm } from "react-hook-form";
+import { RgbColorPicker } from "react-colorful";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ColorReference } from "../../../colorReference/ColorReference";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
@@ -23,21 +23,18 @@ export function AddNote({
   allNotes,
   clickedPositionFraction,
 }: AddNoteProps) {
+  interface FormInput {
+    text: string;
+  }
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    clearErrors,
-  } = useForm();
+  const { register, handleSubmit } = useForm<FormInput>();
   const [showColorReference, setShowColorReference] = useState(true);
   const [guessedColor, setGuessedColor] = useState({ r: 255, g: 255, b: 255 });
 
-  const guessedColorAsString = `rgb(${guessedColor.r} ${guessedColor.g} ${guessedColor.b})`;
   const originalColorAsHex = rgbToHex(pixelColorData);
   const guessedColorAsHex = rgbToHex(guessedColor);
 
-  async function uploadNote(data) {
+  const uploadNote: SubmitHandler<FormInput> = async (data) => {
     const newNoteInput = JSON.stringify({
       Text: data.text,
       OriginalHexColor: originalColorAsHex,
@@ -52,8 +49,12 @@ export function AddNote({
       newNoteInput
     );
 
-    if (!response.ok || response instanceof Error) {
-      navigate("/error");
+    if (response instanceof Error) {
+      return navigate("/error");
+    }
+
+    if (!response.ok) {
+      return navigate("/error");
     }
 
     const createdNote = await response.json();
@@ -64,7 +65,7 @@ export function AddNote({
       setAllNotes([createdNote]);
     }
     setShowAddNote(false);
-  }
+  };
 
   return (
     <>
