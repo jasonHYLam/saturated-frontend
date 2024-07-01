@@ -70,7 +70,9 @@ export async function postDataOnFetchWithImage(
   }
 }
 
-export async function getDataFromFetch(endpoint: string) {
+export async function getDataFromFetch(
+  endpoint: string
+): Promise<Response | Error> {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -84,6 +86,6 @@ export async function getDataFromFetch(endpoint: string) {
     );
     return response;
   } catch (err) {
-    if (err) return err;
+    throw err;
   }
 }
