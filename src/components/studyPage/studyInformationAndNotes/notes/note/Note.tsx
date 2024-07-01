@@ -3,15 +3,19 @@ import styles from "./note.module.css";
 import { StudyPageContext } from "../../../StudyPage";
 import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceForNote";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 interface NoteProps {
   note: Note;
 }
+
+interface FormInput {
+  text: string;
+}
 export function Note({ note }: NoteProps) {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormInput>();
 
   const {
     hoveredMarkerAndNoteID,
@@ -43,7 +47,7 @@ export function Note({ note }: NoteProps) {
     setNoteStatus("edit");
   }
 
-  async function submitEdit(data) {
+  const submitEdit: SubmitHandler<FormInput> = async (data) => {
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchWithoutQueryOrImage(
       `Note/${note.id}`,
@@ -63,7 +67,7 @@ export function Note({ note }: NoteProps) {
     const updatedNotes = allNotes.with(updatedNoteId, updatedNote);
     setAllNotes(updatedNotes);
     setNoteStatus("");
-  }
+  };
 
   async function submitDelete() {
     const response = await fetchWithoutQueryOrImage(
