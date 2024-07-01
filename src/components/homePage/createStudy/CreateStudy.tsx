@@ -45,15 +45,19 @@ export function CreateStudy() {
       createStudyInput
     );
 
-    if (response) {
-      if (!response.ok || response instanceof Error) {
-        navigate("/error");
-      }
-
-      const { id } = await response.json();
-
-      navigate(`/study/${id}`);
+    if (response instanceof Error) {
+      navigate("/error");
+      return;
     }
+
+    if (!response.ok) {
+      navigate("/error");
+      return;
+    }
+
+    const { id } = await response.json();
+
+    navigate(`/study/${id}`);
   };
 
   return (

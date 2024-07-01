@@ -4,7 +4,7 @@ export async function fetchWithQuery(
   method: HttpMethods,
   data: any,
   query: { [key: string]: string }
-) {
+): Promise<Response | Error> {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}?${new URLSearchParams(
@@ -21,7 +21,7 @@ export async function fetchWithQuery(
     );
     return response;
   } catch (err) {
-    if (err) return err;
+    throw err;
   }
 }
 
@@ -29,7 +29,7 @@ export async function fetchWithoutQueryOrImage(
   endpoint: string,
   method: HttpMethods,
   data: any
-) {
+): Promise<Response | Error> {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -45,7 +45,7 @@ export async function fetchWithoutQueryOrImage(
     );
     return response;
   } catch (err) {
-    if (err) return err;
+    throw err;
   }
 }
 
@@ -53,7 +53,7 @@ export async function postDataOnFetchWithImage(
   endpoint: string,
   method: HttpMethods,
   data: any
-) {
+): Promise<Response | Error> {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
@@ -66,7 +66,7 @@ export async function postDataOnFetchWithImage(
     );
     return response;
   } catch (err) {
-    if (err) return err;
+    throw err;
   }
 }
 
