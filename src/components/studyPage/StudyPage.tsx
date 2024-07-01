@@ -9,7 +9,7 @@ import {
   useMousePosition,
   useScreenResize,
 } from "../../helpers/hooks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 
 export const StudyPageContext = createContext({
@@ -25,7 +25,12 @@ export const StudyPageContext = createContext({
 });
 
 export function StudyPage() {
+  const navigate = useNavigate();
   const { studyId } = useParams();
+
+  if (!studyId) {
+    return navigate("/error");
+  }
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
     xFraction: 1,

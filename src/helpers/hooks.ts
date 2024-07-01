@@ -35,11 +35,7 @@ export function useGetAllStudies() {
   return { allStudies, loading };
 }
 
-interface useGetStudyAndNotesProps {
-  studyId: string;
-}
-
-export function useGetStudyAndNotes(studyId: useGetStudyAndNotesProps) {
+export function useGetStudyAndNotes(studyId: string) {
   const [study, setStudy] = useState<Study>({
     id: 0,
     title: "",
