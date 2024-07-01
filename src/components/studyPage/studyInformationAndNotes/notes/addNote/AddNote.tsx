@@ -6,6 +6,15 @@ import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
 import { useNavigate } from "react-router-dom";
 
+interface AddNoteProps {
+  studyId: number;
+  setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
+  pixelColorData: { r: number; g: number; b: number };
+  setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+  allNotes: Note[];
+  clickedPositionFraction: { xFraction: number; yFraction: number };
+}
+
 export function AddNote({
   studyId,
   setShowAddNote,
@@ -13,7 +22,7 @@ export function AddNote({
   setAllNotes,
   allNotes,
   clickedPositionFraction,
-}) {
+}: AddNoteProps) {
   const navigate = useNavigate();
   const {
     register,
