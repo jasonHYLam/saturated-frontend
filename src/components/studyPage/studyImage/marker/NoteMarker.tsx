@@ -3,7 +3,10 @@ import { MARKER_HEIGHT } from "../../../../helpers/constants";
 import { useContext } from "react";
 import { StudyPageContext } from "../../StudyPage";
 
-export function NoteMarker({ note }) {
+interface NoteMarkerProps {
+  note: Note;
+}
+export function NoteMarker({ note }: NoteMarkerProps) {
   const {
     hoveredMarkerAndNoteID,
     setHoveredMarkerAndNoteID,

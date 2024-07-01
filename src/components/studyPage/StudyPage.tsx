@@ -13,6 +13,9 @@ import { useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 
 export const StudyPageContext = createContext({
+  hoveredMarkerAndNoteID: "",
+  setHoveredMarkerAndNoteID: () => {},
+  setOpenedNoteID: () => {},
   canvasElementDimensions: [],
   normalisedClickedPosition: {},
   activeMarkerAndNoteID: "",
