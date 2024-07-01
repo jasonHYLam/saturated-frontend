@@ -27,7 +27,7 @@ export function NoteMarker({ note }: NoteMarkerProps) {
   }
 
   function handleMouseLeave() {
-    setHoveredMarkerAndNoteID("");
+    setHoveredMarkerAndNoteID(null);
   }
 
   function handleClick() {

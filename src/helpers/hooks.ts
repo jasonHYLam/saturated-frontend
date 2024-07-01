@@ -151,7 +151,11 @@ export function useAddImageToCanvas({
   }, []);
 }
 
-export function useMousePosition() {
+interface useMousePositionReturnType {
+  position: { x: number; y: number };
+  setPositionOnImage: setPositionOnImageCallbackType;
+}
+export function useMousePosition(): useMousePositionReturnType {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   function setPositionOnImage(e: React.MouseEvent) {

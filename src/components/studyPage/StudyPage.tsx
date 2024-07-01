@@ -54,7 +54,7 @@ export function StudyPage() {
     g: 0,
     b: 0,
   });
-  const [colorMode, setColorMode] = useState("color");
+  const [colorMode, setColorMode] = useState<ColorModes>("color");
   const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState<
     number | null
   >(0);

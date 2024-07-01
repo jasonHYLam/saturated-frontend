@@ -27,3 +27,8 @@ interface CanvasElementDimensions {
   width: number;
   height: number;
 }
+
+type ColorModes = "color" | "grayscale";
+
+type HandleClickCallbackType = (isMobile: boolean, e: React.MouseEvent) => void;
+type setPositionOnImageCallbackType = (e: React.MouseEvent) => void;
