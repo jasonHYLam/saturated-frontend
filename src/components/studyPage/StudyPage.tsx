@@ -12,16 +12,28 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 
-export const StudyPageContext = createContext({
-  hoveredMarkerAndNoteID: "",
+interface StudyPageContextProps {
+  hoveredMarkerAndNoteID: number;
+  setHoveredMarkerAndNoteID: React.Dispatch<React.SetStateAction<number>>;
+  setOpenedNoteID: React.Dispatch<React.SetStateAction<number>>;
+  canvasElementDimensions: { width: number; height: number };
+  normalisedClickedPosition: { x: number; y: number };
+  activeMarkerAndNoteID: number;
+  setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+  allNotes: Note[];
+  openedNoteId: number;
+}
+
+export const StudyPageContext = createContext<StudyPageContextProps>({
+  hoveredMarkerAndNoteID: 0,
   setHoveredMarkerAndNoteID: () => {},
   setOpenedNoteID: () => {},
-  canvasElementDimensions: [],
-  normalisedClickedPosition: {},
-  activeMarkerAndNoteID: "",
-  setActiveMarkerAndNoteID: () => {},
+  canvasElementDimensions: { width: 1, height: 1 },
+  normalisedClickedPosition: { x: 0, y: 0 },
+  activeMarkerAndNoteID: 0,
   setAllNotes: () => {},
   allNotes: [],
+  openedNoteId: 0,
 });
 
 export function StudyPage() {
@@ -43,8 +55,8 @@ export function StudyPage() {
     b: 0,
   });
   const [colorMode, setColorMode] = useState("color");
-  const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState("");
-  const [openedNoteID, setOpenedNoteID] = useState("");
+  const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState(0);
+  const [openedNoteID, setOpenedNoteID] = useState(0);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
