@@ -21,7 +21,9 @@ export function GuestLogin() {
       cookieQuery
     );
 
-    if (!response.ok || response instanceof Error) {
+    if (response instanceof Error) {
+      return navigate("/error");
+    } else if (!response.ok) {
       navigate("/error");
     } else {
       navigate("/");
