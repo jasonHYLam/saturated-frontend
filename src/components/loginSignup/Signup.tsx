@@ -1,24 +1,29 @@
 import { Link } from "react-router-dom";
 import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
 
 export function Signup() {
+  interface FormInput {
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm();
+  } = useForm<FormInput>();
 
-  async function submitSignup(data) {
+  const submitSignup: SubmitHandler<FormInput> = async (data) => {
     const credentials = JSON.stringify({
       email: data.email,
       password: data.password,
     });
 
     await fetchWithoutQueryOrImage("register", "POST", credentials);
-  }
+  };
 
   return (
     <>
