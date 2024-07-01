@@ -15,7 +15,7 @@ export function StudyInformation({
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
-  const { isGuest } = useOutletContext();
+  const { isGuest } = useOutletContext<{ isGuest: boolean }>();
 
   const deleteSection = isGuest ? (
     <>
