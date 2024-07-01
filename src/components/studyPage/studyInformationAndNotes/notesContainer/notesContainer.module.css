@@ -2,7 +2,5 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* not sure if needed */
   overflow-y: scroll;
-  /* width: 100%; */
 }
