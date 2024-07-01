@@ -13,6 +13,8 @@ interface NoteProps {
 interface FormInput {
   text: string;
 }
+
+type NoteStatusOptions = "" | "edit" | "delete";
 export function Note({ note }: NoteProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormInput>();
@@ -25,7 +27,7 @@ export function Note({ note }: NoteProps) {
     setAllNotes,
     allNotes,
   } = useContext(StudyPageContext);
-  const [noteStatus, setNoteStatus] = useState("");
+  const [noteStatus, setNoteStatus] = useState<NoteStatusOptions>("");
 
   const isNoteHovered = hoveredMarkerAndNoteID === note.id;
 
@@ -81,8 +83,11 @@ export function Note({ note }: NoteProps) {
       "DELETE"
     );
 
-    if (!response.ok || response instanceof Error) {
-      navigate("/error");
+    if (response instanceof Error) {
+      return navigate("/error");
+    }
+    if (!response.ok) {
+      return navigate("/error");
     }
 
     const deletedNoteId = allNotes.findIndex(
