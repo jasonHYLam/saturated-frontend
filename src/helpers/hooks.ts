@@ -64,7 +64,6 @@ export function useGetStudyAndNotes(studyId) {
   return { study, loading, allNotes, setAllNotes };
 }
 
-// add a checkMobile; requires mobile breakpoint
 export function useScreenResize({ canvasRef, setCanvasElementDimensions }) {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
@@ -142,13 +141,15 @@ export function useGuest() {
     async function getIsGuest() {
       const response = await getDataFromFetch("User/isGuest");
 
-      if (!response.ok || response instanceof Error) {
+      if (response.status === 401) {
+        navigate("/login");
+      } else if (!response.ok || response instanceof Error) {
         navigate("/error");
+      } else {
+        const isGuest = await response.json();
+        setIsGuest(isGuest);
+        setLoading(false);
       }
-
-      const isGuest = await response.json();
-      setIsGuest(isGuest);
-      setLoading(false);
     }
     getIsGuest();
   }, []);
