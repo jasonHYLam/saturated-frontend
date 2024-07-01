@@ -1,26 +1,13 @@
-export function getMarkerHeight(marker) {
-  if (marker) {
-    const markerHeightString = getComputedStyle(marker).height;
-    const markerHeightValue = parseInt(
-      markerHeightString.substring(0, markerHeightString.length - 2)
-    );
-    return markerHeightValue;
-  }
-}
-export function pixelColorDataToStringForCSS(pixelColorData) {
-  return `rgb(${pixelColorData.r} ${pixelColorData.g} ${pixelColorData.b})`;
-}
+// export function pixelColorDataToStringForNote(pixelColorData) {
+//   return `rgb(${pixelColorData.r},${pixelColorData.g},${pixelColorData.b})`;
+// }
 
-export function pixelColorDataToStringForNote(pixelColorData) {
-  return `rgb(${pixelColorData.r},${pixelColorData.g},${pixelColorData.b})`;
-}
-
-function componentToHex(component) {
+function componentToHex(component: number) {
   const componentToHex = component.toString(16);
   return componentToHex.length === 1 ? `0${componentToHex}` : componentToHex;
 }
 
-export function rgbToHex(pixelColorData) {
+export function rgbToHex(pixelColorData: ColorDataType) {
   const r = componentToHex(pixelColorData.r);
   const g = componentToHex(pixelColorData.g);
   const b = componentToHex(pixelColorData.b);
@@ -29,16 +16,18 @@ export function rgbToHex(pixelColorData) {
   return colorAsHex;
 }
 
-export function hexToRgb(hex) {
-  const bigInt = parseInt(hex, 16);
+// ColorData is in rgb, and will be converted to hex format for database storage.
+interface GetColorDataForPixelProps {
+  normalisedMousePositionFraction: { x: number; y: number };
+  imageDimensions: { width: number; height: number };
+  canvasContext: CanvasRenderingContext2D;
 }
 
-// ColorData is in rgb, and will be converted to hex format for database storage.
-export function getColorDataForPixel(
+export function getColorDataForPixel({
   normalisedMousePositionFraction,
   imageDimensions,
-  canvasContext
-) {
+  canvasContext,
+}: GetColorDataForPixelProps) {
   if (!canvasContext) {
     return {
       r: 0,

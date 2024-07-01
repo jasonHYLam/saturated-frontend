@@ -1,9 +1,16 @@
 import styles from "./colorReference.module.css";
-import { pixelColorDataToStringForCSS } from "../../../helpers/helpers";
+import { rgbToHex } from "../../../helpers/helpers";
 
-export function ColorReference({ colorData, size }) {
+interface ColorReferenceProps {
+  colorData: ColorDataType;
+  size: Size;
+}
+
+type Size = "small" | "large";
+export function ColorReference({ colorData, size }: ColorReferenceProps) {
   const sizeStyle = size === "small" ? styles.small : styles.large;
-  const colorDataAsString = pixelColorDataToStringForCSS(colorData);
+
+  const colorDataAsString = rgbToHex(colorData);
   return (
     <div
       style={{ backgroundColor: colorDataAsString }}

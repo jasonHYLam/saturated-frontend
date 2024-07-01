@@ -67,10 +67,18 @@ export function StudyPage() {
 
   const { position, setPositionOnImage } = useMousePosition();
 
-  const imageDimensions = {
-    width: canvasRef.current?.width,
-    height: canvasRef.current?.height,
-  };
+  let imageDimensions: { width: number; height: number };
+  if (canvasRef.current) {
+    imageDimensions = {
+      width: canvasRef.current.width,
+      height: canvasRef.current.height,
+    };
+  } else {
+    imageDimensions = {
+      width: 1,
+      height: 1,
+    };
+  }
 
   const canvasContext = canvasRef.current?.getContext("2d");
 
@@ -94,11 +102,19 @@ export function StudyPage() {
     y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
   };
 
-  const colorDataForPixel = getColorDataForPixel(
-    normalisedMousePositionFraction,
-    imageDimensions,
-    canvasContext
-  );
+  let colorDataForPixel: ColorDataType;
+  if (canvasContext && imageDimensions) {
+    colorDataForPixel = getColorDataForPixel({
+      normalisedMousePositionFraction: normalisedClickedPosition,
+      imageDimensions: imageDimensions,
+      canvasContext: canvasContext,
+    });
+  } else
+    colorDataForPixel = {
+      r: 0,
+      g: 0,
+      b: 0,
+    };
 
   function handleClick(isMobile: boolean, e: React.MouseEvent) {
     if (isMobile) {

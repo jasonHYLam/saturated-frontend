@@ -32,3 +32,9 @@ type ColorModes = "color" | "grayscale";
 
 type HandleClickCallbackType = (isMobile: boolean, e: React.MouseEvent) => void;
 type setPositionOnImageCallbackType = (e: React.MouseEvent) => void;
+
+interface ColorDataType {
+  r: number;
+  g: number;
+  b: number;
+}
