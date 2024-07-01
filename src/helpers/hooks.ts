@@ -13,20 +13,20 @@ export function useGetAllStudies() {
       try {
         const allStudiesResponse = await getDataFromFetch("Study/allStudies");
 
+        if (allStudiesResponse instanceof Error) {
+          return navigate("/error");
+        }
         if (allStudiesResponse.status === 401) {
-          navigate("/login");
-        } else if (
-          !allStudiesResponse.ok ||
-          allStudiesResponse instanceof Error
-        ) {
-          navigate("/error");
+          return navigate("/login");
+        } else if (!allStudiesResponse.ok) {
+          return navigate("/error");
         } else {
           const allStudies = await allStudiesResponse.json();
           setLoading(false);
           setAllStudies(allStudies);
         }
       } catch (err) {
-        navigate("/error");
+        return navigate("/error");
       }
     }
     fetchAllStudies();
@@ -35,7 +35,11 @@ export function useGetAllStudies() {
   return { allStudies, loading };
 }
 
-export function useGetStudyAndNotes(studyId) {
+interface useGetStudyAndNotesProps {
+  studyId: string;
+}
+
+export function useGetStudyAndNotes(studyId: useGetStudyAndNotesProps) {
   const [study, setStudy] = useState({});
   const [allNotes, setAllNotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,11 +48,15 @@ export function useGetStudyAndNotes(studyId) {
     async function fetchStudy() {
       const response = await getDataFromFetch(`Study/${studyId}`);
 
+      if (response instanceof Error) {
+        return navigate("/error");
+      }
+
       if (response.status === 401) {
         navigate("/login");
       } else if (response.status === 403) {
         navigate("/");
-      } else if (!response.ok || response instanceof Error) {
+      } else if (!response.ok) {
         navigate("/error");
       } else {
         const study = await response.json();
@@ -141,9 +149,12 @@ export function useGuest() {
     async function getIsGuest() {
       const response = await getDataFromFetch("User/isGuest");
 
+      if (response instanceof Error) {
+        return navigate("/error");
+      }
       if (response.status === 401) {
         navigate("/login");
-      } else if (!response.ok || response instanceof Error) {
+      } else if (!response.ok) {
         navigate("/error");
       } else {
         const isGuest = await response.json();
