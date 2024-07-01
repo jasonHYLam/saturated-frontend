@@ -13,27 +13,27 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 
 interface StudyPageContextProps {
-  hoveredMarkerAndNoteID: number;
-  setHoveredMarkerAndNoteID: React.Dispatch<React.SetStateAction<number>>;
-  setOpenedNoteID: React.Dispatch<React.SetStateAction<number>>;
-  canvasElementDimensions: { width: number; height: number };
-  normalisedClickedPosition: { x: number; y: number };
-  activeMarkerAndNoteID: number;
+  hoveredMarkerAndNoteID: number | null;
+  setHoveredMarkerAndNoteID: React.Dispatch<
+    React.SetStateAction<number | null>
+  >;
+  setOpenedNoteID: React.Dispatch<React.SetStateAction<number | null>>;
+  openedNoteID: number | null;
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
   allNotes: Note[];
-  openedNoteId: number;
+  canvasElementDimensions: { width: number; height: number };
+  normalisedClickedPosition: { x: number; y: number };
 }
 
 export const StudyPageContext = createContext<StudyPageContextProps>({
-  hoveredMarkerAndNoteID: 0,
+  hoveredMarkerAndNoteID: null,
   setHoveredMarkerAndNoteID: () => {},
+  openedNoteID: null,
   setOpenedNoteID: () => {},
-  canvasElementDimensions: { width: 1, height: 1 },
-  normalisedClickedPosition: { x: 0, y: 0 },
-  activeMarkerAndNoteID: 0,
   setAllNotes: () => {},
   allNotes: [],
-  openedNoteId: 0,
+  canvasElementDimensions: { width: 1, height: 1 },
+  normalisedClickedPosition: { x: 0, y: 0 },
 });
 
 export function StudyPage() {
@@ -55,8 +55,10 @@ export function StudyPage() {
     b: 0,
   });
   const [colorMode, setColorMode] = useState("color");
-  const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState(0);
-  const [openedNoteID, setOpenedNoteID] = useState(0);
+  const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState<
+    number | null
+  >(0);
+  const [openedNoteID, setOpenedNoteID] = useState<number | null>(0);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
