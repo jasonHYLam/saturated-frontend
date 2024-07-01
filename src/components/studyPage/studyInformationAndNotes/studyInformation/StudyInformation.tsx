@@ -33,11 +33,13 @@ export function StudyInformation({
       `Study/${studyId}`,
       "DELETE"
     );
-    if (!response.ok || response instanceof Error) {
-      navigate("/error");
+    if (response instanceof Error) {
+      return navigate("/error");
     }
-
-    navigate("/");
+    if (!response.ok) {
+      return navigate("/error");
+    }
+    return navigate("/");
   }
   return (
     <>
