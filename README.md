@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+# Saturated
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live link](https://saturated.netlify.app/)
+[Backend repo](https://github.com/jasonHYLam/saturated-backend)
 
-Currently, two official plugins are available:
+This app is intended to help budding artists improve their observation skills, by helping them perform art studies. This was created from a desire for a simple to use web-app for a collection of art studies. Popular note-taking web applications such as Notion don't have the ability to reference particular areas on images and analyse images, and popular graphics editors such as Photoshop were found to be too clunky when creating notes for studies. Saturated aims to address both of these issues by providing a platform to easily create art studies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features:
 
-## Expanding the ESLint configuration
+- Note writing: Users can write notes referencing a particular location on the image.
+- Image tagging: When creating a note, users can add a marker onto the study image at a particular location which corresponds to the note.
+- Color analysis: Users can obtain the color of a particular pixel when creating a note.
+- Color recreation: Users can build their color knowledge by guessing the color at a particular location.
+- Supported on desktop and mobile.
+- Guest account to trial the app.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Typescript frontend
+- Canvas API
+- C# ASP.NET Core backend
+- PostgreSQL database
+- ASP.NET Core Identity for authentication
+- Entity Framework Core as ORM
