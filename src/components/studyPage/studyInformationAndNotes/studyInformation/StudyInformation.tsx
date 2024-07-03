@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchWithoutQueryOrImage } from "../../../../helpers/fetchData";
-import { useNavigate, useOutletContext } from "react-router-dom";
+// import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface StudyInformationProps {
   studyTitle: string;
