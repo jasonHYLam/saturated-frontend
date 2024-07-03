@@ -3,7 +3,9 @@
 [Live link](https://saturated.netlify.app/)
 [Backend repo](https://github.com/jasonHYLam/saturated-backend)
 
-This app is intended to help budding artists improve their observation skills, by helping them perform art studies. This was created from a desire for a simple to use web-app for a collection of art studies. Popular note-taking web applications such as Notion don't have the ability to reference particular areas on images and analyse images, and popular graphics editors such as Photoshop were found to be too clunky when creating notes for studies. Saturated aims to address both of these issues by providing a platform to easily create art studies.
+This app is intended to help budding artists improve their observation skills, by helping them perform art studies. This was created from a desire for a simple to use web-app for a collection of art studies. Popular note-taking web applications such as Notion don't have the ability to reference particular areas on images and analyse images, and I find popular graphics editors such as Photoshop are too clunky when creating notes for studies. Saturated aims to address both of these issues by providing a platform to easily create art studies.
+
+This app is not intended for commercial use. I do not own any of the images.
 
 ## Features:
 
@@ -18,7 +20,6 @@ This app is intended to help budding artists improve their observation skills, b
 
 - Typescript frontend
 - Canvas API
-- C# ASP.NET Core backend
-- PostgreSQL database
-- ASP.NET Core Identity for authentication
-- Entity Framework Core as ORM
+- C# ASP.NET Core backend; ASP.NET Core Identity for authentication, Entity Framework Core as ORM
+- PostgreSQL flexible server
+- Cloudinary for media storage
