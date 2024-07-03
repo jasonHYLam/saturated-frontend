@@ -15,13 +15,13 @@ export function StudyInformation({
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
-  const { isGuest } = useOutletContext<{ isGuest: boolean }>();
+  // const { isGuest } = useOutletContext<{ isGuest: boolean }>();
 
-  const deleteSection = isGuest ? (
-    <>
-      <p>Cannot delete study on guest account</p>
-    </>
-  ) : (
+  // const deleteSection = isGuest ? (
+  //   <>
+  //     <p>Cannot delete study on guest account</p>
+  //   </>
+  const deleteSection = (
     <>
       <p>Are you sure you want to delete this study?</p>
       <button onClick={submitDelete}>Yes</button>
