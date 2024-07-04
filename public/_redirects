@@ -1,2 +1,2 @@
-/ /saturated-server.azurewebsites.net/ 200!
+/api/* /saturated-server.azurewebsites.net/:splat 200
 /* /index.html 200
