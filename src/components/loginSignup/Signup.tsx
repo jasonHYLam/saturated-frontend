@@ -38,7 +38,7 @@ export function Signup() {
           />
           <input
             type="password"
-            placeholder="Password (must be at least 6 characters long)"
+            placeholder="Password (>= 6 chars)"
             {...register("password", { required: true, minLength: 6 })}
           />
           <input
@@ -54,16 +54,18 @@ export function Signup() {
             })}
           />
           <input type="submit" value="Sign up" />
-          {errors.email && <span>Please provide email</span>}
-          {errors.password && errors.password.type === "required" && (
-            <span>Please provide password</span>
-          )}
-          {errors.password && errors.password.type === "minLength" && (
-            <span>Password must be at least 6 characters long</span>
-          )}
-          {errors.confirmPassword && (
-            <span>{errors.confirmPassword.message}</span>
-          )}
+          <section className={styles.errors}>
+            {errors.email && <span>Please provide email</span>}
+            {errors.password && errors.password.type === "required" && (
+              <span>Please provide password</span>
+            )}
+            {errors.password && errors.password.type === "minLength" && (
+              <span>Password must be at least 6 characters long</span>
+            )}
+            {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>
+            )}
+          </section>
         </form>
         <Link to={"/login"}>Have an account? Login</Link>
         <GuestLogin />

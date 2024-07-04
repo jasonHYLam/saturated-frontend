@@ -55,8 +55,10 @@ export function Login() {
             {...register("password", { required: true })}
           />
           <input type="submit" value="Login" />
-          {errors.email && <span>Please provide email</span>}
-          {errors.password && <span>Please provide password</span>}
+          <section className={styles.errors}>
+            {errors.email && <span>Please provide email</span>}
+            {errors.password && <span>Please provide password</span>}
+          </section>
         </form>
         <Link to={"/signup"}>Don't have an account? Sign up</Link>
         <GuestLogin />
