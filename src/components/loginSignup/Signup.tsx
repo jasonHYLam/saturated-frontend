@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
+import styles from "./login.module.css";
 
 export function Signup() {
   interface FormInput {
@@ -27,38 +28,46 @@ export function Signup() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submitSignup)}>
-        <input
-          type="text"
-          placeholder="Email"
-          {...register("email", { required: true })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password", { required: true })}
-        />
-        <input
-          type="password"
-          placeholder="Confirm password"
-          {...register("confirmPassword", {
-            required: true,
-            validate: (val) => {
-              if (getValues("password") !== val) {
-                return "Passwords don't match";
-              }
-            },
-          })}
-        />
-        <input type="submit" value="Sign up" />
-        {errors.email && <span>Please provide email</span>}
-        {errors.password && <span>Please provide password</span>}
-        {errors.confirmPassword && (
-          <span>{errors.confirmPassword.message}</span>
-        )}
-      </form>
-      <Link to={"/login"}>Have an account? Login</Link>
-      <GuestLogin />
+      <section className={styles.container}>
+        <h1>Saturated</h1>
+        <form onSubmit={handleSubmit(submitSignup)} className={styles.form}>
+          <input
+            type="text"
+            placeholder="Email"
+            {...register("email", { required: true })}
+          />
+          <input
+            type="password"
+            placeholder="Password (must be at least 6 characters long)"
+            {...register("password", { required: true, minLength: 6 })}
+          />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            {...register("confirmPassword", {
+              required: true,
+              validate: (val) => {
+                if (getValues("password") !== val) {
+                  return "Passwords don't match";
+                }
+              },
+            })}
+          />
+          <input type="submit" value="Sign up" />
+          {errors.email && <span>Please provide email</span>}
+          {errors.password && errors.password.type === "required" && (
+            <span>Please provide password</span>
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <span>Password must be at least 6 characters long</span>
+          )}
+          {errors.confirmPassword && (
+            <span>{errors.confirmPassword.message}</span>
+          )}
+        </form>
+        <Link to={"/login"}>Have an account? Login</Link>
+        <GuestLogin />
+      </section>
     </>
   );
 }
