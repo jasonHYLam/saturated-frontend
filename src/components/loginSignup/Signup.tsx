@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchWithoutQueryOrImage } from "../../helpers/fetchData";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
 import styles from "./login.module.css";
 
 export function Signup() {
+  const navigate = useNavigate();
   interface FormInput {
     email: string;
     password: string;
@@ -23,7 +24,18 @@ export function Signup() {
       password: data.password,
     });
 
-    await fetchWithoutQueryOrImage("register", "POST", credentials);
+    const response = await fetchWithoutQueryOrImage(
+      "register",
+      "POST",
+      credentials
+    );
+    if (response instanceof Error) {
+      navigate("/error");
+    } else if (!response.ok) {
+      navigate("/error");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
