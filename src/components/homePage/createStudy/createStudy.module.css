@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 500px) {
+  .form {
+    width: 400px;
+  }
+}
+
+.uploadedImageContainer {
+  height: 300px;
+  width: 100%;
+}
+
+.placeholderImage {
+  background-image: linear-gradient(#565656, #2d2d2d);
+  height: 100%;
+  width: 100%;
+}
+
+.uploadedImage {
+  width: 100%;
+  height: auto;
+}
+
+.imageUploadInput {
+  display: none;
+}

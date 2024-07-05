@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { postDataOnFetchWithImage } from "../../../helpers/fetchData";
 import { useNavigate } from "react-router-dom";
+import styles from "./createStudy.module.css";
 
 export function CreateStudy() {
   type FormInput = {
@@ -66,17 +67,37 @@ export function CreateStudy() {
         <button onClick={toggleCreateStudy}>Create a study</button>
       ) : (
         <div>
-          {uploadedImage && (
-            <div>
-              <img src={URL.createObjectURL(uploadedImage)} alt="" />
-            </div>
-          )}
           <button onClick={toggleCreateStudy}>Cancel</button>
           <p>Creating a study</p>
+          <article className={styles.uploadedImageContainer}>
+            {uploadedImage ? (
+              <img
+                className={styles.uploadedImage}
+                src={URL.createObjectURL(uploadedImage)}
+                alt=""
+              />
+            ) : (
+              <div className={styles.placeholderImage} />
+            )}
+          </article>
           <form
+            className={styles.form}
             encType="multipart/form-data"
             onSubmit={handleSubmit(submitCreateStudyInput)}
           >
+            <section>
+              {!uploadedImage ? (
+                <button>Upload image</button>
+              ) : (
+                <button>Change image</button>
+              )}
+              <input
+                className={styles.imageUploadInput}
+                type="file"
+                {...(register("imageFile"), { required: true })}
+                onChange={selectImageToUpload}
+              />
+            </section>
             <input type="text" placeholder="Title" {...register("title")} />
 
             <p>
@@ -86,11 +107,6 @@ export function CreateStudy() {
               type="text"
               placeholder="Original link"
               {...register("originalLink")}
-            />
-            <input
-              type="file"
-              {...(register("imageFile"), { required: true })}
-              onChange={selectImageToUpload}
             />
             {errors.imageFile && <p>Please upload an image</p>}
             <input type="submit" value="Create study" />
