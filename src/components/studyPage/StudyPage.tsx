@@ -84,6 +84,7 @@ export function StudyPage() {
   });
 
   const isMobile = useScreenResize({ canvasRef, setCanvasElementDimensions });
+  console.log(`checking isMobile: ${isMobile}`);
 
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
