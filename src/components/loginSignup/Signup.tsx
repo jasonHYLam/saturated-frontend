@@ -81,6 +81,7 @@ export function Signup() {
         </form>
         <Link to={"/login"}>Have an account? Login</Link>
         <GuestLogin />
+        <p>Server is hosted on free tier, please be patient!</p>
       </section>
     </>
   );

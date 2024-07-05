@@ -11,6 +11,7 @@ import {
 } from "../../helpers/hooks";
 import { useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
+import { Loading } from "../loading/Loading";
 
 interface StudyPageContextProps {
   hoveredMarkerAndNoteID: number | null;
@@ -130,7 +131,7 @@ export function StudyPage() {
     : `${styles.pageContents} ${styles.desktop}`;
 
   return loading ? (
-    <p>loading...</p>
+    <Loading />
   ) : (
     <>
       <main className={styles.page}>
