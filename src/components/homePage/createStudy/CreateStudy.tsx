@@ -62,14 +62,16 @@ export function CreateStudy() {
 
   return (
     <>
-      <button onClick={toggleCreateStudy}>Create a study</button>
-      {showCreateStudy && (
+      {!showCreateStudy ? (
+        <button onClick={toggleCreateStudy}>Create a study</button>
+      ) : (
         <div>
           {uploadedImage && (
             <div>
               <img src={URL.createObjectURL(uploadedImage)} alt="" />
             </div>
           )}
+          <button onClick={toggleCreateStudy}>Cancel</button>
           <p>Creating a study</p>
           <form
             encType="multipart/form-data"
@@ -78,8 +80,7 @@ export function CreateStudy() {
             <input type="text" placeholder="Title" {...register("title")} />
 
             <p>
-              If you are studying from an existing artwork, be a good digital
-              citizen and provide a link to the original artist/artwork.
+              Please provide a link to the original artist/artwork if possible.
             </p>
             <input
               type="text"

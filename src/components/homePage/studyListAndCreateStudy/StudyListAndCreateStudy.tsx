@@ -18,9 +18,11 @@ export function StudyListAndCreateStudy() {
   }
   return (
     <>
-      <button onClick={submitLogout}>Logout</button>
-      <CreateStudy />
-      <StudyList />
+      <main>
+        <button onClick={submitLogout}>Logout</button>
+        <CreateStudy />
+        <StudyList />
+      </main>
     </>
   );
 }

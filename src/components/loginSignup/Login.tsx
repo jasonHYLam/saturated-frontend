@@ -41,29 +41,31 @@ export function Login() {
 
   return (
     <>
-      <section className={styles.container}>
-        <h1>Saturated</h1>
-        <form onSubmit={handleSubmit(submitLogin)} className={styles.form}>
-          <input
-            type="text"
-            placeholder="Email"
-            {...register("email", { required: true })}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password", { required: true })}
-          />
-          <input type="submit" value="Login" />
-          <section className={styles.errors}>
-            {errors.email && <span>Please provide email</span>}
-            {errors.password && <span>Please provide password</span>}
-          </section>
-        </form>
-        <Link to={"/signup"}>Don't have an account? Sign up</Link>
-        <GuestLogin />
-        <p>Server is hosted on free tier, please be patient!</p>
-      </section>
+      <main>
+        <section className={styles.container}>
+          <h1>Saturated</h1>
+          <form onSubmit={handleSubmit(submitLogin)} className={styles.form}>
+            <input
+              type="text"
+              placeholder="Email"
+              {...register("email", { required: true })}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              {...register("password", { required: true })}
+            />
+            <input type="submit" value="Login" />
+            <section className={styles.errors}>
+              {errors.email && <span>Please provide email</span>}
+              {errors.password && <span>Please provide password</span>}
+            </section>
+          </form>
+          <Link to={"/signup"}>Don't have an account? Sign up</Link>
+          <GuestLogin />
+          <p>Server is hosted on free tier, please be patient!</p>
+        </section>
+      </main>
     </>
   );
 }
