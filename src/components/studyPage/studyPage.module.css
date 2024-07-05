@@ -1,6 +1,5 @@
 .page {
-  /* is this needed? */
-  width: var(--page-width);
+  /* width: var(--page-width); */
   position: relative;
 }
 
@@ -26,15 +25,15 @@
 
 .pageContents {
   display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 500px ) {
+  .pageContents {
+    flex-direction: column;
+  }
 }
 
 .notesSection {
   padding-inline: 30px;
-}
-
-.desktop {
-  flex-direction: row;
-}
-.mobile {
-  flex-direction: column;
 }
