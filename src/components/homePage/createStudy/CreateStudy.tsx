@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { postDataOnFetchWithImage } from "../../../helpers/fetchData";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ export function CreateStudy() {
   };
 
   const navigate = useNavigate();
+  const imageUploadInputRef = useRef(null);
 
   const {
     register,
@@ -87,15 +88,18 @@ export function CreateStudy() {
           >
             <section>
               {!uploadedImage ? (
-                <button>Upload image</button>
+                <label htmlFor="imageUploadInput">Upload image</label>
               ) : (
-                <button>Change image</button>
+                <label htmlFor="imageUploadInput">Change image</label>
               )}
               <input
                 className={styles.imageUploadInput}
+                id="imageUploadInput"
+                ref={imageUploadInputRef}
                 type="file"
                 {...(register("imageFile"), { required: true })}
                 onChange={selectImageToUpload}
+                hidden
               />
             </section>
             <input type="text" placeholder="Title" {...register("title")} />
