@@ -13,7 +13,6 @@ export function HomePage() {
           <Outlet context={{ isGuest }} />
         </>
       )}
-      <Outlet />
     </>
   );
 }

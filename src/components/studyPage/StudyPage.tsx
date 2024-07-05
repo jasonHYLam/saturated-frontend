@@ -84,7 +84,6 @@ export function StudyPage() {
   });
 
   const isMobile = useScreenResize({ canvasRef, setCanvasElementDimensions });
-  console.log(`checking isMobile: ${isMobile}`);
 
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {
@@ -101,19 +100,20 @@ export function StudyPage() {
   let colorDataForPixel: ColorDataType;
   if (canvasContext && imageDimensions) {
     colorDataForPixel = getColorDataForPixel({
-      normalisedMousePositionFraction: normalisedClickedPosition,
+      normalisedMousePositionFraction: normalisedMousePositionFraction,
       imageDimensions: imageDimensions,
       canvasContext: canvasContext,
     });
-  } else
+  } else {
     colorDataForPixel = {
       r: 0,
       g: 0,
       b: 0,
     };
+  }
 
   function handleClick(isMobile: boolean, e: React.MouseEvent) {
-    if (isMobile) {
+    if (!isMobile) {
       setPositionOnImage(e);
     }
 
