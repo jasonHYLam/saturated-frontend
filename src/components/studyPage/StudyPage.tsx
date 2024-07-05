@@ -24,6 +24,7 @@ interface StudyPageContextProps {
   allNotes: Note[];
   canvasElementDimensions: { width: number; height: number };
   normalisedClickedPosition: { x: number; y: number };
+  positionForNewMarker: { x: number; y: number };
 }
 
 export const StudyPageContext = createContext<StudyPageContextProps>({
@@ -35,6 +36,7 @@ export const StudyPageContext = createContext<StudyPageContextProps>({
   allNotes: [],
   canvasElementDimensions: { width: 1, height: 1 },
   normalisedClickedPosition: { x: 0, y: 0 },
+  positionForNewMarker: { x: 0, y: 0 },
 });
 
 export function StudyPage() {
@@ -114,7 +116,7 @@ export function StudyPage() {
   }
 
   function handleClick(isMobile: boolean, e: React.MouseEvent) {
-    if (!isMobile) {
+    if (isMobile) {
       setPositionOnImage(e);
     }
 
@@ -129,6 +131,33 @@ export function StudyPage() {
   const pageStyle = isMobile
     ? `${styles.pageContents} ${styles.mobile}`
     : `${styles.pageContents} ${styles.desktop}`;
+
+  // console.log(
+  //   `canvasElementDimensions: ${canvasElementDimensions.height} ${canvasElementDimensions.width} `
+  // );
+
+  // This presently updates accurately on click
+  console.log(`Position: x: ${position.x}, y: ${position.y}`);
+
+  // This is position divided by canvasElementDimensions. Does this change accurately? It seems to.
+  console.log(
+    `NormalisedPositionFraction: x: ${normalisedMousePositionFraction.x}, y: ${normalisedMousePositionFraction.y}`
+  );
+  // // console.log(isMobile);
+
+  // This is basically normalisedPositionFraction
+  // console.log(
+  //   `ClickedPositionFraction: x: ${clickedPositionFraction.xFraction} y: ${clickedPositionFraction.yFraction}`
+  // );
+  // console.log(
+  //   `Normalised clicked: x: ${normalisedClickedPosition.x} y: ${normalisedClickedPosition.y}`
+  // );
+
+  // Create variable for positionMarkerPosition; either position or clickedPosition, based on
+  const positionForNewMarker = isMobile ? position : normalisedClickedPosition;
+  console.log(
+    `positionForNewMarker ${positionForNewMarker.x} ${positionForNewMarker.y} `
+  );
 
   return loading ? (
     <Loading />
@@ -151,6 +180,7 @@ export function StudyPage() {
               setOpenedNoteID,
               setAllNotes,
               allNotes,
+              positionForNewMarker,
             }}
           >
             <section className={pageStyle}>
