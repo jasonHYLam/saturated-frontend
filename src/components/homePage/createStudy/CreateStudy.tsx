@@ -11,6 +11,7 @@ export function CreateStudy() {
     imageFile: File;
   };
 
+  console.log(styles);
   const navigate = useNavigate();
   const imageUploadInputRef = useRef(null);
 
@@ -88,9 +89,19 @@ export function CreateStudy() {
           >
             <section>
               {!uploadedImage ? (
-                <label htmlFor="imageUploadInput">Upload image</label>
+                <label
+                  htmlFor="imageUploadInput"
+                  className={styles.labelAsImageUploadInput}
+                >
+                  Upload image
+                </label>
               ) : (
-                <label htmlFor="imageUploadInput">Change image</label>
+                <label
+                  htmlFor="imageUploadInput"
+                  className={styles.labelAsImageUploadInput}
+                >
+                  Change image
+                </label>
               )}
               <input
                 className={styles.imageUploadInput}
