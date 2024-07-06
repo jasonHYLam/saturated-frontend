@@ -13,6 +13,7 @@ export function CreateStudy() {
 
   console.log(styles);
   const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
 
   const {
     register,
@@ -32,6 +33,7 @@ export function CreateStudy() {
   }
 
   const submitCreateStudyInput: SubmitHandler<FormInput> = async (data) => {
+    setSubmitting(true);
     if (!uploadedImage) return;
     const createStudyInput = new FormData();
 
@@ -122,7 +124,11 @@ export function CreateStudy() {
               {...register("originalLink")}
             />
             {errors.imageFile && <p>Please upload an image</p>}
-            <input type="submit" value="Create study" />
+            {!submitting ? (
+              <input type="submit" value="Create study" />
+            ) : (
+              <input type="submit" value="Uploading..." disabled />
+            )}
           </form>
         </div>
       )}
