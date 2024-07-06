@@ -1,23 +1,15 @@
 import { useGetAllStudies } from "../../../helpers/hooks";
 import { StudyPreview } from "./studyPreview/StudyPreview";
 
-export function StudyList() {
-  const { allStudies, loading } = useGetAllStudies();
-
+export function StudyList({ allStudies }) {
   return (
     <>
-      <p>study list</p>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <section>
-          {allStudies.map((study) => (
-            <>
-              <StudyPreview study={study} />
-            </>
-          ))}
-        </section>
-      )}
+      <p>Study list</p>
+      <section>
+        {allStudies.map((study) => (
+          <StudyPreview study={study} key={study.id} />
+        ))}
+      </section>
     </>
   );
 }
