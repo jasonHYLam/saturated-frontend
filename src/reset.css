@@ -47,9 +47,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-input[type="text"], input[type="password"], input[type="submit"] button {
-  height: 1.5rem;
-}
 
 #root {
   display: flex;

@@ -7,7 +7,7 @@ interface StudyListProps {
 export function StudyList({ allStudies }: StudyListProps) {
   return (
     <>
-      <p>Study list</p>
+      <h1>Study list</h1>
       <section>
         {allStudies.map((study) => (
           <StudyPreview study={study} key={study.id} />

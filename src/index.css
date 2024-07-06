@@ -30,5 +30,34 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --button-background: black;
+  --button-background: rgb(82, 82, 82);
+  --button-hover-background: rgb(98, 174, 255);
+  --button-text-color: white;
+}
+
+body {
+  background-color: rgb(23, 23, 23);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+input[type="text"], input[type="password"], input[type="submit"], button {
+  height: 2.5rem;
+  font-size: 1.0rem;
+}
+
+button {
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+button:hover {
+  background-color: var(--button-hover-background);
 }

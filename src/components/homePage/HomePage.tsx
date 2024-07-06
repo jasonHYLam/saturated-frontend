@@ -10,7 +10,6 @@ export function HomePage() {
         <Loading />
       ) : (
         <>
-          {isGuest && <p>Using guest account</p>}
           <Outlet context={{ isGuest }} />
         </>
       )}

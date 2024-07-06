@@ -2,14 +2,16 @@ import { useState } from "react";
 import { fetchWithoutQueryOrImage } from "../../../helpers/fetchData";
 import { CreateStudy } from "../createStudy/CreateStudy";
 import { StudyList } from "../studyList/StudyList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useGetAllStudies } from "../../../helpers/hooks";
 import { Loading } from "../../loading/Loading";
+import styles from "./studyListAndCreateStudy.module.css";
 
 export function StudyListAndCreateStudy() {
   const navigate = useNavigate();
   const [showCreateStudy, setShowCreateStudy] = useState(false);
   const { allStudies, loading } = useGetAllStudies();
+  const { isGuest } = useOutletContext<{ isGuest: boolean }>();
 
   async function submitLogout() {
     const response = await fetchWithoutQueryOrImage("User/logout", "POST");
@@ -23,8 +25,9 @@ export function StudyListAndCreateStudy() {
   }
   return (
     <>
-      <main>
-        <header>
+      <main className={styles.page}>
+        <header className={styles.header}>
+          {isGuest && <p>Using guest account</p>}
           <button onClick={submitLogout}>Logout</button>
         </header>
 
@@ -34,7 +37,10 @@ export function StudyListAndCreateStudy() {
           <>
             {!showCreateStudy ? (
               <>
-                <button onClick={() => setShowCreateStudy(true)}>
+                <button
+                  className={styles.toggleShowCreateStudy}
+                  onClick={() => setShowCreateStudy(true)}
+                >
                   Create a study
                 </button>
                 <StudyList allStudies={allStudies} />
@@ -42,14 +48,11 @@ export function StudyListAndCreateStudy() {
             ) : (
               <>
                 <button
-                  onClick={(e) => {
-                    setShowCreateStudy(false);
-                    e.preventDefault();
-                  }}
+                  className={styles.toggleShowCreateStudy}
+                  onClick={() => setShowCreateStudy(false)}
                 >
                   Cancel
                 </button>
-                <p>aa</p>
                 <CreateStudy />
               </>
             )}
