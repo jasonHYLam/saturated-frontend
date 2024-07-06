@@ -1,7 +1,10 @@
-import { useGetAllStudies } from "../../../helpers/hooks";
 import { StudyPreview } from "./studyPreview/StudyPreview";
 
-export function StudyList({ allStudies }) {
+interface StudyListProps {
+  allStudies: StudyPreview[];
+}
+
+export function StudyList({ allStudies }: StudyListProps) {
   return (
     <>
       <p>Study list</p>
