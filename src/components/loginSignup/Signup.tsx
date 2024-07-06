@@ -39,6 +39,7 @@ export function Signup() {
       navigate("/error");
     } else if (response.status === 400) {
       setBackendError("Email possibly already taken.");
+      setSubmitting(false);
     } else if (!response.ok) {
       navigate("/error");
     } else {

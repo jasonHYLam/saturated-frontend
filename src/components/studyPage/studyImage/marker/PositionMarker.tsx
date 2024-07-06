@@ -4,14 +4,11 @@ import { useContext } from "react";
 import { StudyPageContext } from "../../StudyPage";
 
 export function PositionMarker() {
-  const { normalisedClickedPosition, positionForNewMarker } =
-    useContext(StudyPageContext);
+  const { positionForNewMarker } = useContext(StudyPageContext);
   return (
     <>
       <div
         style={{
-          // top: normalisedClickedPosition.y - MARKER_HEIGHT / 2,
-          // left: normalisedClickedPosition.x - MARKER_HEIGHT / 2,
           top: positionForNewMarker.y - MARKER_HEIGHT / 2,
           left: positionForNewMarker.x - MARKER_HEIGHT / 2,
         }}

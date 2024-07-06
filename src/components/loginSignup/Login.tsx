@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
 import styles from "./login.module.css";
 import { useState } from "react";
+import { Loading } from "../loading/Loading";
 
 export function Login() {
   interface FormInput {
@@ -19,6 +20,7 @@ export function Login() {
   } = useForm<FormInput>();
 
   const [submitting, setSubmitting] = useState(false);
+  const [backendError, setBackendError] = useState("");
 
   const submitLogin: SubmitHandler<FormInput> = async (data) => {
     setSubmitting(true);
@@ -36,6 +38,9 @@ export function Login() {
 
     if (loginResponse instanceof Error) {
       return navigate("/error");
+    } else if (loginResponse.status === 401) {
+      setBackendError("User doesn't exist");
+      setSubmitting(false);
     } else if (!loginResponse.ok) {
       return navigate("/error");
     } else {
@@ -67,11 +72,18 @@ export function Login() {
             <section className={styles.errors}>
               {errors.email && <span>Please provide email</span>}
               {errors.password && <span>Please provide password</span>}
+              {backendError && <span>{backendError}</span>}
             </section>
           </form>
           <Link to={"/signup"}>Don't have an account? Sign up</Link>
           <GuestLogin />
           <p>Server is hosted on free tier, please be patient!</p>
+          {submitting && (
+            <>
+              <p>Server is hosted on free tier, please be patient!</p>
+              <Loading />
+            </>
+          )}
         </section>
       </main>
     </>

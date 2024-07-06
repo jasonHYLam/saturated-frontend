@@ -175,12 +175,13 @@ export function useGuest() {
 
   useEffect(() => {
     async function getIsGuest() {
+      console.log("trying get isGuest");
       const response = await getDataFromFetch("User/isGuest");
+      console.log(response);
 
       if (response instanceof Error) {
-        return navigate("/error");
-      }
-      if (response.status === 401) {
+        navigate("/error");
+      } else if (response.status === 401) {
         navigate("/login");
       } else if (!response.ok) {
         navigate("/error");
