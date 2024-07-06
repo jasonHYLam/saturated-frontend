@@ -19,7 +19,6 @@ export function StudyListAndCreateStudy() {
   }
   return (
     <>
-      <Loading />
       <main>
         <button onClick={submitLogout}>Logout</button>
         <CreateStudy />
