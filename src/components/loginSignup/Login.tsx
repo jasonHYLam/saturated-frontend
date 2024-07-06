@@ -3,6 +3,7 @@ import { fetchWithQuery } from "../../helpers/fetchData";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { GuestLogin } from "./GuestLogin";
 import styles from "./login.module.css";
+import { useState } from "react";
 
 export function Login() {
   interface FormInput {
@@ -17,7 +18,10 @@ export function Login() {
     formState: { errors },
   } = useForm<FormInput>();
 
+  const [submitting, setSubmitting] = useState(false);
+
   const submitLogin: SubmitHandler<FormInput> = async (data) => {
+    setSubmitting(true);
     const cookieQuery = {
       useCookies: "true",
       useSessionCookies: "true",
@@ -55,7 +59,11 @@ export function Login() {
               placeholder="Password"
               {...register("password", { required: true })}
             />
-            <input type="submit" value="Login" />
+            {!submitting ? (
+              <input type="submit" value="Login" />
+            ) : (
+              <input type="submit" value="Logging in" disabled />
+            )}
             <section className={styles.errors}>
               {errors.email && <span>Please provide email</span>}
               {errors.password && <span>Please provide password</span>}
