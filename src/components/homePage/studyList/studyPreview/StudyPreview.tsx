@@ -10,7 +10,6 @@ interface StudyPreviewProps {
 }
 
 export function StudyPreview({ study }: StudyPreviewProps) {
-  console.log(styles);
   return (
     <>
       <Link to={`/study/${study.id}`} className={styles.studyPreview}>

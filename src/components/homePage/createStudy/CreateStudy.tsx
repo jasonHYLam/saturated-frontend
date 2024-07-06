@@ -11,7 +11,6 @@ export function CreateStudy() {
     imageFile: File;
   };
 
-  console.log(styles);
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
