@@ -28,6 +28,7 @@ export function AddNote({
   }
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormInput>();
+  const [submitting, setSubmitting] = useState(false);
   const [showColorReference, setShowColorReference] = useState(true);
   const [guessedColor, setGuessedColor] = useState({ r: 255, g: 255, b: 255 });
 
@@ -35,6 +36,7 @@ export function AddNote({
   const guessedColorAsHex = rgbToHex(guessedColor);
 
   const uploadNote: SubmitHandler<FormInput> = async (data) => {
+    setSubmitting(true);
     const newNoteInput = JSON.stringify({
       Text: data.text,
       OriginalHexColor: originalColorAsHex,
@@ -85,7 +87,11 @@ export function AddNote({
 
       <form action="" onSubmit={handleSubmit(uploadNote)}>
         <input type="text" {...register("text")} placeholder="Add a note" />
-        <input type="submit" value="Create" />
+        {!submitting ? (
+          <input type="submit" value="Create" />
+        ) : (
+          <input type="submit" value="Creating note..." disabled />
+        )}
       </form>
     </>
   );
