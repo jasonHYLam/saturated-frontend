@@ -128,32 +128,7 @@ export function StudyPage() {
     setClickedPixelColorData(colorDataForPixel);
   }
 
-  // console.log(
-  //   `canvasElementDimensions: ${canvasElementDimensions.height} ${canvasElementDimensions.width} `
-  // );
-
-  // This presently updates accurately on click
-  // console.log(`Position: x: ${position.x}, y: ${position.y}`);
-
-  // This is position divided by canvasElementDimensions. Does this change accurately? It seems to.
-  // console.log(
-  //   `NormalisedPositionFraction: x: ${normalisedMousePositionFraction.x}, y: ${normalisedMousePositionFraction.y}`
-  // );
-  console.log(isMobile);
-
-  // This is basically normalisedPositionFraction
-  // console.log(
-  //   `ClickedPositionFraction: x: ${clickedPositionFraction.xFraction} y: ${clickedPositionFraction.yFraction}`
-  // );
-  // console.log(
-  //   `Normalised clicked: x: ${normalisedClickedPosition.x} y: ${normalisedClickedPosition.y}`
-  // );
-
-  // Create variable for positionMarkerPosition; either position or clickedPosition, based on
   const positionForNewMarker = isMobile ? position : normalisedClickedPosition;
-  // console.log(
-  //   `positionForNewMarker ${positionForNewMarker.x} ${positionForNewMarker.y} `
-  // );
 
   return loading ? (
     <Loading />
