@@ -84,7 +84,6 @@ export async function getDataFromFetch(
         },
       }
     );
-    console.log(response);
     return response;
   } catch (err) {
     throw err;
