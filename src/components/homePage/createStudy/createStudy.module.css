@@ -29,4 +29,5 @@
   background-color: aliceblue;
   height: 1.2rem;
   cursor: pointer;
+  background-color: var(--button-background);
 }

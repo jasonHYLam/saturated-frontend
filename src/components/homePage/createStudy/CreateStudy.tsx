@@ -19,12 +19,7 @@ export function CreateStudy() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInput>();
-  const [showCreateStudy, setShowCreateStudy] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<Blob | null>(null);
-
-  function toggleCreateStudy() {
-    setShowCreateStudy(!showCreateStudy);
-  }
 
   function selectImageToUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return;
@@ -65,72 +60,67 @@ export function CreateStudy() {
 
   return (
     <>
-      {!showCreateStudy ? (
-        <button onClick={toggleCreateStudy}>Create a study</button>
-      ) : (
-        <div>
-          <button onClick={toggleCreateStudy}>Cancel</button>
-          <p>Creating a study</p>
-          <article className={styles.uploadedImageContainer}>
-            {uploadedImage ? (
-              <img
-                className={styles.uploadedImage}
-                src={URL.createObjectURL(uploadedImage)}
-                alt=""
-              />
-            ) : (
-              <div className={styles.placeholderImage} />
-            )}
-          </article>
-          <form
-            className={styles.form}
-            encType="multipart/form-data"
-            onSubmit={handleSubmit(submitCreateStudyInput)}
-          >
-            <section>
-              {!uploadedImage ? (
-                <label
-                  htmlFor="imageUploadInput"
-                  className={styles.labelAsImageUploadInput}
-                >
-                  Upload image
-                </label>
-              ) : (
-                <label
-                  htmlFor="imageUploadInput"
-                  className={styles.labelAsImageUploadInput}
-                >
-                  Change image
-                </label>
-              )}
-              <input
-                className={styles.imageUploadInput}
-                id="imageUploadInput"
-                type="file"
-                {...(register("imageFile"), { required: true })}
-                onChange={selectImageToUpload}
-                hidden
-              />
-            </section>
-            <input type="text" placeholder="Title" {...register("title")} />
-
-            <p>
-              Please provide a link to the original artist/artwork if possible.
-            </p>
-            <input
-              type="text"
-              placeholder="Original link"
-              {...register("originalLink")}
+      <div>
+        <p>Creating a study</p>
+        <article className={styles.uploadedImageContainer}>
+          {uploadedImage ? (
+            <img
+              className={styles.uploadedImage}
+              src={URL.createObjectURL(uploadedImage)}
+              alt=""
             />
-            {errors.imageFile && <p>Please upload an image</p>}
-            {!submitting ? (
-              <input type="submit" value="Create study" />
+          ) : (
+            <div className={styles.placeholderImage} />
+          )}
+        </article>
+        <form
+          className={styles.form}
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(submitCreateStudyInput)}
+        >
+          <section>
+            {!uploadedImage ? (
+              <label
+                htmlFor="imageUploadInput"
+                className={styles.labelAsImageUploadInput}
+              >
+                Upload image
+              </label>
             ) : (
-              <input type="submit" value="Uploading..." disabled />
+              <label
+                htmlFor="imageUploadInput"
+                className={styles.labelAsImageUploadInput}
+              >
+                Change image
+              </label>
             )}
-          </form>
-        </div>
-      )}
+            <input
+              className={styles.imageUploadInput}
+              id="imageUploadInput"
+              type="file"
+              {...(register("imageFile"), { required: true })}
+              onChange={selectImageToUpload}
+              hidden
+            />
+          </section>
+          <input type="text" placeholder="Title" {...register("title")} />
+
+          <p>
+            Please provide a link to the original artist/artwork if possible.
+          </p>
+          <input
+            type="text"
+            placeholder="Original link"
+            {...register("originalLink")}
+          />
+          {errors.imageFile && <p>Please upload an image</p>}
+          {!submitting ? (
+            <input type="submit" value="Create study" />
+          ) : (
+            <input type="submit" value="Uploading..." disabled />
+          )}
+        </form>
+      </div>
     </>
   );
 }
