@@ -5,6 +5,7 @@ import { ColorReference } from "../../../colorReference/ColorReference";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "../../../../loading/Loading";
 
 interface AddNoteProps {
   studyId: number;
@@ -92,6 +93,7 @@ export function AddNote({
         ) : (
           <input type="submit" value="Creating note..." disabled />
         )}
+        <Loading />
       </form>
     </>
   );
