@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { fetchWithQuery } from "../../helpers/fetchData";
 
-export function GuestLogin() {
+interface GuestLoginProps {
+  setSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export function GuestLogin({ setSubmitting }: GuestLoginProps) {
   const navigate = useNavigate();
 
   async function submitGuestLogin() {
+    setSubmitting(true);
     const cookieQuery = {
       useCookies: "true",
       useSessionCookies: "true",
