@@ -2,6 +2,8 @@
   height: var(--marker-size);
   width: var(--marker-size);
   background-color: var(--marker-color);
+  border: var(--marker-border);
+  box-shadow: var(--box-shadow);
   opacity: var(--marker-default-opacity);
   position: absolute;
   z-index: 9;

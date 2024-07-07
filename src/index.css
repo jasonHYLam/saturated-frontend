@@ -10,9 +10,10 @@
   --mobile-breakwidth: 500px;
 
 
-  --marker-color: white;
-  --marker-default-opacity: 0.1;
-  --marker-hover-opacity: 0.3;
+  --marker-border: white 1px solid;
+  --marker-color: rgb(129, 129, 129);
+  --marker-default-opacity: 0.3;
+  --marker-hover-opacity: 0.4;
   --marker-size: 20px;
 
   --box-shadow: 0px 10px 10px -10px black;
