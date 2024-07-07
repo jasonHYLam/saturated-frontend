@@ -13,7 +13,7 @@ export function StudyPreview({ study }: StudyPreviewProps) {
   return (
     <>
       <Link to={`/study/${study.id}`} className={styles.studyPreview}>
-        <img src={study.thumbnailLink} alt="" />
+        <img className={styles.image} src={study.thumbnailLink} alt="" />
         <p>{study.title}</p>
       </Link>
     </>

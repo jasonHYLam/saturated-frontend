@@ -1,3 +1,8 @@
 .studyPreview {
   color: aliceblue;
 }
+
+.image {
+  width: 200px;
+  height: auto;
+}
