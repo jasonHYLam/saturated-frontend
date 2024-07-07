@@ -4,6 +4,9 @@
 
 [Backend repo](https://github.com/jasonHYLam/saturated-backend)
 
+![image](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/034c6a41-9821-4b65-a757-eb83df0a1920)
+
+
 This app is intended to help budding artists by helping them perform art studies. Art studies allows people to improve their art skills by developing their observation skills.
 
 This app is not intended for commercial use. I do not own any of the images; all credits go towards all original artists.
