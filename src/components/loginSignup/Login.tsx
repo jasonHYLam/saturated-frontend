@@ -76,11 +76,10 @@ export function Login() {
             </section>
           </form>
           <Link to={"/signup"}>Don't have an account? Sign up</Link>
-          <GuestLogin />
+          <GuestLogin setSubmitting={setSubmitting} />
           <p>Server is hosted on free tier, please be patient!</p>
           {submitting && (
             <>
-              <p>Server is hosted on free tier, please be patient!</p>
               <Loading />
             </>
           )}

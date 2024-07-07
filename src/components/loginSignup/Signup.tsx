@@ -22,6 +22,7 @@ export function Signup() {
 
   const [backendError, setBackendError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [submittingGuestLogin, setSubmittingGuestLogin] = useState(false);
 
   const submitSignup: SubmitHandler<FormInput> = async (data) => {
     setSubmitting(true);
@@ -80,6 +81,9 @@ export function Signup() {
             ) : (
               <input type="submit" value="Signing up" disabled />
             )}
+            {submittingGuestLogin && (
+              <input type="submit" value="Logging in" disabled />
+            )}
             <section className={styles.errors}>
               {backendError && <span>{backendError}</span>}
               {errors.email && <span>Please provide email</span>}
@@ -95,13 +99,13 @@ export function Signup() {
             </section>
           </form>
           <Link to={"/login"}>Have an account? Login</Link>
-          <GuestLogin />
-          {submitting && (
-            <>
-              <p>Server is hosted on free tier, please be patient!</p>
-              <Loading />
-            </>
-          )}
+          <GuestLogin setSubmitting={setSubmittingGuestLogin} />
+          {submitting ||
+            (submittingGuestLogin && (
+              <>
+                <Loading />
+              </>
+            ))}
         </section>
       </main>
     </>
