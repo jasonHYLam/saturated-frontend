@@ -6,6 +6,7 @@ import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../../../../loading/Loading";
+import styles from "./addNote.module.css";
 
 interface AddNoteProps {
   studyId: number;
@@ -72,29 +73,41 @@ export function AddNote({
 
   return (
     <>
-      <button onClick={() => setShowAddNote(false)}>Close</button>
-      <h1>Add note</h1>
-      {showColorReference ? (
-        <ColorReference colorData={pixelColorData} size="large" />
-      ) : null}
-      {showColorReference ? (
-        <button onClick={() => setShowColorReference(false)}>Hide color</button>
-      ) : (
-        <button onClick={() => setShowColorReference(true)}>Show color</button>
-      )}
+      <section className={styles.addNoteContainer}>
+        <section className={styles.topRow}>
+          <h1>Add note</h1>
+          <button onClick={() => setShowAddNote(false)}>Close</button>
+        </section>
 
-      <p>Guess color</p>
-      <RgbColorPicker color={guessedColor} onChange={setGuessedColor} />
+        <section>
+          {showColorReference ? (
+            <ColorReference colorData={pixelColorData} size="large" />
+          ) : null}
+          {showColorReference ? (
+            <button onClick={() => setShowColorReference(false)}>
+              Hide color
+            </button>
+          ) : (
+            <button onClick={() => setShowColorReference(true)}>
+              Show color
+            </button>
+          )}
+        </section>
 
-      <form action="" onSubmit={handleSubmit(uploadNote)}>
-        <input type="text" {...register("text")} placeholder="Add a note" />
-        {!submitting ? (
-          <input type="submit" value="Create" />
-        ) : (
-          <input type="submit" value="Creating note..." disabled />
-        )}
-        <Loading />
-      </form>
+        <section>
+          <p>Guess color</p>
+          <RgbColorPicker color={guessedColor} onChange={setGuessedColor} />
+        </section>
+
+        <form action="" onSubmit={handleSubmit(uploadNote)}>
+          <input type="text" {...register("text")} placeholder="Add a note" />
+          {!submitting ? (
+            <input type="submit" value="Create" />
+          ) : (
+            <input type="submit" value="Creating note..." disabled />
+          )}
+        </form>
+      </section>
     </>
   );
 }

@@ -1,5 +1,12 @@
-.colorReference {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+.addNoteContainer {
+  display: flex;
+  flex-direction: column;
+  background: var(--container-background-color);
+  padding: 10px;
+  gap: 10px;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
 }
