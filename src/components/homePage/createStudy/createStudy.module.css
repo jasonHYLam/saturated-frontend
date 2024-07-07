@@ -29,8 +29,14 @@
 
 .labelAsImageUploadInput {
   background-color: aliceblue;
-  height: 1.2rem;
+  height: 2.2rem;
+  padding: 5px;
   cursor: pointer;
   background-color: var(--button-background);
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.labelAsImageUploadInput:hover {
+  background-color: var(--button-hover-background);
 }

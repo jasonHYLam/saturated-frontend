@@ -30,8 +30,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --button-background: rgb(82, 82, 82);
-  --button-hover-background: rgb(98, 174, 255);
+  --button-background: rgb(98, 174, 255);
+  --button-hover-background: rgb(0, 123, 255);
   --button-text-color: white;
 }
 
@@ -44,7 +44,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-input[type="text"], input[type="password"], input[type="submit"], button {
+input[type="text"], input[type="password"], input[type="submit"], button, label {
   height: 2.5rem;
   font-size: 1.0rem;
 }
