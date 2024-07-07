@@ -30,4 +30,5 @@
 .activeMarker {
   opacity: var(--marker-hover-opacity);
   border-radius: 0;
+  border: white 1px solid;
 }

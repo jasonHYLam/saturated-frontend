@@ -11,7 +11,8 @@
 }
 
 .activeNote {
-  background-color: black;
+  background-color: var(--note-background-hover);
+  box-shadow: var(--box-shadow);
 }
 
 .note:hover {

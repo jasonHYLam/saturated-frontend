@@ -150,6 +150,7 @@ export function Note({ note }: NoteProps) {
                 <p>{note.guessedHexColor}</p>
               </article>
             </section>
+            <br />
           </>
         ) : (
           <ColorReferenceForNote
@@ -157,6 +158,7 @@ export function Note({ note }: NoteProps) {
             size={size}
           />
         )}
+
         {noteStatus === "edit" ? (
           <>
             <form onSubmit={handleSubmit(submitEdit)}>
