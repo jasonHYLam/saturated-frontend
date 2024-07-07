@@ -2,8 +2,7 @@
   height: var(--marker-size);
   width: var(--marker-size);
   background-color: var(--marker-color);
-  border: var(--marker-border);
-  box-shadow: var(--box-shadow);
+  border-bottom: var(--marker-border);
   opacity: var(--marker-default-opacity);
   position: absolute;
   z-index: 9;
@@ -16,12 +15,12 @@
   opacity: var(--marker-default-opacity);
   z-index: 9;
   position: absolute;
-  border: 2px solid var(--marker-color);
+  background-color: var(--marker-color);
+  border-bottom: var(--marker-border);
   border-radius: 5px;
 }
 
 .noteMarker:hover {
-  /* background-color: aqua; */
   opacity: var(--marker-hover-opacity);
   cursor: pointer;
   box-shadow: var(--box-shadow);
