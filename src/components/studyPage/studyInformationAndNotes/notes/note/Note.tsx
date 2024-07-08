@@ -94,8 +94,8 @@ export function Note({ note }: NoteProps) {
     const deletedNoteId = allNotes.findIndex(
       (studyNote) => studyNote.id === note.id
     );
-    const updatedNotes = allNotes.splice(deletedNoteId, 1);
-    setAllNotes(updatedNotes);
+    allNotes.splice(deletedNoteId, 1);
+    setAllNotes(allNotes);
     setNoteStatus("");
   }
 
