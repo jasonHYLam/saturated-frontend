@@ -7,6 +7,7 @@ import { useGetAllStudies } from "../../../helpers/hooks";
 import { Loading } from "../../loading/Loading";
 import styles from "./studyListAndCreateStudy.module.css";
 import GithubIcon from "../../../assets/github.svg";
+import { Icon } from "../../icons/Icon";
 
 export function StudyListAndCreateStudy() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export function StudyListAndCreateStudy() {
         <header className={styles.header}>
           {isGuest && <p>Using guest account</p>}
           <button onClick={submitLogout}>Logout</button>
-          <img src={GithubIcon} alt="" />
+          <Icon iconPath={GithubIcon} />
         </header>
 
         {loading ? (
