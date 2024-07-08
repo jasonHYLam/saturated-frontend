@@ -11,32 +11,34 @@ import { StudyPageContext } from "../../../StudyPage";
 interface AddNoteProps {
   studyId: number;
   setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
-  pixelColorData: { r: number; g: number; b: number };
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
   allNotes: Note[];
-  clickedPositionFraction: { xFraction: number; yFraction: number };
+  // clickedPositionFraction: { xFraction: number; yFraction: number };
 }
 
 export function AddNote({
   studyId,
   setShowAddNote,
-  pixelColorData,
   setAllNotes,
   allNotes,
-  clickedPositionFraction,
-}: AddNoteProps) {
+}: // clickedPositionFraction,
+AddNoteProps) {
   interface FormInput {
     text: string;
   }
-  const { colorPixelDataForNewNote } = useContext(StudyPageContext);
+  const { colorPixelDataForNewNote, positionForNewNote } =
+    useContext(StudyPageContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormInput>();
   const [submitting, setSubmitting] = useState(false);
   const [showColorReference, setShowColorReference] = useState(true);
   const [guessedColor, setGuessedColor] = useState({ r: 255, g: 255, b: 255 });
 
-  const originalColorAsHex = rgbToHex(pixelColorData);
+  const originalColorAsHex = rgbToHex(colorPixelDataForNewNote);
   const guessedColorAsHex = rgbToHex(guessedColor);
+
+  // console.log(positionForNewNote.x);
+  // console.log(positionForNewNote.y);
 
   const uploadNote: SubmitHandler<FormInput> = async (data) => {
     setSubmitting(true);
@@ -44,8 +46,10 @@ export function AddNote({
       Text: data.text,
       OriginalHexColor: originalColorAsHex,
       GuessedHexColor: guessedColorAsHex,
-      XOrdinateAsFraction: clickedPositionFraction.xFraction,
-      YOrdinateAsFraction: clickedPositionFraction.yFraction,
+      // XOrdinateAsFraction: clickedPositionFraction.xFraction,
+      // YOrdinateAsFraction: clickedPositionFraction.yFraction,
+      XOrdinateAsFraction: positionForNewNote.x,
+      YOrdinateAsFraction: positionForNewNote.y,
     });
 
     const response = await fetchWithoutQueryOrImage(
@@ -82,7 +86,6 @@ export function AddNote({
 
         <section>
           {showColorReference ? (
-            // <ColorReference colorData={pixelColorData} size="large" />
             <ColorReference colorData={colorPixelDataForNewNote} size="large" />
           ) : null}
           {showColorReference ? (

@@ -12,9 +12,8 @@ interface StudyInformationAndNotesProps {
   studyId: number;
   showAddNote: boolean;
   setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
-  clickedPixelColorData: { r: number; g: number; b: number };
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-  clickedPositionFraction: { xFraction: number; yFraction: number };
+  // clickedPositionFraction: { xFraction: number; yFraction: number };
   isMobile: boolean;
 }
 
@@ -24,9 +23,8 @@ export function StudyInformationAndNotes({
   studyId,
   showAddNote,
   setShowAddNote,
-  clickedPixelColorData,
   setAllNotes,
-  clickedPositionFraction,
+  // clickedPositionFraction,
   isMobile,
 }: StudyInformationAndNotesProps) {
   const { allNotes } = useContext(StudyPageContext);
@@ -56,10 +54,9 @@ export function StudyInformationAndNotes({
               <AddNote
                 studyId={studyId}
                 setShowAddNote={setShowAddNote}
-                pixelColorData={clickedPixelColorData}
                 setAllNotes={setAllNotes}
                 allNotes={allNotes}
-                clickedPositionFraction={clickedPositionFraction}
+                // clickedPositionFraction={clickedPositionFraction}
               />
             ) : (
               <NotesContainer allNotes={allNotes} />

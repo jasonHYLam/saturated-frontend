@@ -25,6 +25,7 @@ interface StudyPageContextProps {
   canvasElementDimensions: { width: number; height: number };
   normalisedClickedPosition: { x: number; y: number };
   positionForNewMarker: { x: number; y: number };
+  positionForNewNote: { x: number; y: number };
   colorPixelDataForNewNote: { r: number; g: number; b: number };
 }
 
@@ -38,6 +39,7 @@ export const StudyPageContext = createContext<StudyPageContextProps>({
   canvasElementDimensions: { width: 1, height: 1 },
   normalisedClickedPosition: { x: 0, y: 0 },
   positionForNewMarker: { x: 0, y: 0 },
+  positionForNewNote: { x: 0, y: 0 },
   colorPixelDataForNewNote: { r: 0, g: 0, b: 0 },
 });
 
@@ -45,8 +47,8 @@ export function StudyPage() {
   const { studyId } = useParams() as { studyId: string };
 
   const [clickedPositionFraction, setClickedPositionFraction] = useState({
-    xFraction: 1,
-    yFraction: 1,
+    x: 1,
+    y: 1,
   });
 
   const [clickedPixelColorData, setClickedPixelColorData] = useState({
@@ -98,8 +100,8 @@ export function StudyPage() {
 
   // Clicked position on canvas. Scales with canvas.
   const normalisedClickedPosition = {
-    x: clickedPositionFraction.xFraction * canvasElementDimensions.width,
-    y: clickedPositionFraction.yFraction * canvasElementDimensions.height,
+    x: clickedPositionFraction.x * canvasElementDimensions.width,
+    y: clickedPositionFraction.y * canvasElementDimensions.height,
   };
 
   let colorDataForPixel: ColorDataType;
@@ -123,14 +125,17 @@ export function StudyPage() {
     }
 
     setClickedPositionFraction({
-      xFraction: normalisedMousePositionFraction.x,
-      yFraction: normalisedMousePositionFraction.y,
+      x: normalisedMousePositionFraction.x,
+      y: normalisedMousePositionFraction.y,
     });
     setShowAddNote(true);
     setClickedPixelColorData(colorDataForPixel);
   }
 
   const positionForNewMarker = isMobile ? position : normalisedClickedPosition;
+  const positionForNewNote = isMobile
+    ? normalisedMousePositionFraction
+    : clickedPositionFraction;
   const colorPixelDataForNewNote = isMobile
     ? colorDataForPixel
     : clickedPixelColorData;
@@ -156,7 +161,8 @@ export function StudyPage() {
               setOpenedNoteID,
               setAllNotes,
               allNotes,
-              positionForNewMarker,
+              positionForNewMarker: positionForNewMarker,
+              positionForNewNote: positionForNewNote,
               colorPixelDataForNewNote,
             }}
           >
@@ -179,9 +185,8 @@ export function StudyPage() {
                 studyId={Number(studyId)}
                 showAddNote={showAddNote}
                 setShowAddNote={setShowAddNote}
-                clickedPixelColorData={clickedPixelColorData}
                 setAllNotes={setAllNotes}
-                clickedPositionFraction={clickedPositionFraction}
+                // clickedPositionFraction={clickedPositionFraction}
                 isMobile={isMobile}
               />
             </section>
