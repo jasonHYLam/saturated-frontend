@@ -9,7 +9,7 @@ export function NotesContainer({ allNotes }: NotesContainerProps) {
     <>
       <section className={styles.notesContainer}>
         {allNotes.map((note) => (
-          <Note note={note} />
+          <Note note={note} key={note.id} />
         ))}
       </section>
     </>

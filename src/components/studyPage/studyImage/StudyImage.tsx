@@ -59,7 +59,7 @@ export function StudyImage({
         {showAddNote ? <PositionMarker /> : null}
 
         {allNotes.map((note) => (
-          <NoteMarker note={note} />
+          <NoteMarker note={note} key={note.id} />
         ))}
       </section>
     </>

@@ -13,7 +13,6 @@ interface StudyInformationAndNotesProps {
   showAddNote: boolean;
   setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-  // clickedPositionFraction: { xFraction: number; yFraction: number };
   isMobile: boolean;
 }
 
@@ -24,7 +23,6 @@ export function StudyInformationAndNotes({
   showAddNote,
   setShowAddNote,
   setAllNotes,
-  // clickedPositionFraction,
   isMobile,
 }: StudyInformationAndNotesProps) {
   const { allNotes } = useContext(StudyPageContext);
@@ -56,7 +54,6 @@ export function StudyInformationAndNotes({
                 setShowAddNote={setShowAddNote}
                 setAllNotes={setAllNotes}
                 allNotes={allNotes}
-                // clickedPositionFraction={clickedPositionFraction}
               />
             ) : (
               <NotesContainer allNotes={allNotes} />

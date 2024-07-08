@@ -13,7 +13,6 @@ interface AddNoteProps {
   setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
   allNotes: Note[];
-  // clickedPositionFraction: { xFraction: number; yFraction: number };
 }
 
 export function AddNote({
@@ -21,8 +20,7 @@ export function AddNote({
   setShowAddNote,
   setAllNotes,
   allNotes,
-}: // clickedPositionFraction,
-AddNoteProps) {
+}: AddNoteProps) {
   interface FormInput {
     text: string;
   }
@@ -37,17 +35,12 @@ AddNoteProps) {
   const originalColorAsHex = rgbToHex(colorPixelDataForNewNote);
   const guessedColorAsHex = rgbToHex(guessedColor);
 
-  // console.log(positionForNewNote.x);
-  // console.log(positionForNewNote.y);
-
   const uploadNote: SubmitHandler<FormInput> = async (data) => {
     setSubmitting(true);
     const newNoteInput = JSON.stringify({
       Text: data.text,
       OriginalHexColor: originalColorAsHex,
       GuessedHexColor: guessedColorAsHex,
-      // XOrdinateAsFraction: clickedPositionFraction.xFraction,
-      // YOrdinateAsFraction: clickedPositionFraction.yFraction,
       XOrdinateAsFraction: positionForNewNote.x,
       YOrdinateAsFraction: positionForNewNote.y,
     });

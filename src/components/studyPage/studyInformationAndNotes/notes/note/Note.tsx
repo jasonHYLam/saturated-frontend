@@ -16,7 +16,6 @@ interface FormInput {
 
 type NoteStatusOptions = "" | "edit" | "delete";
 export function Note({ note }: NoteProps) {
-  console.log(note);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormInput>();
 
