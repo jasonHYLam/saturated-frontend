@@ -25,6 +25,7 @@ interface StudyPageContextProps {
   canvasElementDimensions: { width: number; height: number };
   normalisedClickedPosition: { x: number; y: number };
   positionForNewMarker: { x: number; y: number };
+  colorPixelDataForNewNote: { r: number; g: number; b: number };
 }
 
 export const StudyPageContext = createContext<StudyPageContextProps>({
@@ -37,6 +38,7 @@ export const StudyPageContext = createContext<StudyPageContextProps>({
   canvasElementDimensions: { width: 1, height: 1 },
   normalisedClickedPosition: { x: 0, y: 0 },
   positionForNewMarker: { x: 0, y: 0 },
+  colorPixelDataForNewNote: { r: 0, g: 0, b: 0 },
 });
 
 export function StudyPage() {
@@ -129,6 +131,9 @@ export function StudyPage() {
   }
 
   const positionForNewMarker = isMobile ? position : normalisedClickedPosition;
+  const colorPixelDataForNewNote = isMobile
+    ? colorDataForPixel
+    : clickedPixelColorData;
 
   return loading ? (
     <Loading />
@@ -152,6 +157,7 @@ export function StudyPage() {
               setAllNotes,
               allNotes,
               positionForNewMarker,
+              colorPixelDataForNewNote,
             }}
           >
             <section className={styles.pageContents}>
