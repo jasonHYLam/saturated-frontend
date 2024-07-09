@@ -1,3 +1,7 @@
-.icon {
+.small {
   width: 25px;
+}
+
+.large {
+  width: 75px;
 }
