@@ -21,7 +21,6 @@ This app is not intended for commercial use. I do not own any of the images; all
 - They can create notes by clicking on a particular pixel; the user is then prompted to enter some information, as well as guess the color of the pixel. The created note contains the original and guessed color data as well as input text.
 
 https://github.com/jasonHYLam/saturated-frontend/assets/105083538/cf9a7035-7263-4ae8-b17c-39948c873aba
-[simplescreenrecorder-2024-07-09_14.30.11.webm](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/def08526-584a-4bfe-beec-30ddefc9d264)
 
 ## Background:
 
