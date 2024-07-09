@@ -98,7 +98,9 @@ export function Signup() {
               )}
             </section>
           </form>
-          <Link to={"/login"}>Have an account? Login</Link>
+          <Link className={styles.link} to={"/login"}>
+            Have an account? Login
+          </Link>
           <GuestLogin setSubmitting={setSubmittingGuestLogin} />
           {submitting ||
             (submittingGuestLogin && (

@@ -30,9 +30,8 @@ export function StudyListAndCreateStudy() {
     <>
       <main className={styles.page}>
         <header className={styles.header}>
-          <h1>Saturated</h1>
           <section className={styles.rightSideContainer}>
-            {isGuest && <p>Using guest account</p>}
+            {isGuest && <p className={styles.subText}>Using guest account</p>}
             <button onClick={submitLogout}>Logout</button>
             <a href={GITHUB_LINK}>
               <Icon iconPath={GithubIcon} />

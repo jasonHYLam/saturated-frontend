@@ -38,6 +38,8 @@
   --button-background: rgb(98, 174, 255);
   --button-hover-background: rgb(0, 123, 255);
   --button-text-color: white;
+
+  --sub-text-color: rgb(182, 182, 182);
 }
 
 body {
@@ -46,6 +48,10 @@ body {
 
 h1 {
   font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
   margin-bottom: 15px;
 }
 

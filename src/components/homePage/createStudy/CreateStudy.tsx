@@ -61,7 +61,7 @@ export function CreateStudy() {
   return (
     <>
       <div>
-        <h1>Creating a study</h1>
+        <h2>Creating a study</h2>
         <article className={styles.uploadedImageContainer}>
           {uploadedImage ? (
             <img

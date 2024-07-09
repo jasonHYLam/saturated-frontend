@@ -75,7 +75,9 @@ export function Login() {
               {backendError && <span>{backendError}</span>}
             </section>
           </form>
-          <Link to={"/signup"}>Don't have an account? Sign up</Link>
+          <Link className={styles.link} to={"/signup"}>
+            Don't have an account? Sign up
+          </Link>
           <GuestLogin setSubmitting={setSubmitting} />
           <p>Server is hosted on free tier, please be patient!</p>
           {submitting && (
