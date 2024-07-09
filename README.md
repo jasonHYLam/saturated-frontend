@@ -6,10 +6,6 @@
 
 
 
-https://github.com/jasonHYLam/saturated-frontend/assets/105083538/5d3d7dd1-338a-4271-8e54-e3bce1736486
-
-![image](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/034c6a41-9821-4b65-a757-eb83df0a1920)
-
 ![image](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/91553345-53da-4c63-bc0a-80e16497c55d)
 
 
@@ -23,6 +19,9 @@ This app is not intended for commercial use. I do not own any of the images; all
 - They can upload an image they wish to study from, and provide a title and link to the original artwork.
 - They can analyse the image's color data by moving the cursor over it.
 - They can create notes by clicking on a particular pixel; the user is then prompted to enter some information, as well as guess the color of the pixel. The created note contains the original and guessed color data as well as input text.
+
+https://github.com/jasonHYLam/saturated-frontend/assets/105083538/cf9a7035-7263-4ae8-b17c-39948c873aba
+[simplescreenrecorder-2024-07-09_14.30.11.webm](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/def08526-584a-4bfe-beec-30ddefc9d264)
 
 ## Background:
 
@@ -42,6 +41,8 @@ Saturated aims to address all of these issues.
 - Ease of access: Users need only login to access their studies, which can be done on any device.
 - Supported on desktop and mobile.
 - Guest account to trial the app.
+
+![image](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/034c6a41-9821-4b65-a757-eb83df0a1920)
 
 ## Technologies:
 
