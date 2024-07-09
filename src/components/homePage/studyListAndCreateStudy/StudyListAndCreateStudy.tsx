@@ -9,6 +9,7 @@ import styles from "./studyListAndCreateStudy.module.css";
 import GithubIcon from "../../../assets/github.svg";
 import { Icon } from "../../icons/Icon";
 import { GITHUB_LINK } from "../../../helpers/constants";
+import { Logo } from "../../icons/Logo";
 
 export function StudyListAndCreateStudy() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function StudyListAndCreateStudy() {
     <>
       <main className={styles.page}>
         <header className={styles.header}>
+          <Logo />
           <section className={styles.rightSideContainer}>
             {isGuest && <p className={styles.subText}>Using guest account</p>}
             <button onClick={submitLogout}>Logout</button>

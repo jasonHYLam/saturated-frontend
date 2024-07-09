@@ -5,6 +5,7 @@ import { GuestLogin } from "./GuestLogin";
 import styles from "./login.module.css";
 import { useState } from "react";
 import { Loading } from "../loading/Loading";
+import { Logo } from "../icons/Logo";
 
 export function Login() {
   interface FormInput {
@@ -52,6 +53,7 @@ export function Login() {
     <>
       <main>
         <section className={styles.container}>
+          <Logo />
           <h1>Saturated</h1>
           <form onSubmit={handleSubmit(submitLogin)} className={styles.form}>
             <input
