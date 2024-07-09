@@ -5,6 +5,7 @@ import { GuestLogin } from "./GuestLogin";
 import styles from "./login.module.css";
 import { useState } from "react";
 import { Loading } from "../loading/Loading";
+import { Logo } from "../icons/Logo";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ export function Signup() {
     <>
       <main>
         <section className={styles.container}>
+          <Logo />
           <h1>Saturated</h1>
           <form onSubmit={handleSubmit(submitSignup)} className={styles.form}>
             <input
