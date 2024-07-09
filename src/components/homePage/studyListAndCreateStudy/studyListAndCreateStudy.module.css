@@ -17,6 +17,12 @@
   position: relative;
 }
 
+@media screen and (max-width: 500px) {
+  .header {
+    justify-content: space-between;
+  }
+}
+
 .rightSideContainer {
   position: absolute;
   display: flex;
