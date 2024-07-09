@@ -72,16 +72,26 @@ export function Login() {
               <input type="submit" value="Logging in" disabled />
             )}
             <section className={styles.errors}>
-              {errors.email && <span>Please provide email</span>}
-              {errors.password && <span>Please provide password</span>}
-              {backendError && <span>{backendError}</span>}
+              {errors.email && (
+                <span className={styles.error}>Please provide email</span>
+              )}
+              {errors.password && (
+                <span className={styles.error}>Please provide password</span>
+              )}
+              {backendError && (
+                <span className={styles.error}>{backendError}</span>
+              )}
             </section>
           </form>
-          <Link className={styles.link} to={"/signup"}>
-            Don't have an account? Sign up
-          </Link>
-          <GuestLogin setSubmitting={setSubmitting} />
-          <p>Server is hosted on free tier, please be patient!</p>
+          <section className={styles.options}>
+            <Link className={styles.link} to={"/signup"}>
+              Don't have an account? Sign up
+            </Link>
+            <GuestLogin setSubmitting={setSubmitting} />
+          </section>
+          <p className={styles.subtext}>
+            Server is hosted on free tier, please be patient!
+          </p>
           {submitting && (
             <>
               <Loading />

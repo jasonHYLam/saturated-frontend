@@ -87,23 +87,33 @@ export function Signup() {
               <input type="submit" value="Logging in" disabled />
             )}
             <section className={styles.errors}>
-              {backendError && <span>{backendError}</span>}
-              {errors.email && <span>Please provide email</span>}
+              {backendError && (
+                <span className={styles.error}>{backendError}</span>
+              )}
+              {errors.email && (
+                <span className={styles.error}>Please provide email</span>
+              )}
               {errors.password && errors.password.type === "required" && (
-                <span>Please provide password</span>
+                <span className={styles.error}>Please provide password</span>
               )}
               {errors.password && errors.password.type === "minLength" && (
-                <span>Password must be at least 6 characters long</span>
+                <span className={styles.error}>
+                  Password must be at least 6 characters long
+                </span>
               )}
               {errors.confirmPassword && (
-                <span>{errors.confirmPassword.message}</span>
+                <span className={styles.error}>
+                  {errors.confirmPassword.message}
+                </span>
               )}
             </section>
           </form>
-          <Link className={styles.link} to={"/login"}>
-            Have an account? Login
-          </Link>
-          <GuestLogin setSubmitting={setSubmittingGuestLogin} />
+          <section className={styles.options}>
+            <Link className={styles.link} to={"/login"}>
+              Have an account? Login
+            </Link>
+            <GuestLogin setSubmitting={setSubmittingGuestLogin} />
+          </section>
           {submitting ||
             (submittingGuestLogin && (
               <>
