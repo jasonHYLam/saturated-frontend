@@ -92,17 +92,38 @@ export function AddNote({
           )}
         </section>
 
-        <section>
+        <section className={styles.addNoteSection}>
           <p>Guess color</p>
-          <RgbColorPicker color={guessedColor} onChange={setGuessedColor} />
+          <RgbColorPicker
+            className={styles.react_colorful}
+            color={guessedColor}
+            onChange={setGuessedColor}
+          />
         </section>
 
-        <form action="" onSubmit={handleSubmit(uploadNote)}>
-          <input type="text" {...register("text")} placeholder="Add a note" />
+        <form
+          action=""
+          onSubmit={handleSubmit(uploadNote)}
+          className={styles.addNoteSection}
+        >
+          <textarea
+            className={styles.textInput}
+            {...register("text")}
+            placeholder="Add a note"
+          />
           {!submitting ? (
-            <input type="submit" value="Create" />
+            <input
+              className={styles.createNoteButton}
+              type="submit"
+              value="Create"
+            />
           ) : (
-            <input type="submit" value="Creating note..." disabled />
+            <input
+              className={styles.createNoteButton}
+              type="submit"
+              value="Creating note..."
+              disabled
+            />
           )}
         </form>
       </section>
