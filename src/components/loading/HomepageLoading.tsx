@@ -1,13 +1,17 @@
-import { Icon } from "../icons/Icon";
 import { Loading } from "./Loading";
-import SaturatedLogoPath from "../../assets/SaturatedLogo.png";
+import { Logo } from "../icons/Logo";
+import styles from "./loading.module.css";
 
 export function HomepageLoading() {
   return (
     <>
-      <Icon iconPath={SaturatedLogoPath} />
-      <Loading />
-      <p>Server is hosted on free tier, please be patient!</p>
+      <section className={styles.homepageLoadingContainer}>
+        <Logo />
+        <Loading />
+        <p className={styles.subtext}>
+          Server is hosted on free tier, please be patient!
+        </p>
+      </section>
     </>
   );
 }

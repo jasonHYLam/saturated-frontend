@@ -3,3 +3,12 @@
   height: 100px;
   color: white;
 }
+
+.homepageLoadingContainer {
+  margin-top: 100px;
+}
+
+.subtext {
+  color: var(--sub-text-color);
+  font-size: 95%;
+}
