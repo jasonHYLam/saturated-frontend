@@ -23,6 +23,7 @@
 
 .editDeleteButtons {
   position: absolute;
+  right: 0;
 }
 
 .notesContainer {
