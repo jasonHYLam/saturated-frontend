@@ -186,7 +186,6 @@ export function StudyPage() {
                 showAddNote={showAddNote}
                 setShowAddNote={setShowAddNote}
                 setAllNotes={setAllNotes}
-                isMobile={isMobile}
               />
             </section>
           </StudyPageContext.Provider>

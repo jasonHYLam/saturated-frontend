@@ -1,7 +1,12 @@
 .canvasContainer {
-  height: 80%;
   position: relative;
-  width: 100%;
+  max-width: 80%;
+}
+
+@media screen and (max-width: 500px) {
+  .canvasContainer {
+    max-width: 100%;
+  }
 }
 
 .canvas {

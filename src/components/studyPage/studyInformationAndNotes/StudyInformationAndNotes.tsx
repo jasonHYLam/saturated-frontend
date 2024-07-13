@@ -13,7 +13,6 @@ interface StudyInformationAndNotesProps {
   showAddNote: boolean;
   setShowAddNote: React.Dispatch<React.SetStateAction<boolean>>;
   setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-  isMobile: boolean;
 }
 
 export function StudyInformationAndNotes({
@@ -23,43 +22,41 @@ export function StudyInformationAndNotes({
   showAddNote,
   setShowAddNote,
   setAllNotes,
-  isMobile,
 }: StudyInformationAndNotesProps) {
   const { allNotes } = useContext(StudyPageContext);
   const navigate = useNavigate();
   const [displayInfo, setDisplayInfo] = useState("notes");
 
-  const studyInformationStyle = isMobile
-    ? `${styles.studyInformation} ${styles.mobile}`
-    : `${styles.studyInformation} `;
   return (
     <>
-      <section className={studyInformationStyle}>
-        <section>
-          <button onClick={() => navigate("/")}>All studies</button>
-          <button onClick={() => setDisplayInfo("study")}>Study</button>
-          <button onClick={() => setDisplayInfo("notes")}>Notes</button>
-        </section>
-        {displayInfo === "study" ? (
-          <StudyInformation
-            studyTitle={studyTitle}
-            studyOriginalLink={studyOriginalLink}
-            studyId={studyId}
-          />
-        ) : (
+      <section className={styles.studyInformationContainer}>
+        <section className={styles.studyInformationContent}>
           <section>
-            {showAddNote ? (
-              <AddNote
-                studyId={studyId}
-                setShowAddNote={setShowAddNote}
-                setAllNotes={setAllNotes}
-                allNotes={allNotes}
-              />
-            ) : (
-              <NotesContainer allNotes={allNotes} />
-            )}
+            <button onClick={() => navigate("/")}>All studies</button>
+            <button onClick={() => setDisplayInfo("study")}>Study</button>
+            <button onClick={() => setDisplayInfo("notes")}>Notes</button>
           </section>
-        )}
+          {displayInfo === "study" ? (
+            <StudyInformation
+              studyTitle={studyTitle}
+              studyOriginalLink={studyOriginalLink}
+              studyId={studyId}
+            />
+          ) : (
+            <section>
+              {showAddNote ? (
+                <AddNote
+                  studyId={studyId}
+                  setShowAddNote={setShowAddNote}
+                  setAllNotes={setAllNotes}
+                  allNotes={allNotes}
+                />
+              ) : (
+                <NotesContainer allNotes={allNotes} />
+              )}
+            </section>
+          )}
+        </section>
       </section>
     </>
   );
