@@ -13,7 +13,7 @@ export function ColorReferenceForNote({
     <>
       <div
         style={{ backgroundColor: colorAsHex }}
-        className={`${styles.colorReference} ${sizeStyle}`}
+        className={`${styles.colorReferenceForNote} ${sizeStyle}`}
       />
     </>
   );

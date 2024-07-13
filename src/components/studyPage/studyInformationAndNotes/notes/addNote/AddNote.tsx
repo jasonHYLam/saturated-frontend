@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { RgbColorPicker } from "react-colorful";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ColorReference } from "../../../colorReference/ColorReference";
 import { fetchWithoutQueryOrImage } from "../../../../../helpers/fetchData";
 import { rgbToHex } from "../../../../../helpers/helpers";
 import { useNavigate } from "react-router-dom";
 import styles from "./addNote.module.css";
 import { StudyPageContext } from "../../../StudyPage";
+import { ColorReferenceForNote } from "../../../colorReference/ColorReferenceForNote";
 
 interface AddNoteProps {
   studyId: number;
@@ -79,7 +79,10 @@ export function AddNote({
 
         <section>
           {showColorReference ? (
-            <ColorReference colorData={colorPixelDataForNewNote} size="large" />
+            <ColorReferenceForNote
+              colorAsHex={originalColorAsHex}
+              size="large"
+            />
           ) : null}
           {showColorReference ? (
             <button onClick={() => setShowColorReference(false)}>

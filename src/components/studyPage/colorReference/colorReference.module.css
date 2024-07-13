@@ -13,3 +13,10 @@
     width: var(--color-reference-small);
   }
 }
+
+.colorReferenceForNote {
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  height: var(--color-reference-large);
+  width: var(--color-reference-large);
+}
