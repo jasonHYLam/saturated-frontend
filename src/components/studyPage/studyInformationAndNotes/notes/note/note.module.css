@@ -34,3 +34,9 @@
 .colorInformationContainer {
   display: flex;
 }
+
+@media screen and (max-width: 500px) {
+  .noteText {
+    font-size: 80%;
+  }
+}

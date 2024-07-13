@@ -147,7 +147,7 @@ export function StudyPage() {
       <main className={styles.page}>
         <header className={styles.header}>
           <article className={styles.colorReferenceContainer}>
-            <ColorReference colorData={colorDataForPixel} size="large" />
+            <ColorReference colorData={colorDataForPixel} />
             <ToggleColorMode
               colorMode={colorMode}
               setColorMode={setColorMode}

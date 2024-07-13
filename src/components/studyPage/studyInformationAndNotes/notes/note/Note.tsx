@@ -173,7 +173,7 @@ export function Note({ note }: NoteProps) {
             <button onClick={cancelChanges}>No</button>
           </section>
         ) : (
-          <p>{note.text}</p>
+          <p className={styles.noteText}>{note.text}</p>
         )}
       </article>
     </>

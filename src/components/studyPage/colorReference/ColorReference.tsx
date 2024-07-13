@@ -3,18 +3,14 @@ import { rgbToHex } from "../../../helpers/helpers";
 
 interface ColorReferenceProps {
   colorData: ColorDataType;
-  size: Size;
 }
 
-type Size = "small" | "large";
-export function ColorReference({ colorData, size }: ColorReferenceProps) {
-  const sizeStyle = size === "small" ? styles.small : styles.large;
-
+export function ColorReference({ colorData }: ColorReferenceProps) {
   const colorDataAsString = rgbToHex(colorData);
   return (
     <div
       style={{ backgroundColor: colorDataAsString }}
-      className={`${styles.colorReference} ${sizeStyle}`}
+      className={styles.colorReference}
     />
   );
 }
