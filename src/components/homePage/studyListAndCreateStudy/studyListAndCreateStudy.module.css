@@ -34,6 +34,7 @@
 
 .subText {
   color: var(--sub-text-color);
+  font-size: 80%;
 }
 
 .toggleShowCreateStudy {
