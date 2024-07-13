@@ -60,7 +60,7 @@ export function CreateStudy() {
 
   return (
     <>
-      <div>
+      <section className={styles.createStudyContainer}>
         <h2>Creating a study</h2>
         <article className={styles.uploadedImageContainer}>
           {uploadedImage ? (
@@ -120,7 +120,7 @@ export function CreateStudy() {
             <input type="submit" value="Uploading..." disabled />
           )}
         </form>
-      </div>
+      </section>
     </>
   );
 }
