@@ -1,14 +1,15 @@
 .colorReference {
   border-radius: 50%;
   box-shadow: var(--box-shadow);
-}
-
-.small {
-  height: var(--color-reference-small);
-  width: var(--color-reference-small);
-}
-
-.large {
   height: var(--color-reference-large);
   width: var(--color-reference-large);
+}
+
+@media screen and (max-width: 500px) {
+  .colorReference {
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    height: var(--color-reference-small);
+    width: var(--color-reference-small);
+  }
 }
