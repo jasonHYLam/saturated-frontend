@@ -1,20 +1,23 @@
 .studyInformationContainer {
   display: flex;
   flex-direction: column;
+  position: relative;
   max-width: 300px;
-
   min-width: 300px;
 }
 
 .studyInformationContent {
   position: fixed;
-  margin-right: 10px;
+  margin-inline: 10px;
 }
 
 @media screen and (max-width: 500px) {
   .studyInformationContainer {
     max-width: 100%;
   }
+
+.studyInformationContent {
+  position: relative;
+  margin-right: 10px;
 }
-.mobile {
 }
