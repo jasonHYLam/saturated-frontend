@@ -9,8 +9,6 @@ interface ColorReferenceProps {
 type Size = "small" | "large";
 export function ColorReference({ colorData, size }: ColorReferenceProps) {
   const sizeStyle = size === "small" ? styles.small : styles.large;
-  // console.log("checking colorData");
-  // console.log(colorData);
 
   const colorDataAsString = rgbToHex(colorData);
   return (
