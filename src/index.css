@@ -84,3 +84,9 @@ textarea {
   padding: 0.5rem;
   font-size: 90%;
 }
+
+/* Awkward workaround for RgbColorPicker, whichs its default classnames to be overridden. 
+Not sure this is possible with CSS Modules, so classnames are explicitly set. */
+.rgbColorPicker.react-colorful {
+  width: auto;
+}

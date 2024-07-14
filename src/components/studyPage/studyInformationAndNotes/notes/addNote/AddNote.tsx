@@ -98,7 +98,8 @@ export function AddNote({
         <section className={styles.addNoteSection}>
           <p>Guess color</p>
           <RgbColorPicker
-            className={styles.react_colorful}
+            // className={styles.rgbColorPicker}
+            className="rgbColorPicker"
             color={guessedColor}
             onChange={setGuessedColor}
           />
