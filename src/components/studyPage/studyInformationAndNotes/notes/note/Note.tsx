@@ -107,7 +107,7 @@ export function Note({ note }: NoteProps) {
   }
 
   const noteStyle =
-    hoveredMarkerAndNoteID === note.id
+    isNoteHovered || isNoteOpened
       ? `${styles.note} ${styles.activeNote}`
       : styles.note;
 
