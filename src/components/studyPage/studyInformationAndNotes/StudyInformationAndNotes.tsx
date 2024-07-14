@@ -31,7 +31,7 @@ export function StudyInformationAndNotes({
     <>
       <section className={styles.studyInformationContainer}>
         <section className={styles.studyInformationContent}>
-          <section>
+          <section className={styles.topRow}>
             <button onClick={() => navigate("/")}>All studies</button>
             <button onClick={() => setDisplayInfo("study")}>Study</button>
             <button onClick={() => setDisplayInfo("notes")}>Notes</button>
