@@ -21,6 +21,7 @@
   --container-background-color: linear-gradient(var(--main-background-color) 30% , rgb(59, 59, 59) 100%) ;
 
   --box-shadow: 0px 10px 10px -10px black;
+  --note-box-shadow: 0px 20px 10px -10px white;
 
   --note-color-size: 50px;
 

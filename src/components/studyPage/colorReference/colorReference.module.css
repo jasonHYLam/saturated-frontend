@@ -1,5 +1,5 @@
 .colorReference {
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
   height: var(--color-reference-large);
@@ -16,7 +16,6 @@
 }
 
 .colorReferenceForNote {
-  border: 1px solid white;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
   height: var(--color-reference-small); 
