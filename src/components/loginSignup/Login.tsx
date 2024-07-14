@@ -54,7 +54,7 @@ export function Login() {
       <main>
         <section className={styles.container}>
           <Logo size="extraLarge" />
-          <h1 className={styles.title}>Saturated</h1>
+          <h1 className={styles.title}>saturated</h1>
           <form onSubmit={handleSubmit(submitLogin)} className={styles.form}>
             <input
               type="text"
