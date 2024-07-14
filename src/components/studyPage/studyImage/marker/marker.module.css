@@ -7,6 +7,7 @@
   position: absolute;
   z-index: 9;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .positionMarker {
@@ -22,9 +23,10 @@
 
 .noteMarker:hover {
   opacity: var(--marker-hover-opacity);
-  cursor: pointer;
   box-shadow: var(--box-shadow);
   border-radius: 0;
+  height: var(--active-marker-size);
+  width: var(--active-marker-size);
 }
 
 .activeMarker {
