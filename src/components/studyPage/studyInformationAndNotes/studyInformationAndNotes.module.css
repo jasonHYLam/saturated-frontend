@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  min-width: 300px;
 }
 
 .studyInformationContent {
   position: fixed;
   margin-inline: 10px;
   /* Awkward fix for position:fixed; set width manually */
-  width: 18%;
+  min-width: max(18%, 300px);
 }
 
 @media screen and (max-width: 500px) {
