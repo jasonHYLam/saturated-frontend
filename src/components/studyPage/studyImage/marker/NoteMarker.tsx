@@ -13,6 +13,7 @@ export function NoteMarker({ note }: NoteMarkerProps) {
   const {
     hoveredMarkerAndNoteID,
     setHoveredMarkerAndNoteID,
+    openedNoteID,
     setOpenedNoteID,
     canvasElementDimensions,
   } = useContext(StudyPageContext);
@@ -20,8 +21,12 @@ export function NoteMarker({ note }: NoteMarkerProps) {
   const xPosition = note.xOrdinateAsFraction * canvasElementDimensions.width;
   const yPosition = note.yOrdinateAsFraction * canvasElementDimensions.height;
 
+  const isNoteHovered = hoveredMarkerAndNoteID === note.id;
+
+  const isNoteOpened = openedNoteID === note.id;
+
   const noteMarkerStyle =
-    hoveredMarkerAndNoteID === note.id
+    isNoteHovered || isNoteOpened
       ? `${styles.noteMarker} ${styles.activeMarker}`
       : styles.noteMarker;
 
