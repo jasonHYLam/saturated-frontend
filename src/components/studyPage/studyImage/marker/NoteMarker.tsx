@@ -1,5 +1,8 @@
 import styles from "./marker.module.css";
-import { MARKER_HEIGHT } from "../../../../helpers/constants";
+import {
+  MARKER_HEIGHT,
+  ACTIVE_MARKER_HEIGHT,
+} from "../../../../helpers/constants";
 import { useContext } from "react";
 import { StudyPageContext } from "../../StudyPage";
 
@@ -34,12 +37,15 @@ export function NoteMarker({ note }: NoteMarkerProps) {
     setOpenedNoteID(note.id);
   }
 
+  const markerSize =
+    hoveredMarkerAndNoteID === note.id ? ACTIVE_MARKER_HEIGHT : MARKER_HEIGHT;
+
   return (
     <>
       <div
         style={{
-          top: yPosition - MARKER_HEIGHT / 2,
-          left: xPosition - MARKER_HEIGHT / 2,
+          top: yPosition - markerSize / 2,
+          left: xPosition - markerSize / 2,
         }}
         className={noteMarkerStyle}
         onMouseOver={handleHover}

@@ -8,6 +8,8 @@
   z-index: 9;
   border-radius: 5px;
   cursor: pointer;
+  transition: height 0.2s;
+  transition: width 0.2s;
 }
 
 .positionMarker {
@@ -33,4 +35,6 @@
   opacity: var(--marker-hover-opacity);
   border-radius: 0;
   border: white 1px solid;
+  height: var(--active-marker-size);
+  width: var(--active-marker-size);
 }
