@@ -43,7 +43,7 @@ export function NoteMarker({ note }: NoteMarkerProps) {
   }
 
   const markerSize =
-    hoveredMarkerAndNoteID === note.id ? ACTIVE_MARKER_HEIGHT : MARKER_HEIGHT;
+    isNoteHovered || isNoteOpened ? ACTIVE_MARKER_HEIGHT : MARKER_HEIGHT;
 
   return (
     <>

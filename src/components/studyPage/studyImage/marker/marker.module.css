@@ -27,8 +27,8 @@
   opacity: var(--marker-hover-opacity);
   box-shadow: var(--box-shadow);
   border-radius: 0;
-  height: var(--active-marker-size);
-  width: var(--active-marker-size);
+  /* height: var(--active-marker-size);
+  width: var(--active-marker-size); */
 }
 
 .activeMarker {
