@@ -60,7 +60,7 @@ input[type="text"], input[type="password"], input[type="submit"], button, label 
   font-size: 1.0rem;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], textarea {
   background-color: var(--main-background-color);
   border: 1px solid grey;
   color: white;
