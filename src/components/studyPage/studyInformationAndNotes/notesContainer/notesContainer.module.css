@@ -5,4 +5,5 @@
   max-height: 90svh;
   overflow-y: scroll;
   padding-bottom: 20px;
+  padding-inline: 10px;
 }

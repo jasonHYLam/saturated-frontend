@@ -1,14 +1,15 @@
 .studyInformationContainer {
+  flex: auto;
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 300px;
-  min-width: 300px;
 }
 
 .studyInformationContent {
   position: fixed;
   margin-inline: 10px;
+  /* Awkward fix for position:fixed; set width manually */
+  width: 18%;
 }
 
 @media screen and (max-width: 500px) {
@@ -16,8 +17,9 @@
     max-width: 100%;
   }
 
-.studyInformationContent {
-  position: relative;
-  margin-right: 10px;
-}
+  .studyInformationContent {
+    position: relative;
+    margin-inline: 0px;
+    width: 100%;
+  }
 }
