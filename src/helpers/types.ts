@@ -39,4 +39,4 @@ interface ColorDataType {
   b: number;
 }
 
-type ImageFitMode = "fitHeight" | "fitWidth";
+type ImageFitModes = "fitHeight" | "fitWidth";
