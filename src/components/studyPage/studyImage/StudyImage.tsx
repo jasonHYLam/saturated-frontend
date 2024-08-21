@@ -3,20 +3,6 @@ import { PositionMarker } from "./marker/PositionMarker";
 import { NoteMarker } from "./marker/NoteMarker";
 import { useAddImageToCanvas } from "../../../helpers/hooks";
 
-interface StudyImageProps {
-  imageLink: string;
-  setCanvasElementDimensions: React.Dispatch<
-    React.SetStateAction<{ width: number; height: number }>
-  >;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-  showAddNote: boolean;
-  handleClick: HandleClickCallbackType;
-  allNotes: Note[];
-  colorMode: ColorModes;
-  setPositionOnImage: setPositionOnImageCallbackType;
-  isMobile: boolean;
-}
-
 export function StudyImage({
   imageLink,
   setCanvasElementDimensions,
@@ -64,4 +50,18 @@ export function StudyImage({
       </section>
     </>
   );
+}
+
+interface StudyImageProps {
+  imageLink: string;
+  setCanvasElementDimensions: React.Dispatch<
+    React.SetStateAction<{ width: number; height: number }>
+  >;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  showAddNote: boolean;
+  handleClick: HandleClickCallbackType;
+  allNotes: Note[];
+  colorMode: ColorModes;
+  setPositionOnImage: setPositionOnImageCallbackType;
+  isMobile: boolean;
 }

@@ -39,20 +39,4 @@ interface ColorDataType {
   b: number;
 }
 
-interface StudyPageContextProps {
-  hoveredMarkerAndNoteID: number | null;
-  setHoveredMarkerAndNoteID: React.Dispatch<
-    React.SetStateAction<number | null>
-  >;
-  setOpenedNoteID: React.Dispatch<React.SetStateAction<number | null>>;
-  openedNoteID: number | null;
-  setAllNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-  allNotes: Note[];
-  canvasElementDimensions: { width: number; height: number };
-  normalisedClickedPosition: { x: number; y: number };
-  positionForNewMarker: { x: number; y: number };
-  positionForNewNote: { x: number; y: number };
-  colorPixelDataForNewNote: { r: number; g: number; b: number };
-}
-
 type ImageFitMode = "fitHeight" | "fitWidth";
