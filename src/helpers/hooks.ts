@@ -123,7 +123,9 @@ interface useAddImageToCanvasProps {
   >;
 }
 
+// Note to self:
 // CanvasElementDimensions refer to the canvas HTML element, and is used for determining where to place notes.
+// After setting canvas.width and canvas.height, canvas.clientWidth and canvas.clientHeight are set which I believe are affected by CSS layout.
 // Canvas.width and canvas.height refer to the image height and width, which is used for determining color data from the image.
 export function useAddImageToCanvas({
   canvasRef,
