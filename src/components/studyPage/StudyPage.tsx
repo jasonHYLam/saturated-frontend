@@ -56,6 +56,7 @@ export function StudyPage() {
     g: 0,
     b: 0,
   });
+  const [imageFit, setImageFit] = useState();
   const [colorMode, setColorMode] = useState<ColorModes>("color");
   const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState<
     number | null
@@ -63,6 +64,7 @@ export function StudyPage() {
   const [openedNoteID, setOpenedNoteID] = useState<number | null>(0);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const notesContainerRef = useRef<HTMLElement>(null);
 
   const { study, allNotes, setAllNotes, loading } =
     useGetStudyAndNotes(studyId);
