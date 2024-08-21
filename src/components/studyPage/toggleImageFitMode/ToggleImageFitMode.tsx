@@ -7,6 +7,12 @@ export function ToggleImageFitMode({
   imageFitMode,
   setImageFitMode,
 }: ToggleImageFitModeProps) {
-  function handleClick() {}
-  return <button>Toggle image fit</button>;
+  function handleClick() {
+    if (imageFitMode === "fitWidth") {
+      setImageFitMode("fitHeight");
+    } else if (imageFitMode === "fitHeight") {
+      setImageFitMode("fitWidth");
+    }
+  }
+  return <button onClick={handleClick}>Toggle image fit</button>;
 }
