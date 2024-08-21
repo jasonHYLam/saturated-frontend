@@ -173,6 +173,7 @@ export function StudyPage() {
                 colorMode={colorMode}
                 setPositionOnImage={setPositionOnImage}
                 isMobile={isMobile}
+                imageFitMode={imageFitMode}
               />
 
               <StudyInformationAndNotes
