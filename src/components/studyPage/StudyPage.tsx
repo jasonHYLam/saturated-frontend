@@ -41,7 +41,7 @@ export function StudyPage() {
     g: 0,
     b: 0,
   });
-  const [imageFitMode, setImageFitMode] = useState("fitWidth");
+  const [imageFitMode, setImageFitMode] = useState<ImageFitModes>("fitWidth");
   const [colorMode, setColorMode] = useState<ColorModes>("color");
   const [hoveredMarkerAndNoteID, setHoveredMarkerAndNoteID] = useState<
     number | null
