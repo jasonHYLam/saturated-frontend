@@ -27,9 +27,7 @@ export function StudyImage({
         onClick: (e: React.MouseEvent) => handleClick(isMobile, e),
       }
     : {
-        onPointerMove: (e: React.MouseEvent) => {
-          setPositionOnImage(e);
-        },
+        onPointerMove: (e: React.MouseEvent) => setPositionOnImage(e),
         onClick: (e: React.MouseEvent) => handleClick(isMobile, e),
       };
 
