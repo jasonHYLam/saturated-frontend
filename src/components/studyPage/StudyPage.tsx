@@ -12,6 +12,7 @@ import {
 import { useParams } from "react-router-dom";
 import { getColorDataForPixel } from "../../helpers/helpers";
 import { Loading } from "../loading/Loading";
+import { ToggleImageFitMode } from "./toggleImageFitMode/ToggleImageFitMode";
 
 export const StudyPageContext = createContext<StudyPageContextProps>({
   hoveredMarkerAndNoteID: null,
@@ -137,6 +138,10 @@ export function StudyPage() {
             <ToggleColorMode
               colorMode={colorMode}
               setColorMode={setColorMode}
+            />
+            <ToggleImageFitMode
+              imageFitMode={imageFitMode}
+              setImageFitMode={setImageFitMode}
             />
           </article>
         </header>
