@@ -75,37 +75,21 @@ export function useGetStudyAndNotes(studyId: string) {
   return { study, loading, allNotes, setAllNotes };
 }
 
-interface useScreenResizeProps {
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-  setCanvasElementDimensions: React.Dispatch<
-    React.SetStateAction<CanvasElementDimensions>
-  >;
-}
-
-export function useScreenResize({
-  canvasRef,
-  setCanvasElementDimensions,
-}: useScreenResizeProps) {
+export function useScreenResize() {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
-    function handleScreenResize(canvas: HTMLCanvasElement) {
-      setCanvasElementDimensions({
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      });
+    function handleScreenResize() {
       setScreenSize(window.innerWidth);
     }
 
     window.addEventListener("resize", () => {
-      if (!canvasRef.current) return;
-      handleScreenResize(canvasRef.current);
+      handleScreenResize();
     });
 
     return () => {
       window.removeEventListener("resize", () => {
-        if (!canvasRef.current) return;
-        handleScreenResize(canvasRef.current);
+        handleScreenResize();
       });
     };
   }, []);
@@ -203,7 +187,7 @@ export function useGuest() {
 export function useCanvasResize({
   canvasRef,
   setCanvasElementDimensions,
-}: useScreenResizeProps) {
+}: useCanvasResizeProps) {
   useEffect(() => {
     const canvas = canvasRef.current;
 
@@ -226,4 +210,11 @@ export function useCanvasResize({
       };
     }
   }, [canvasRef.current]);
+}
+
+interface useCanvasResizeProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  setCanvasElementDimensions: React.Dispatch<
+    React.SetStateAction<CanvasElementDimensions>
+  >;
 }
