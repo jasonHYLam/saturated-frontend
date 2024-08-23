@@ -199,38 +199,31 @@ export function useGuest() {
 }
 
 // Won't this happen at the same time that useScreenResize occurs?
+// Initially, canvas.current is null, but is updated to the actual canvas element.
 export function useCanvasResize({
   canvasRef,
   setCanvasElementDimensions,
 }: useScreenResizeProps) {
-  // console.log("checking useCanvasResize");
-  console.log("checking canvasRef");
-  console.log(canvasRef);
-  console.log(canvasRef.current);
-
-  // I am expecting this useEffect hook to kick in again, when canvasRef updates.
   useEffect(() => {
-    // function handleCanvasResize(canvas: HTMLCanvasElement) {
-    //   setCanvasElementDimensions({
-    //     width: canvas.clientWidth,
-    //     height: canvas.clientHeight,
-    //   });
-    // }
-
     const canvas = canvasRef.current;
-    console.log(canvas);
 
     if (canvas) {
-      console.log("yes canvas");
       const resizeObserver = new ResizeObserver((entries) => {
         for (const entry of entries) {
-          console.log("size changed");
           if (entry.contentBoxSize) {
+            setCanvasElementDimensions({
+              width: entry.contentBoxSize[0].inlineSize,
+              height: entry.contentBoxSize[0].blockSize,
+            });
           }
         }
       });
 
       resizeObserver.observe(canvas);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
     }
   }, [canvasRef.current]);
 }
