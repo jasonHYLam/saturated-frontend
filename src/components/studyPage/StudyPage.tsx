@@ -77,7 +77,15 @@ export function StudyPage() {
     height: 1,
   });
 
+  // const canvasElementDimensions = {
+  //   width: canvasRef.current?.clientWidth ?? 1,
+  //   height: canvasRef.current?.clientHeight ?? 1,
+  // };
+
+  console.log(canvasElementDimensions);
+
   const isMobile = useScreenResize({ canvasRef, setCanvasElementDimensions });
+  // const isMobile = useScreenResize();
 
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {

@@ -13,6 +13,7 @@ export function StudyImage({
   colorMode,
   setPositionOnImage,
   isMobile,
+  imageFitMode,
 }: StudyImageProps) {
   useAddImageToCanvas({
     canvasRef: canvasRef,
@@ -21,6 +22,11 @@ export function StudyImage({
   });
 
   const colorModeStyle = colorMode === "color" ? `` : styles.grayscale;
+
+  const imageFitModeStyle =
+    imageFitMode === "fitHeight"
+      ? `${styles.canvas} ${styles.fitToHeight}`
+      : `${styles.canvas} ${styles.fitToWidth}`;
 
   const canvasEventHandlers = isMobile
     ? {
@@ -35,7 +41,8 @@ export function StudyImage({
     <>
       <section className={styles.canvasContainer}>
         <canvas
-          className={`${styles.canvas} ${colorModeStyle}`}
+          // className={`${styles.canvas} ${colorModeStyle}`}
+          className={`${imageFitModeStyle} ${colorModeStyle}`}
           {...canvasEventHandlers}
           ref={canvasRef}
         ></canvas>
@@ -62,4 +69,5 @@ interface StudyImageProps {
   colorMode: ColorModes;
   setPositionOnImage: setPositionOnImageCallbackType;
   isMobile: boolean;
+  imageFitMode: ImageFitModes;
 }

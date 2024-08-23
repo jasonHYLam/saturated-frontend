@@ -15,6 +15,16 @@
   transition: filter 0.3s;
 }
 
+.fitToWidth {
+  height: auto;
+  width: 100%;
+}
+
+.fitToHeight {
+  max-height: 100svh;
+  width: auto;
+}
+
 .colorReference {
   height: 20px;
   width: 20px;

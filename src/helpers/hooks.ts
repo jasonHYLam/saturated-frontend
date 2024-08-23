@@ -131,7 +131,8 @@ export function useAddImageToCanvas({
   canvasRef,
   imageLink,
   setCanvasElementDimensions,
-}: useAddImageToCanvasProps) {
+}: // setCanvasElementDimensions,
+useAddImageToCanvasProps) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -195,4 +196,33 @@ export function useGuest() {
   }, []);
 
   return { isGuest, loading };
+}
+
+// Won't this happen at the same time that useScreenResize occurs?
+export function useCanvasResize({
+  canvasRef,
+  setCanvasElementDimensions,
+}: useScreenResizeProps) {
+  useEffect(() => {
+    function handleCanvasResize(canvas: HTMLCanvasElement) {
+      setCanvasElementDimensions({
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      });
+    }
+
+    const canvas = canvasRef.current;
+
+    canvas?.addEventListener("resize", () => {
+      if (!canvas) return;
+      handleCanvasResize(canvas);
+    });
+
+    return () => {
+      canvas?.removeEventListener("resize", () => {
+        if (!canvas) return;
+        handleCanvasResize(canvas);
+      });
+    };
+  }, []);
 }
