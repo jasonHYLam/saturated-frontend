@@ -5,6 +5,7 @@ import { ColorReference } from "./colorReference/ColorReference";
 import { ToggleColorMode } from "./toggleColorMode/ToggleColorMode";
 import { StudyInformationAndNotes } from "./studyInformationAndNotes/StudyInformationAndNotes";
 import {
+  useCanvasResize,
   useGetStudyAndNotes,
   useMousePosition,
   useScreenResize,
@@ -77,15 +78,11 @@ export function StudyPage() {
     height: 1,
   });
 
-  // const canvasElementDimensions = {
-  //   width: canvasRef.current?.clientWidth ?? 1,
-  //   height: canvasRef.current?.clientHeight ?? 1,
-  // };
-
-  console.log(canvasElementDimensions);
-
   const isMobile = useScreenResize({ canvasRef, setCanvasElementDimensions });
-  // const isMobile = useScreenResize();
+
+  // console.log("checking canvasRef");
+  // console.log(canvasRef);
+  useCanvasResize({ canvasRef, setCanvasElementDimensions });
 
   // Mouse position normalised to the canvas dimensions.
   const normalisedMousePositionFraction = {

@@ -203,26 +203,34 @@ export function useCanvasResize({
   canvasRef,
   setCanvasElementDimensions,
 }: useScreenResizeProps) {
+  // console.log("checking useCanvasResize");
+  console.log("checking canvasRef");
+  console.log(canvasRef);
+  console.log(canvasRef.current);
+
+  // I am expecting this useEffect hook to kick in again, when canvasRef updates.
   useEffect(() => {
-    function handleCanvasResize(canvas: HTMLCanvasElement) {
-      setCanvasElementDimensions({
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      });
-    }
+    // function handleCanvasResize(canvas: HTMLCanvasElement) {
+    //   setCanvasElementDimensions({
+    //     width: canvas.clientWidth,
+    //     height: canvas.clientHeight,
+    //   });
+    // }
 
     const canvas = canvasRef.current;
+    console.log(canvas);
 
-    canvas?.addEventListener("resize", () => {
-      if (!canvas) return;
-      handleCanvasResize(canvas);
-    });
-
-    return () => {
-      canvas?.removeEventListener("resize", () => {
-        if (!canvas) return;
-        handleCanvasResize(canvas);
+    if (canvas) {
+      console.log("yes canvas");
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          console.log("size changed");
+          if (entry.contentBoxSize) {
+          }
+        }
       });
-    };
-  }, []);
+
+      resizeObserver.observe(canvas);
+    }
+  }, [canvasRef.current]);
 }
