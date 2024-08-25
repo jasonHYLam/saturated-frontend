@@ -50,7 +50,6 @@ export function StudyPage() {
   const [openedNoteID, setOpenedNoteID] = useState<number | null>(0);
   const [showAddNote, setShowAddNote] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const notesContainerRef = useRef<HTMLElement>(null);
 
   const { study, allNotes, setAllNotes, loading } =
     useGetStudyAndNotes(studyId);
