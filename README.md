@@ -4,10 +4,7 @@
 
 [Backend repo](https://github.com/jasonHYLam/saturated-backend)
 
-
-
 ![image](https://github.com/jasonHYLam/saturated-frontend/assets/105083538/91553345-53da-4c63-bc0a-80e16497c55d)
-
 
 This app is intended to help budding artists by helping them perform art studies. Art studies allows people to improve their art skills by developing their observation skills.
 
@@ -37,6 +34,8 @@ Saturated aims to address all of these issues.
 - Image tagging: When creating a note, users can add a marker onto the study image at a particular location which corresponds to the note.
 - Color analysis: Users can obtain the color of a particular pixel when creating a note.
 - Color recreation: Users can build their color knowledge by guessing the color at a particular location.
+- Toggle fit image to screen height/width.
+- Toggle grayscale/colormode for images.
 - Ease of access: Users need only login to access their studies, which can be done on any device.
 - Supported on desktop and mobile.
 - Guest account to trial the app.
@@ -54,6 +53,7 @@ Saturated aims to address all of these issues.
 
 ## Todo:
 
+- ~~Implement toggle fit image to screen height/width.~~ Added 25/08/2024
 - Implement more granular color analysis, such as specific metrics for hue, saturation and value.
 - Implement color value analysis with grayscale mode.
 - Nicer layout for landscape images on mobile.
