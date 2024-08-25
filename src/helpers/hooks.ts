@@ -115,8 +115,7 @@ export function useAddImageToCanvas({
   canvasRef,
   imageLink,
   setCanvasElementDimensions,
-}: // setCanvasElementDimensions,
-useAddImageToCanvasProps) {
+}: useAddImageToCanvasProps) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -182,8 +181,9 @@ export function useGuest() {
   return { isGuest, loading };
 }
 
-// Won't this happen at the same time that useScreenResize occurs?
-// Initially, canvas.current is null, but is updated to the actual canvas element.
+// Note to self:
+// Initially, canvasRef.current is null, but is updated to the actual canvas element.
+// Thus, canvasRef.current must be put in the dependency array.
 export function useCanvasResize({
   canvasRef,
   setCanvasElementDimensions,
